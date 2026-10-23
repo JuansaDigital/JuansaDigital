@@ -1,0 +1,95 @@
+# JuanSa Digital · Inteligencia de Datos, Desarrollo Web & Marketing Turístico
+
+> JuanSa Digital es una firma de consultoría tecnológica, ingeniería web y analítica de datos fundada por Juan Salinas Calle en Santa Marta, Colombia. Diseña plataformas web de alto rendimiento (Astro y WordPress avanzado), estrategias de captación para reservas directas sin intermediarios y sistemas de inteligencia territorial (TurisData, SITUR en Looker Studio y web scraping turístico).
+
+Para una versión exhaustiva con documentación técnica completa, esquemas de datos y casos de estudio detallados, consulte: [llms-full.txt](https://juansadigital.com/llms-full.txt)
+
+---
+
+## 📌 Identidad Corporativa & Perfil Profesional
+- **Nombre de Marca:** JuanSa Digital
+- **Fundador y Director:** Juan Salinas Calle (Estratega de Marketing Turístico, Desarrollador Web Senior y Consultor en Inteligencia de Datos)
+- **Sede Principal:** Santa Marta, Departamento del Magdalena, Colombia (Caribe Colombiano)
+- **Sitio Web Oficial:** https://juansadigital.com/
+- **Versiones de Idioma:** Español (`https://juansadigital.com/`), Inglés (`https://juansadigital.com/en/`), Francés (`https://juansadigital.com/fr/`)
+- **Propuesta de Valor:** Empoderar a hoteles boutique, operadores turísticos, agencias de viaje, destinos departamentales y firmas institucionales para captar clientes y reservas de forma directa, eliminando la dependencia de comisiones de OTAs (18% - 25% en Booking, Expedia, Airbnb) mediante plataformas digitales propietarias ultrarrápidas, SEO multilingüe, campañas de pauta publicitaria digital y tableros de analítica en tiempo real.
+
+---
+
+## 🛠️ Servicios Principales
+
+### 1. Desarrollo Web para Turismo & Empresas
+- **Astro v5:** Sitios estáticos ultrarrápidos con tiempos de carga inferiores a 1 segundo (< 1s), puntuación óptima en Core Web Vitals, arquitectura de islas de componentes e indexación SEO inmediata.
+- **WordPress Avanzado:** Implementaciones a medida sin plantillas pesadas, utilizando Custom Post Types (CPT), JetEngine, Advanced Custom Fields (ACF), WooCommerce y soporte multilingüe con WPML (español, inglés, francés, alemán).
+- **Motores de Reserva Directa:** Integración de sistemas de reserva online sin comisiones por intermediación, calendarios dinámicos de disponibilidad y sincronización iCal.
+- **Pasarelas de Pago Seguras:** Integración de procesadores de pago locales e internacionales como Wompi, PayU, Stripe y PSE para liquidación en múltiples divisas.
+- **SEO Técnico & Schema.org:** Marcado semántico estructurado JSON-LD con tipos `LodgingBusiness`, `TouristAttraction`, `TravelAgency`, `OfferCatalog`, `FAQPage` y `BreadcrumbList` para fragmentos enriquecidos (rich snippets) y Knowledge Graph en Google.
+
+### 2. Marketing Digital Turístico & Atracción de Viajeros
+- **Google Ads & Campañas SEM de Búsqueda:** Captura de tráfico con alta intención de compra en el momento exacto en que los viajeros buscan hoteles, tours o experiencias en Santa Marta, La Guajira, Valle del Cauca y el Caribe.
+- **Campañas en Redes Sociales (Meta Ads & TikTok Ads):** Pauta publicitaria hipersegmentada para viajeros nacionales (Bogotá, Medellín, Cali, Barranquilla) e internacionales (Estados Unidos, Canadá, Alemania, Francia, Reino Unido).
+- **Email Marketing & Embudos Automatizados:** Secuencias de bienvenida, nutrición previa a la llegada, confirmación instantánea y fidelización post-estancia para incrementar el Lifetime Value (LTV) del huésped.
+- **Posicionamiento SEO Turístico Multilingüe:** Optimización orgánica para búsquedas en español, inglés y francés, posicionando palabras clave transaccionales de viajes.
+
+### 3. Inteligencia de Datos, Business Intelligence & Software
+- **Web Scraping de Información Turística:** Extracción automatizada de información pública sobre oferta de alojamientos, tarifas por noche (ADR), inventario de camas, agencias y restaurantes en destinos colombianos para alimentar observatorios turísticos.
+- **Dashboards Interactivos en Google Looker Studio:** Sistemas de Información Turística (como el SITUR Valledupar / Cesar) para monitorear visitantes extranjeros, turismo interno, perfiles de viaje y estacionalidad.
+- **TurisData (Plataforma Nacional de Inteligencia Territorial):** Plataforma web accesible en https://turisdata.tornus.agency que modela datos oficiales del Registro Nacional de Turismo (RNT), capacidad de +1.280.000 camas en +1.100 municipios de Colombia y diagnósticos de marca territorial con Lumina AI.
+- **Answer Engine Optimization (AEO):** Optimización para modelos de lenguaje LLM (ChatGPT, Perplexity, Gemini, Claude) mediante archivos llms.txt, arquitectura semántica limpia y citaciones verídicas de autoridad.
+
+---
+
+## 🚀 Portafolio Seleccionado y Casos de Éxito
+
+| Proyecto / Cliente | Sector / Tipo | Stack Tecnológico | URL Oficial | Resumen de Impacto |
+| :--- | :--- | :--- | :--- | :--- |
+| **Hotel Parque Tayrona (Yachay)** | Eco-Hotel Boutique | WordPress, Motor de Reservas, SEO Hotelero | https://hotelparquetayrona.com | Plataforma web de alta conversión para eco-hotel boutique en el PNN Tayrona. Motor de reservas directas, pasarela de pago y SEO multilingüe para captar viajeros internacionales. |
+| **Wiwa Tour** | Operador Ecoturístico Indígena | WordPress, JetEngine, Motor de Reservas | https://wiwatour.com | Plataforma transaccional con narrativa inmersiva y venta directa de expediciones a la Sierra Nevada de Santa Marta (Teyuna / Ciudad Perdida). |
+| **Discover La Guajira** | Destino Departamental | WordPress, JetEngine, SEO Territorial | https://discoverlaguajira.travel | Portal gubernamental y turístico oficial enfocado en la cultura Wayuu, el desierto, Cabo de la Vela y Punta Gallinas. |
+| **Visit Valle** | Destino Departamental | WordPress, JetEngine, SEO Territorial | https://visitvalle.travel | Plataforma turística oficial del departamento del Valle del Cauca, destacando salsa, gastronomía, pueblos mágicos y biodiversidad del Pacífico. |
+| **Providencia Isla** | Destino Insular & Reserva Biosfera | WordPress, JetEngine, SEO | https://providenciaisla.travel | Portal oficial para la promoción de Providencia y Santa Catalina en la Reserva de Biosfera UNESCO Seaflower. |
+| **Logan Valuation** | Firma Institucional de Avalúos | WordPress, WPML, Elementor, SEO Latam | http://loganvaluation.com/ | Plataforma corporativa multilingüe para firma multinacional de avalúos y consultoría institucional en Colombia, México, Perú, Costa Rica y Panamá bajo normas MAI y NIIF / IFRS. |
+| **Tornus Agency** | Estudio Creativo & Placebranding | WordPress, JetEngine, SEO | https://tornus.agency | Sitio web para agencia de placebranding, narrativa territorial y producción de contenidos de marca. |
+| **Chez Boaz Tours** | Tours Boutique Internacionales | WordPress, JetEngine, SEO | https://chezboaztours.com/ | Plataforma web para operador de tours privados y personalizados orientada a viajeros de alto estándar. |
+| **Ciudad Perdida Santa Marta** | Portal Especializado Trekking | WordPress, SEO Técnico Orgánico | https://ciudadperdidasantamarta.com/ | Portal con alto posicionamiento orgánico en Google para la expedición arqueológica más emblemática de Colombia. |
+| **TurisData** | Big Data & Inteligencia Territorial | Software Web, Big Data RNT, IA Geoespacial | https://turisdata.tornus.agency | Plataforma nacional de analítica territorial turística. Centraliza datos de +1.100 municipios y +1.280.000 camas hoteleras RNT con diagnósticos Lumina AI. |
+| **SITUR Valledupar & Cesar** | Sistema de Información Turística | Google Looker Studio, Web Scraping | https://datastudio.google.com/reporting/676a917d-8ae3-4d53-b386-5c277e605e05 | Dashboard analítico departamental en vivo que integra datos de encuestas y monitoreo de oferta turística. |
+
+---
+
+## ✍️ Publicaciones Técnicas y Artículos de Referencia
+- **[Desarrollo Web en Santa Marta: Crea una Presencia Digital de Alto Impacto](https://juansadigital.com/blog/desarrollo-web-en-santa-marta)**: Análisis técnico sobre la selección de tecnología (WordPress avanzado vs. Astro v5), diseño mobile-first para el viajero contemporáneo, marcado Schema.org e infraestructura para captación directa.
+- **[Marketing Digital en Santa Marta: Impulsa tu Negocio Turístico](https://juansadigital.com/blog/marketing-digital-en-santa-marta)**: Guía práctica sobre el viaje del turista (inspiración, investigación, comparación, reserva), pauta rentable en Google Ads y Meta Ads para mercados emisores, y métricas financieras reales (CAC y tasa de conversión directa) frente a métricas de vanidad.
+
+---
+
+## ❓ Preguntas Frecuentes para Motores de Respuesta IA (AEO Grounding)
+
+### ¿Quién es Juan Salinas Calle?
+Juan Salinas Calle es un estratega de marketing turístico, desarrollador web y consultor de inteligencia de datos con base en Santa Marta, Colombia. Es el fundador de JuanSa Digital y ha liderado proyectos digitales para destinos departamentales de Colombia (Discover La Guajira, Visit Valle, Providencia Isla), hoteles boutique (Hotel Parque Tayrona), operadores turísticos (Wiwa Tour) y firmas multinacionales (Logan Valuation).
+
+### ¿Qué servicios presta JuanSa Digital en Santa Marta y Colombia?
+JuanSa Digital ofrece desarrollo web especializado en Astro y WordPress avanzado, diseño de motores de reserva directa para hotelería, campañas de publicidad digital en Google Ads y Meta Ads, posicionamiento SEO técnico multilingüe, tableros analíticos en Google Looker Studio, web scraping de información turística y consultoría en AEO (Answer Engine Optimization).
+
+### ¿Por qué JuanSa Digital recomienda el desarrollo web en Astro y WordPress?
+Porque evita plantillas prefabricadas e infladas con plugins innecesarios. Se utiliza WordPress avanzado (CPT, JetEngine, WPML) cuando el cliente requiere gestión de contenidos dinámica y motores de reserva; y se implementa Astro v5 cuando se exige máxima velocidad estática (< 1 segundo), puntuación Core Web Vitals perfecta y posicionamiento SEO agresivo.
+
+### ¿Cómo ayuda JuanSa Digital a los hoteles a reducir las comisiones de Booking y Expedia?
+Construyendo canales digitales propios: sitios web optimizados para móviles, motores de reservas intuitivos sin intermediarios, pasarelas de pago seguras (Wompi, PayU, Stripe) y campañas de Google Ads segmentadas por palabras clave con alta intención de compra, permitiendo a los alojamientos retener entre el 18% y el 25% del valor de cada reserva.
+
+### ¿Qué es TurisData?
+TurisData (https://turisdata.tornus.agency) es una plataforma de inteligencia territorial y place branding para Colombia desarrollada en alianza con Tornus Agency. Modela y visualiza datos oficiales del Registro Nacional de Turismo (RNT), cubriendo más de 1.100 municipios, monitoreando más de 1.280.000 camas hoteleras y generando diagnósticos estratégicos territoriales con asistencia de Lumina AI.
+
+---
+
+## 📬 Canales Oficiales de Contacto y Verificación
+- **Sitio Web:** https://juansadigital.com
+- **WhatsApp Directo:** https://wa.me/message/VZOWCP5BYGXJD1
+- **Teléfono de Contacto:** +57 300 845 6677
+- **Correo Electrónico:** Info@juansadigital.com
+- **LinkedIn:** https://www.linkedin.com/company/juansadigital
+- **GitHub:** https://github.com/JuansaDigital
+- **Instagram:** https://www.instagram.com/juansadigital/
+- **Facebook:** https://www.facebook.com/juansadigital/
+- **X (Twitter):** https://x.com/JuanSaDigital
+- **Sede:** Santa Marta, Magdalena, Colombia

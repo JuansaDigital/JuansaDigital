@@ -1,0 +1,63 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ServicesContent from '../../components/pages/ServicesContent.astro';
+
+const servicesSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Web Engineering & Tourism Marketing",
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "JuanSa Digital",
+    "url": "https://juansadigital.com/en"
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Santa Marta" },
+    { "@type": "Country", "name": "Colombia" }
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Specialized Services by JuanSa Digital",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Tourism Digital Marketing",
+          "description": "Guest acquisition campaigns across Meta Ads, Google Ads, and organic SEO for hotels and travel agencies."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "WordPress & Astro Web Engineering",
+          "description": "High-converting, ultra-fast websites featuring commission-free booking engines and secure payment checkouts."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Data Analytics & Business Intelligence",
+          "description": "Interactive Google Looker Studio dashboards, tourism market web scraping, and territorial data platforms."
+        }
+      }
+    ]
+  }
+};
+---
+
+<Layout 
+  lang="en"
+  title="Services | JuanSa Digital · Tourism Marketing, Web Engineering & BI"
+  description="Specialized services from JuanSa Digital: destination marketing, WordPress & Astro web development, SEO positioning, Google Ads, and Looker Studio analytics in Santa Marta."
+  keywords="web development santa marta"
+  pageSchema={servicesSchema}
+>
+  <Navbar />
+  <ServicesContent lang="en" />
+  <Footer />
+</Layout>

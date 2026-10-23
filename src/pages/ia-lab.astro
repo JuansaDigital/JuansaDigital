@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import AiLabContent from '../components/pages/AiLabContent.astro';
+
+const aiLabSchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Laboratorio de Inteligencia Artificial y Datos Territoriales",
+  "description": "Metodologías de optimización AEO para modelos LLM (ChatGPT, Perplexity), analítica geoespacial y plataformas de Big Data turística.",
+  "author": {
+    "@type": "Person",
+    "name": "Juan Salinas Calle"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "JuanSa Digital"
+  }
+};
+---
+
+<Layout 
+  lang="es"
+  title="IA & Exploración de Datos | JuanSa Digital · Santa Marta"
+  description="Laboratorio de Inteligencia Artificial y datos de JuanSa Digital: AEO para Perplexity y ChatGPT, web scraping de información turística, dashboards en Looker Studio y TurisData para inteligencia territorial."
+  keywords="inteligencia artificial turismo"
+  pageSchema={aiLabSchema}
+>
+  <Navbar />
+  <AiLabContent lang="es" />
+  <Footer />
+</Layout>

@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import SitemapContent from '../components/pages/SitemapContent.astro';
+
+const sitemapSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemPage",
+  "name": "Mapa del Sitio (Sitemap) | JuanSa Digital",
+  "description": "Índice estructurado de todas las secciones, servicios, casos de estudio y publicaciones de JuanSa Digital."
+};
+---
+
+<Layout 
+  lang="es"
+  title="Mapa del Sitio (Sitemap) | JuanSa Digital · Santa Marta"
+  description="Mapa del sitio completo de JuanSa Digital: índice de páginas principales, servicios de desarrollo web, portafolio de proyectos, artículos de blog y recursos técnicos."
+  keywords="mapa del sitio juansa digital"
+  pageSchema={sitemapSchema}
+>
+  <Navbar />
+  <SitemapContent lang="es" />
+  <Footer />
+</Layout>

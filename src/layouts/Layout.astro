@@ -1,0 +1,159 @@
+---
+import WhatsAppFloating from '../components/WhatsAppFloating.astro';
+import { getLangFromUrl, getHreflangLinks, type SupportedLanguage } from '../i18n/ui';
+
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  image?: string;
+  articleDate?: string;
+  lang?: SupportedLanguage;
+  pageSchema?: Record<string, any> | Array<Record<string, any>>;
+}
+
+const {
+  title = "JuanSa Digital | Marketing Turístico, Desarrollo Web y Analítica de Datos",
+  description = "Estratega de marketing turístico y desarrollo web en Santa Marta, Colombia. Impulsamos hoteles, operadores y agencias con plataformas de alta conversión, SEO y analítica de datos.",
+  keywords = "marketing turístico santa marta",
+  image = "/og/opengraph.png",
+  articleDate,
+  lang: explicitLang,
+  pageSchema
+} = Astro.props;
+
+const lang = explicitLang || getLangFromUrl(Astro.url);
+const siteBase = (Astro.site || "https://juansadigital.com").toString();
+const canonicalURL = new URL(Astro.url.pathname, siteBase);
+const ogImageURL = new URL(image, siteBase).toString();
+const hreflangLinks = getHreflangLinks(Astro.url.pathname, siteBase);
+
+const localeMap: Record<SupportedLanguage, string> = {
+  es: "es_CO",
+  en: "en_US",
+  fr: "fr_FR"
+};
+
+const skipLinkTexts: Record<SupportedLanguage, string> = {
+  es: "Saltar al contenido principal",
+  en: "Skip to main content",
+  fr: "Passer au contenu principal"
+};
+const skipText = skipLinkTexts[lang] || skipLinkTexts.es;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Hreflang Multi-Language Alternates -->
+    {hreflangLinks.map((item) => (
+      <link rel="alternate" hreflang={item.lang} href={item.href} />
+    ))}
+
+    <!-- SEO Primary Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="JuanSa Digital - Santa Marta, Colombia" />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={articleDate ? "article" : "website"} />
+    <meta property="og:site_name" content="JuanSa Digital" />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:locale" content={localeMap[lang] || "es_CO"} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@JuanSaDigital" />
+    <meta name="twitter:creator" content="@JuanSaDigital" />
+    <meta name="twitter:url" content={canonicalURL.href} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+
+    <!-- Schema.org Base Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "JuanSa Digital",
+        "url": "https://juansadigital.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Santa Marta",
+          "addressRegion": "Magdalena",
+          "addressCountry": "CO"
+        },
+        "description": "Consultoría en marketing turístico, desarrollo web y analítica de datos en Santa Marta, Colombia.",
+        "sameAs": [
+          "https://www.linkedin.com/company/juansadigital",
+          "https://github.com/JuansaDigital",
+          "https://www.instagram.com/juansadigital/",
+          "https://x.com/JuanSaDigital"
+        ]
+      }
+    </script>
+
+    <!-- Page Specific Structured Data (Schema.org) -->
+    {pageSchema && (
+      <script type="application/ld+json" set:html={JSON.stringify(pageSchema)} />
+    )}
+
+    <!-- Google Tag Manager -->
+    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PJLQN2L');</script>
+    <!-- End Google Tag Manager -->
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJLQN2L"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Skip to main content for accessibility (a11y) -->
+    <a href="#main-content" class="skip-link">{skipText}</a>
+    <slot />
+    <WhatsAppFloating lang={lang} />
+    <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", function () {
+        const revealElements = document.querySelectorAll('.reveal-on-scroll');
+        if (!revealElements.length) return;
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-revealed');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.12,
+          rootMargin: "0px 0px -40px 0px"
+        });
+
+        revealElements.forEach(el => observer.observe(el));
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>

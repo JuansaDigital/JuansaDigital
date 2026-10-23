@@ -1,0 +1,346 @@
+---
+import { getLangFromUrl, getLocalizedPath, type SupportedLanguage } from "../i18n/ui";
+
+interface Props {
+  lang?: SupportedLanguage;
+}
+
+const { lang: propLang } = Astro.props;
+const currentLang = propLang || getLangFromUrl(Astro.url);
+
+const copy = {
+  es: {
+    label: "Áreas de Especialidad",
+    headline: "Servicios",
+    counter: "Estrategia & Tecnología",
+    bottomBtn: "Conocer Metodología y Entregables Completos",
+    items: [
+      {
+        num: "01",
+        name: "Marketing Digital Turístico",
+        summary: "Diseño e implementación de estrategias digitales orientadas a captar clientes y viajeros mediante sitios web optimizados, posicionamiento SEO, publicidad digital Ads y analítica de mercado.",
+        points: [
+          { bold: "Campañas en Redes Sociales:", text: "Meta Ads (Instagram, Facebook) y TikTok Ads con segmentación precisa." },
+          { bold: "Google Ads & SEM:", text: "Tráfico de personas que buscan activamente alojamiento, tours o servicios." },
+          { bold: "Email Marketing:", text: "Mensajes automatizados de confirmación, bienvenida y fidelización." },
+          { bold: "Posicionamiento SEO Turístico:", text: "Optimización en buscadores para español e idiomas internacionales." }
+        ],
+        ariaLabel: "Ver detalles de Marketing Digital Turístico"
+      },
+      {
+        num: "02",
+        name: "Desarrollo Web para Turismo & Empresas",
+        summary: "Desarrollamos en WordPress y Astro: sitios web visualmente atractivos, rápidos y pensados para transformar visitas en reservas y consultas comerciales.",
+        points: [
+          { bold: "WordPress & Astro:", text: "Seleccionamos la herramienta indicada según la escala de tu proyecto." },
+          { bold: "Diseño Móvil:", text: "Navegación fluida y cómoda desde cualquier teléfono celular." },
+          { bold: "Motores de Reserva y Pagos:", text: "Integración de pasarelas seguras (Wompi, PayU, Stripe)." },
+          { bold: "Estructura para SEO:", text: "Código limpio y ordenado para facilitar la indexación en Google." }
+        ],
+        ariaLabel: "Ver detalles de Desarrollo Web"
+      },
+      {
+        num: "03",
+        name: "Inteligencia de Datos & Análisis de Mercado",
+        summary: "Decisiones estratégicas basadas en datos de mercado, extracción de información turística y dashboards analíticos territoriales.",
+        points: [
+          { bold: "Web Scraping Turístico:", text: "Levantamiento de información pública sobre oferta de alojamientos, agencias y restaurantes." },
+          { bold: "Dashboards en Looker Studio:", text: "Visualización interactiva de visitantes, turismo interno y perfiles de mercado (SITUR)." },
+          { bold: "Inteligencia Territorial (TurisData):", text: "Plataforma geoespacial nacional de prestadores RNT y capacidad de camas." },
+          { bold: "Estudios de Sector:", text: "Auditoría de oferta, competidores y tendencias de mercado." }
+        ],
+        ariaLabel: "Ver detalles de Inteligencia de Datos"
+      }
+    ]
+  },
+  en: {
+    label: "Areas of Expertise",
+    headline: "Capabilities & Services",
+    counter: "Strategy & Engineering",
+    bottomBtn: "Explore Methodology & Key Deliverables",
+    items: [
+      {
+        num: "01",
+        name: "Tourism Digital Marketing",
+        summary: "Engineering guest acquisition funnels for hospitality, tour operators, and agencies through custom websites, technical SEO, high-intent Ads, and performance analytics.",
+        points: [
+          { bold: "Paid Social Advertising:", text: "Meta Ads (Instagram & Facebook) and TikTok with hyper-targeted audience segments." },
+          { bold: "Google Ads & Intent SEM:", text: "Intercepting travelers actively searching for lodging, private tours, or regional expeditions." },
+          { bold: "Automated Email Sequences:", text: "Personalized welcome guides, booking confirmations, and loyalty workflows." },
+          { bold: "Multilingual Tourism SEO:", text: "Organic search visibility across English, Spanish, and French global queries." }
+        ],
+        ariaLabel: "Explore Tourism Digital Marketing details"
+      },
+      {
+        num: "02",
+        name: "Web Engineering for Tourism & Enterprises",
+        summary: "We engineer in WordPress and Astro: high-performance, visually compelling websites designed to convert visits into direct bookings and inquiries.",
+        points: [
+          { bold: "WordPress & Astro:", text: "The ideal tech stack chosen according to your project's operational scale." },
+          { bold: "Mobile-First UX:", text: "Frictionless navigation and lightweight touch interactions across all mobile devices." },
+          { bold: "Booking Engines & Checkouts:", text: "Direct payment gateway integration (Stripe, Wompi, PayU) without commissions." },
+          { bold: "Schema & Technical SEO:", text: "Clean markup and rich structured data for instant Google indexation." }
+        ],
+        ariaLabel: "Explore Web Engineering details"
+      },
+      {
+        num: "03",
+        name: "Market Data Intelligence & Analytics",
+        summary: "Evidence-driven business decisions backed by automated public tourism scraping, Looker Studio dashboards, and territorial BI software.",
+        points: [
+          { bold: "Tourism Web Scraping:", text: "Automated public data collection on accommodation tariffs, operator listings, and capacity." },
+          { bold: "Looker Studio Dashboards:", text: "Interactive live telemetry on traveler origin profiles, domestic travel, and seasonality (SITUR)." },
+          { bold: "Territorial BI (TurisData):", text: "National geospatial platform mapping official RNT registries and hotel bed capacity." },
+          { bold: "Market Supply Audits:", text: "Comprehensive diagnostics of competitor pricing, regional absorption, and opportunities." }
+        ],
+        ariaLabel: "Explore Market Data Intelligence details"
+      }
+    ]
+  },
+  fr: {
+    label: "Domaines d'Expertise",
+    headline: "Compétences & Services",
+    counter: "Stratégie & Ingénierie",
+    bottomBtn: "Découvrir la Méthodologie & les Livrables",
+    items: [
+      {
+        num: "01",
+        name: "Marketing Digital Touristique",
+        summary: "Conception et déploiement de stratégies d'acquisition pour hôtels et voyagistes : sites web optimisés, référencement SEO, Google Ads et analyse de performance.",
+        points: [
+          { bold: "Campagnes Réseaux Sociaux :", text: "Meta Ads (Instagram & Facebook) et TikTok avec ciblage ultra précis des voyageurs." },
+          { bold: "Google Ads & SEM Ciblé :", text: "Acquisition de trafic à forte intention d'achat pour hébergements et excursions." },
+          { bold: "Email Marketing Automatisé :", text: "Messages de confirmation, guides d'accueil et fidélisation post-séjour." },
+          { bold: "Référencement SEO Multilingue :", text: "Positionnement en français, espagnol et anglais sur les mots-clés stratégiques." }
+        ],
+        ariaLabel: "Voir les détails du Marketing Digital Touristique"
+      },
+      {
+        num: "02",
+        name: "Développement Web Tourisme & Entreprises",
+        summary: "Nous développons sous WordPress et Astro : des sites web élégants, ultra rapides et conçus pour transformer vos visiteurs en réservations directes.",
+        points: [
+          { bold: "WordPress & Astro :", text: "La solution technique idéale selon l'envergure et les besoins de votre projet." },
+          { bold: "Conception Mobile-First :", text: "Navigation intuitive et tactile sur tous les smartphones." },
+          { bold: "Moteurs de Réservation :", text: "Intégration de passerelles de paiement sécurisées (Stripe, Wompi, PayU) sans commission." },
+          { bold: "Architecture SEO :", text: "Code propre et balisage Schema.org pour une indexation prioritaire sur Google." }
+        ],
+        ariaLabel: "Voir les détails du Développement Web"
+      },
+      {
+        num: "03",
+        name: "Intelligence de Données & Analyse de Marché",
+        summary: "Décisions stratégiques fondées sur des données objectives, scraping d'informations touristiques et tableaux de bord territoriaux.",
+        points: [
+          { bold: "Web Scraping Touristique :", text: "Collecte automatisée de données publiques sur l'hôtellerie, les agences et les tarifs." },
+          { bold: "Tableaux de Bord Looker Studio :", text: "Visualisation interactive des flux de visiteurs et tendances du marché (SITUR)." },
+          { bold: "Intelligence Territoriale (TurisData) :", text: "Plateforme cartographique nationale des prestataires officiels RNT et lits hôteliers." },
+          { bold: "Études Sectorielles :", text: "Audit de l'offre régionale, benchmarking concurrentiel et opportunités de marché." }
+        ],
+        ariaLabel: "Voir les détails de l'Intelligence de Données"
+      }
+    ]
+  }
+};
+
+const c = copy[currentLang] || copy.es;
+---
+
+<section class="section-gap studio-services-section section-paper" id="servicios">
+  <div class="container">
+    <div class="section-top-bar">
+      <div>
+        <span class="studio-section-label">{c.label}</span>
+        <h2 class="section-headline">{c.headline}</h2>
+      </div>
+      <p class="section-counter">{c.counter}</p>
+    </div>
+
+    <div class="studio-services-list">
+      {c.items.map((service) => (
+        <article class="service-block">
+          <div class="service-left">
+            <span class="service-num">{service.num}</span>
+            <h3 class="service-name">{service.name}</h3>
+          </div>
+          
+          <div class="service-center">
+            <p class="service-summary">
+              {service.summary}
+            </p>
+            <ul class="service-points">
+              {service.points.map((pt) => (
+                <li><strong>{pt.bold}</strong> {pt.text}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="service-right">
+            <a href={getLocalizedPath("/servicios", currentLang)} class="service-arrow-btn" aria-label={service.ariaLabel}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="services-bottom-action">
+      <a href={getLocalizedPath("/servicios", currentLang)} class="pill-morph-btn">
+        <span>{c.bottomBtn}</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="7" y1="17" x2="17" y2="7"></line>
+          <polyline points="7 7 17 7 17 17"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--line-light);
+    margin-bottom: 3.5rem;
+  }
+
+  .studio-section-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    color: var(--contra-red);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-counter {
+    font-size: 0.88rem;
+    color: var(--ink-dim);
+    font-weight: 500;
+  }
+
+  /* Services List */
+  .studio-services-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .service-block {
+    display: grid;
+    grid-template-columns: 320px 1fr 60px;
+    gap: 3rem;
+    padding-block: 3.5rem;
+    border-bottom: 1px solid var(--line-light);
+    align-items: start;
+    transition: background-color 0.25s ease;
+  }
+
+  .service-block:hover {
+    background-color: rgba(0, 0, 0, 0.015);
+  }
+
+  .service-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .service-num {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--contra-red);
+    letter-spacing: -0.02em;
+  }
+
+  .service-name {
+    font-size: 1.65rem;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--ink-primary);
+  }
+
+  .service-summary {
+    font-size: 1.05rem;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    margin-bottom: 1.75rem;
+  }
+
+  .service-points {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem 2rem;
+  }
+
+  .service-points li {
+    font-size: 0.92rem;
+    color: var(--ink-muted);
+    line-height: 1.5;
+    position: relative;
+    padding-left: 1.25rem;
+  }
+
+  .service-points li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--contra-red);
+    font-weight: 700;
+  }
+
+  .service-points li strong {
+    color: var(--ink-primary);
+  }
+
+  .service-right {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .service-arrow-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--line-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-primary);
+    text-decoration: none;
+    transition: all 0.3s var(--ease-contra);
+  }
+
+  .service-block:hover .service-arrow-btn {
+    background-color: var(--contra-black);
+    color: #FFFFFF;
+    border-color: var(--contra-black);
+    transform: rotate(45deg);
+  }
+
+  .services-bottom-action {
+    display: flex;
+    justify-content: center;
+    margin-top: 4rem;
+  }
+
+  @media (max-width: 980px) {
+    .service-block {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+    .service-points {
+      grid-template-columns: 1fr;
+    }
+    .service-right {
+      justify-content: flex-start;
+    }
+  }
+</style>

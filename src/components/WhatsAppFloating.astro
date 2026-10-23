@@ -1,0 +1,171 @@
+---
+import { getLangFromUrl, useTranslations, type SupportedLanguage } from "../i18n/ui";
+
+interface Props {
+  phoneUrl?: string;
+  message?: string;
+  lang?: SupportedLanguage;
+}
+
+const {
+  phoneUrl = "https://wa.me/message/VZOWCP5BYGXJD1",
+  lang: propLang
+} = Astro.props;
+
+const lang = propLang || getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const message = Astro.props.message || t("whatsapp.tooltip");
+
+const ariaLabels = {
+  es: {
+    aside: "Canal directo de WhatsApp",
+    link: "Contactar a JuanSa Digital por WhatsApp"
+  },
+  en: {
+    aside: "Direct WhatsApp channel",
+    link: "Contact JuanSa Digital via WhatsApp"
+  },
+  fr: {
+    aside: "Canal direct WhatsApp",
+    link: "Contacter JuanSa Digital sur WhatsApp"
+  }
+};
+
+const a = ariaLabels[lang] || ariaLabels.es;
+---
+
+<aside class="whatsapp-floating-wrap" aria-label={a.aside}>
+  <a
+    href={phoneUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="whatsapp-floating-btn"
+    aria-label={a.link}
+  >
+    <!-- Tooltip badge on hover -->
+    <span class="whatsapp-floating-tooltip">
+      <span class="online-indicator"></span>
+      {message}
+    </span>
+
+    <!-- SVG Icon -->
+    <div class="whatsapp-icon-circle">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.586 1.771.884 2.796.885h.005c3.179 0 5.766-2.586 5.767-5.766 0-3.18-2.587-5.772-5.772-5.772zm3.376 8.188c-.14.394-.813.729-1.127.777-.314.047-.723.073-2.148-.487-1.425-.56-2.344-2.006-2.414-2.1-.07-.094-.576-.767-.576-1.462s.364-1.037.494-1.178c.13-.14.283-.176.377-.176.094 0 .188.001.27.006.088.005.206-.033.322.247.12.29.41 1.002.447 1.075.037.073.06.159.012.253-.048.094-.073.153-.144.237-.073.084-.153.187-.218.252-.073.073-.149.153-.064.298.085.145.378.623.811 1.008.558.497 1.03.651 1.176.724.146.073.232.064.318-.035.087-.1.373-.434.473-.583.1-.149.2-.124.336-.074.137.05.867.409 1.016.483.149.074.248.111.285.174.037.063.037.368-.103.762zM12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.662 1.435 5.179L2 22l4.957-1.399C8.423 21.492 10.153 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.25c-1.637 0-3.153-.483-4.428-1.314l-.317-.208-2.946.773.787-2.871-.227-.361C3.987 15.006 3.5 13.551 3.5 12c0-4.687 3.813-8.5 8.5-8.5s8.5 3.813 8.5 8.5-3.813 8.5-8.5 8.5z"/>
+      </svg>
+      <span class="pulse-ring"></span>
+    </div>
+  </a>
+</aside>
+
+<style>
+  .whatsapp-floating-wrap {
+    position: fixed;
+    bottom: clamp(1.25rem, 3vw, 2rem);
+    right: clamp(1.25rem, 3vw, 2rem);
+    z-index: 95;
+    pointer-events: none;
+  }
+
+  .whatsapp-floating-btn {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    position: relative;
+    outline: none;
+  }
+
+  .whatsapp-icon-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 25px rgba(18, 140, 126, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2);
+    position: relative;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+  }
+
+  .whatsapp-floating-btn:hover .whatsapp-icon-circle {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 14px 32px rgba(18, 140, 126, 0.55), 0 6px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  .pulse-ring {
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid #25D366;
+    opacity: 0.8;
+    animation: whatsappPulse 2.4s cubic-bezier(0.25, 0, 0, 1) infinite;
+    pointer-events: none;
+  }
+
+  @keyframes whatsappPulse {
+    0% {
+      transform: scale(0.95);
+      opacity: 0.8;
+    }
+    70% {
+      transform: scale(1.35);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1.35);
+      opacity: 0;
+    }
+  }
+
+  /* Tooltip Badge */
+  .whatsapp-floating-tooltip {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #0A0D14;
+    color: #F8FAFC;
+    padding: 0.55rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+  }
+
+  .online-indicator {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #25D366;
+    box-shadow: 0 0 8px #25D366;
+  }
+
+  .whatsapp-floating-btn:hover .whatsapp-floating-tooltip {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  @media (max-width: 640px) {
+    .whatsapp-icon-circle {
+      width: 52px;
+      height: 52px;
+    }
+    .whatsapp-icon-circle svg {
+      width: 24px;
+      height: 24px;
+    }
+    .whatsapp-floating-tooltip {
+      display: none;
+    }
+  }
+</style>

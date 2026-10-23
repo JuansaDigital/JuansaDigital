@@ -1,0 +1,63 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ServicesContent from '../../components/pages/ServicesContent.astro';
+
+const servicesSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "Développement Web & Marketing Touristique",
+  "provider": {
+    "@type": "ProfessionalService",
+    "name": "JuanSa Digital",
+    "url": "https://juansadigital.com/fr"
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Santa Marta" },
+    { "@type": "Country", "name": "Colombie" }
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Services Spécialisés de JuanSa Digital",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Marketing Digital Touristique",
+          "description": "Campagnes d'acquisition sur Meta Ads, Google Ads et référencement SEO pour hôtels et réceptifs."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Développement Web sous WordPress & Astro",
+          "description": "Sites internet à forte conversion, dotés de moteurs de réservation directe et paiements sécurisés."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Analytique de Données & Business Intelligence",
+          "description": "Tableaux de bord interactifs Looker Studio, scraping de marché et plateformes territoriales."
+        }
+      }
+    ]
+  }
+};
+---
+
+<Layout 
+  lang="fr"
+  title="Services | JuanSa Digital · Marketing Touristique, Développement Web & Données"
+  description="Services experts de JuanSa Digital : marketing digital touristique, développement web sur WordPress et Astro, SEO, Google Ads et tableaux de bord Looker Studio."
+  keywords="développement web santa marta"
+  pageSchema={servicesSchema}
+>
+  <Navbar />
+  <ServicesContent lang="fr" />
+  <Footer />
+</Layout>

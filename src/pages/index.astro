@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import WorkStickyShowcase from '../components/WorkStickyShowcase.astro';
+import WhyItMatters from '../components/WhyItMatters.astro';
+import PartnersSlider from '../components/PartnersSlider.astro';
+import EcosystemSection from '../components/EcosystemSection.astro';
+import Services from '../components/Services.astro';
+import DataPlatforms from '../components/DataPlatforms.astro';
+import BlogPreview from '../components/BlogPreview.astro';
+import Footer from '../components/Footer.astro';
+const homeSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "JuanSa Digital",
+  "url": "https://juansadigital.com",
+  "description": "Estratega de marketing turístico, desarrollo web y analítica de datos en Santa Marta, Colombia.",
+  "inLanguage": "es-CO",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://juansadigital.com/blog?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+};
+---
+
+<Layout 
+  title="JuanSa Digital | Marketing Turístico, Desarrollo Web y Analítica de Datos · Santa Marta"
+  description="Consultoría en marketing turístico, desarrollo web y analítica de datos en Santa Marta, Colombia. Sitios web a medida optimizados para posicionamiento SEO, publicidad digital Ads y analítica de mercado."
+  keywords="marketing turístico santa marta"
+  pageSchema={homeSchema}
+>
+  <Navbar lang="es" />
+  <main id="main-content">
+    <!-- 01. Hero Showcase con Panoramic Frame & Marquee -->
+    <Hero lang="es" />
+
+    <!-- 02. Showcase de Proyectos Sticky (GSAP) -->
+    <WorkStickyShowcase lang="es" />
+
+    <!-- 03. Enfoque de Trabajo & Acordeones Interactivos -->
+    <WhyItMatters lang="es" />
+
+    <!-- 04. Partners & Testimonios Horizontal Slider -->
+    <PartnersSlider lang="es" />
+
+    <!-- 05. Ecosistema Estratégico · 3 Pilares -->
+    <EcosystemSection lang="es" />
+
+    <!-- 06. Editorial Services Overview -->
+    <Services lang="es" />
+
+    <!-- 07. Proprietary Data Platforms (TurisData & SITUR) -->
+    <DataPlatforms lang="es" />
+
+    <!-- 08. Editorial Articles & Perspectives -->
+    <BlogPreview lang="es" />
+  </main>
+  <Footer lang="es" />
+</Layout>

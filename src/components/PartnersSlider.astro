@@ -1,0 +1,392 @@
+---
+import { getLangFromUrl, type SupportedLanguage } from "../i18n/ui";
+
+interface Props {
+  lang?: SupportedLanguage;
+}
+
+const { lang: propLang } = Astro.props;
+const currentLang = propLang || getLangFromUrl(Astro.url);
+
+const copy = {
+  es: {
+    label: "Principales Alianzas & Resultados",
+    headline: "Diseñamos y escalamos productos digitales para marcas y destinos que compiten al más alto nivel.",
+    ariaLabel: "Deslizar horizontalmente para ver alianzas",
+    partners: [
+      {
+        name: "Wiwa Tours",
+        category: "Operador Ecoturístico · Sierra Nevada",
+        quote: "La plataforma web con motor de reservas propio nos permitió captar viajeros directos y maximizar nuestras ventas mediante posicionamiento SEO y publicidad digital.",
+        metric: "+320% Tráfico Orgánico",
+        author: "Dirección de Operaciones",
+        url: "https://wiwatour.com"
+      },
+      {
+        name: "Discover La Guajira",
+        category: "Destino Departamental & Cultura Wayuu",
+        quote: "El portal turístico y la estrategia SEO multilingüe posicionaron los atractivos del desierto y las rancherías ante miles de viajeros internacionales.",
+        metric: "Top Posiciones SEO",
+        author: "Coordinación de Turismo",
+        url: "https://discoverlaguajira.travel"
+      },
+      {
+        name: "SITUR Valledupar",
+        category: "Sistema de Información Turística",
+        quote: "El dashboard en Looker Studio y el scraping de información turística nos entrega datos consolidados sobre la oferta de alojamientos, agencias de viaje y prestadores en el departamento.",
+        metric: "Auditoría en Tiempo Real",
+        author: "Analítica Territorial",
+        url: "https://datastudio.google.com/reporting/676a917d-8ae3-4d53-b386-5c277e605e05"
+      },
+      {
+        name: "Logan Valuation",
+        category: "Firma Institucional en 5 Países Latam",
+        quote: "Infraestructura corporativa multilingüe robusta y veloz para firmas institucionales bajo normas internacionales MAI y NIIF / IFRS.",
+        metric: "Presencia Internacional",
+        author: "Gerencia Regional",
+        url: "http://loganvaluation.com/"
+      },
+      {
+        name: "TurisData",
+        category: "Inteligencia Territorial & Place Branding",
+        quote: "Plataforma de inteligencia turística nacional con visualización geoespacial, capacidad de camas RNT y flujos internacionales asistida por IA.",
+        metric: "+1.100 Municipios",
+        author: "Big Data & Place Branding",
+        url: "https://turisdata.tornus.agency"
+      },
+      {
+        name: "Hotel Parque Tayrona (Yachay)",
+        category: "Eco-Hotel Boutique · Parque Tayrona",
+        quote: "La plataforma web optimizada para SEO y conversiones transformó las búsquedas en huéspedes confirmados para nuestro eco-hotel.",
+        metric: "Canal Directo Activo",
+        author: "Gerencia Eco-Hotel",
+        url: "https://hotelparquetayrona.com"
+      }
+    ]
+  },
+  en: {
+    label: "Strategic Partnerships & Results",
+    headline: "We engineer and scale digital products for brands and destinations competing on the global stage.",
+    ariaLabel: "Swipe horizontally to explore partnerships",
+    partners: [
+      {
+        name: "Wiwa Tours",
+        category: "Ecotourism Operator · Sierra Nevada",
+        quote: "The custom web platform with a direct booking engine enabled us to attract international travelers and maximize direct sales through SEO and targeted advertising.",
+        metric: "+320% Organic Search",
+        author: "Operations Management",
+        url: "https://wiwatour.com"
+      },
+      {
+        name: "Discover La Guajira",
+        category: "Regional Destination & Wayuu Culture",
+        quote: "The government tourism portal and multilingual SEO strategy positioned our desert landscapes and indigenous heritage before thousands of global travelers.",
+        metric: "Top SEO Rankings",
+        author: "Tourism Board Coordination",
+        url: "https://discoverlaguajira.travel"
+      },
+      {
+        name: "SITUR Valledupar",
+        category: "Tourism Information System",
+        quote: "The Looker Studio dashboard and automated tourism data scraping provide consolidated intelligence on regional accommodation supply and visitor trends.",
+        metric: "Real-Time Observability",
+        author: "Territorial Analytics",
+        url: "https://datastudio.google.com/reporting/676a917d-8ae3-4d53-b386-5c277e605e05"
+      },
+      {
+        name: "Logan Valuation",
+        category: "Institutional Appraisal Firm in 5 Countries",
+        quote: "A fast, robust multilingual corporate infrastructure built for institutional clients under international MAI and IFRS standards.",
+        metric: "Latin American Reach",
+        author: "Regional Leadership",
+        url: "http://loganvaluation.com/"
+      },
+      {
+        name: "TurisData",
+        category: "Territorial Intelligence & Place Branding",
+        quote: "National tourism BI platform featuring geospatial maps, RNT hotel capacity, and international traveler flow analysis assisted by Lumina AI.",
+        metric: "+1,100 Municipalities",
+        author: "Big Data & Placebranding",
+        url: "https://turisdata.tornus.agency"
+      },
+      {
+        name: "Hotel Parque Tayrona (Yachay)",
+        category: "Boutique Eco-Lodge · Tayrona Park",
+        quote: "The conversion-optimized web platform with direct booking engine transformed travelers' Google searches into confirmed guests without intermediary commissions.",
+        metric: "Active Direct Channel",
+        author: "Eco-Lodge Executive",
+        url: "https://hotelparquetayrona.com"
+      }
+    ]
+  },
+  fr: {
+    label: "Partenariats Stratégiques & Résultats",
+    headline: "Nous concevons et déployons des produits digitaux pour des marques et destinations d'envergure internationale.",
+    ariaLabel: "Faire défiler horizontalement pour découvrir les partenaires",
+    partners: [
+      {
+        name: "Wiwa Tours",
+        category: "Opérateur Écotouristique · Sierra Nevada",
+        quote: "La plateforme web dotée d'un moteur de réservation directe nous a permis d'attirer des voyageurs internationaux et de maximiser nos marges grâce au SEO.",
+        metric: "+320% Trafic Organique",
+        author: "Direction des Opérations",
+        url: "https://wiwatour.com"
+      },
+      {
+        name: "Discover La Guajira",
+        category: "Destination Régionale & Culture Wayuu",
+        quote: "Le portail touristique et le SEO multilingue ont valorisé les paysages désertiques et l'héritage indigène auprès de milliers de voyageurs du monde entier.",
+        metric: "Top Positions SEO",
+        author: "Coordination du Tourisme",
+        url: "https://discoverlaguajira.travel"
+      },
+      {
+        name: "SITUR Valledupar",
+        category: "Système d'Information Touristique",
+        quote: "Le tableau de bord Looker Studio et l'extraction de données nous offrent une vision consolidée de l'offre hôtelière et des flux de visiteurs.",
+        metric: "Observatoire en Direct",
+        author: "Analytique Territoriale",
+        url: "https://datastudio.google.com/reporting/676a917d-8ae3-4d53-b386-5c277e605e05"
+      },
+      {
+        name: "Logan Valuation",
+        category: "Cabinet Institutionnel dans 5 Pays",
+        quote: "Une infrastructure d'entreprise multilingue rapide et sécurisée répondant aux normes internationales les plus exigeantes (MAI / IFRS).",
+        metric: "Rayonnement Latam",
+        author: "Direction Régionale",
+        url: "http://loganvaluation.com/"
+      },
+      {
+        name: "TurisData",
+        category: "Intelligence Territoriale & Place Branding",
+        quote: "Plateforme d'intelligence touristique nationale avec cartographie géospatiale, suivi des capacités RNT et analyse de marché avec Lumina AI.",
+        metric: "+1.100 Municipalités",
+        author: "Big Data & Placebranding",
+        url: "https://turisdata.tornus.agency"
+      },
+      {
+        name: "Hotel Parque Tayrona (Yachay)",
+        category: "Éco-Lodge de Charme · Parc Tayrona",
+        quote: "La plateforme web optimisée pour la conversion a transformé les requêtes Google en réservations directes confirmées pour notre établissement.",
+        metric: "Canal Direct Actif",
+        author: "Direction Éco-Hôtel",
+        url: "https://hotelparquetayrona.com"
+      }
+    ]
+  }
+};
+
+const c = copy[currentLang] || copy.es;
+const partners = c.partners;
+---
+
+<section class="section-gap contra-partners-section section-paper">
+  <div class="container">
+    <div class="partners-title-block">
+      <span class="contra-section-label">{c.label}</span>
+      <h2 class="section-headline">
+        {c.headline}
+      </h2>
+    </div>
+
+    <!-- Horizontal Partners media track -->
+    <div class="media_wrapper" tabindex="0" aria-label={c.ariaLabel}>
+      <div class="media_track">
+        {partners.map((partner) => (
+          <article class="partner-media-card">
+            <div class="card-top">
+              <span class="partner-category">{partner.category}</span>
+              <span class="partner-metric-tag">{partner.metric}</span>
+            </div>
+
+            <h3 class="partner-name">{partner.name}</h3>
+
+            <p class="partner-quote">
+              &ldquo;{partner.quote}&rdquo;
+            </p>
+
+            <div class="card-bottom">
+              <span class="partner-author">{partner.author}</span>
+              <a href={partner.url} target="_blank" rel="noopener noreferrer" class="partner-link-icon" aria-label={`Ver sitio de ${partner.name}`}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contra-partners-section {
+    border-top: 1px solid var(--line-light);
+    overflow: hidden;
+  }
+
+  .partners-title-block {
+    max-width: 980px;
+    margin-bottom: 3.5rem;
+  }
+
+  .contra-section-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    color: var(--contra-red);
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  /* Scrollbar & Media Track */
+  .media_wrapper {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 1.75rem;
+    cursor: grab;
+    user-select: none;
+
+    /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: var(--contra-black) transparent;
+  }
+
+  .media_wrapper:active {
+    cursor: grabbing;
+  }
+
+  /* Chrome, Edge, Safari */
+  .media_wrapper::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  /* Track sutil con fade lateral */
+  .media_wrapper::-webkit-scrollbar-track {
+    background: linear-gradient(
+      to right,
+      rgba(0,0,0,0) 0%,
+      rgba(0,0,0,0.18) 20%,
+      rgba(0,0,0,0.18) 80%,
+      rgba(0,0,0,0) 100%
+    );
+    border-radius: 999px;
+  }
+
+  /* THUMB (3px centrado) */
+  .media_wrapper::-webkit-scrollbar-thumb {
+    background: var(--contra-black);
+    border-radius: 999px;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    background-clip: content-box;
+  }
+
+  .media_wrapper::-webkit-scrollbar-thumb:hover {
+    background: var(--contra-red);
+  }
+
+  .media_track {
+    display: flex;
+    gap: 2rem;
+    min-width: min-content;
+  }
+
+  .partner-media-card {
+    background: #FFFFFF;
+    border: 1px solid var(--line-light);
+    border-radius: 14px;
+    padding: clamp(2rem, 3.5vw, 2.75rem);
+    width: clamp(320px, 32vw, 420px);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .partner-media-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--contra-black);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.06);
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .partner-category {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    color: var(--ink-dim);
+  }
+
+  .partner-metric-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--contra-red);
+    background: rgba(236, 58, 58, 0.08);
+    padding: 0.3rem 0.65rem;
+    border-radius: 9999px;
+    white-space: nowrap;
+  }
+
+  .partner-name {
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    color: var(--ink-primary);
+    margin-bottom: 1rem;
+  }
+
+  .partner-quote {
+    font-size: 1rem;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line-light);
+  }
+
+  .partner-author {
+    font-size: 0.85rem;
+    color: var(--ink-dim);
+    font-weight: 600;
+  }
+
+  .partner-link-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--line-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-primary);
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+
+  .partner-media-card:hover .partner-link-icon {
+    background: var(--contra-black);
+    color: #FFFFFF;
+    border-color: var(--contra-black);
+    transform: rotate(45deg);
+  }
+</style>

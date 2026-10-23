@@ -1,0 +1,45 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import AboutContent from '../../components/pages/AboutContent.astro';
+
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About JuanSa Digital & Juan Salinas Calle",
+  "description": "Tech consulting, tourism marketing, and data analytics rooted in Santa Marta and the Colombian Caribbean.",
+  "mainEntity": {
+    "@type": "Person",
+    "name": "Juan Salinas Calle",
+    "jobTitle": "Tourism Marketing Strategist & Web Developer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "JuanSa Digital"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Santa Marta",
+      "addressRegion": "Magdalena",
+      "addressCountry": "CO"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/company/juansadigital",
+      "https://github.com/JuansaDigital",
+      "https://www.instagram.com/juansadigital/"
+    ]
+  }
+};
+---
+
+<Layout 
+  lang="en"
+  title="About Us | JuanSa Digital · Tourism Strategy & Web Engineering"
+  description="Learn about JuanSa Digital: technology consulting, destination marketing, and data analytics from Santa Marta, Colombia. Philosophy, methodology, and case studies."
+  keywords="juan salinas calle"
+  pageSchema={aboutSchema}
+>
+  <Navbar />
+  <AboutContent lang="en" />
+  <Footer />
+</Layout>

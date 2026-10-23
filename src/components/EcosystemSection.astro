@@ -1,0 +1,204 @@
+---
+import { getLangFromUrl, getLocalizedPath, type SupportedLanguage } from "../i18n/ui";
+
+interface Props {
+  lang?: SupportedLanguage;
+}
+
+const { lang: propLang } = Astro.props;
+const currentLang = propLang || getLangFromUrl(Astro.url);
+
+const copy = {
+  es: {
+    badge: "Ecosistema Estratégico · 3 Pilares Fundamentales",
+    headline: "Impulsamos tu negocio integrando marketing digital, desarrollo web a medida y análisis de datos en una sola visión estratégica.",
+    cta: "Explorar los 3 Servicios",
+    p1Name: "Marketing Digital",
+    p1Info: "Campañas efectivas en Meta & Google Ads, embudos automatizados y posicionamiento SEO orgánico para atraer clientes calificados y generar contactos directos.",
+    p2Name: "Desarrollo Web",
+    p2Info: "Sitios y plataformas web desarrollados en WordPress y Astro: diseño adaptativo en móviles, motores de reserva, pasarelas de pago seguras y velocidad optimizada.",
+    p3Name: "Análisis de Datos",
+    p3Info: "Decisiones estratégicas con evidencia: Web Scraping de información turística, tableros interactivos en Google Looker Studio y analítica territorial para conocer a fondo la oferta del mercado."
+  },
+  en: {
+    badge: "Strategic Ecosystem · 3 Core Pillars",
+    headline: "We scale your business by converging performance digital marketing, tailored web engineering, and market analytics into one unified strategy.",
+    cta: "Explore the 3 Core Services",
+    p1Name: "Performance Marketing",
+    p1Info: "High-intent Meta & Google Ads campaigns, automated email funnels, and multilingual SEO to capture qualified leads and direct bookings.",
+    p2Name: "Web Engineering",
+    p2Info: "High-speed platforms engineered in Astro and WordPress: mobile-first UX, commission-free booking engines, and secure payment checkouts.",
+    p3Name: "Market Data Analytics",
+    p3Info: "Objective evidence for decisions: automated public tourism web scraping, interactive Looker Studio dashboards, and territorial BI."
+  },
+  fr: {
+    badge: "Écosystème Stratégique · 3 Piliers Fondamentaux",
+    headline: "Nous propulsons votre activité en combinant marketing digital, développement web sur-mesure et analyse de données dans une vision stratégique unifiée.",
+    cta: "Explorer les 3 Services",
+    p1Name: "Marketing Digital",
+    p1Info: "Campagnes ciblées sur Google et Meta Ads, tunnels automatisés et SEO multilingue pour attirer des voyageurs qualifiés et booster la vente directe.",
+    p2Name: "Développement Web",
+    p2Info: "Plateformes conçues sous Astro et WordPress : ergonomie mobile-first, moteurs de réservation sans commission et paiements sécurisés.",
+    p3Name: "Analyse de Données",
+    p3Info: "Décisions stratégiques fondées sur les données : web scraping de l'offre touristique, tableaux de bord interactifs Looker Studio et BI territoriale."
+  }
+};
+
+const c = copy[currentLang] || copy.es;
+---
+
+<section class="section-gap brand-ecosystem-section">
+  <div class="container">
+    <div class="rupture-content">
+      <span class="rupture-badge">{c.badge}</span>
+      <h2 class="rupture-headline">
+        {c.headline}
+      </h2>
+
+      <div class="rupture-pillars-row">
+        <!-- 01. Marketing Digital -->
+        <div class="rupture-pillar-item">
+          <span class="pillar-bullet">01</span>
+          <div>
+            <h3 class="pillar-name">{c.p1Name}</h3>
+            <p class="pillar-info">
+              {c.p1Info}
+            </p>
+          </div>
+        </div>
+
+        <!-- 02. Desarrollo Web -->
+        <div class="rupture-pillar-item">
+          <span class="pillar-bullet">02</span>
+          <div>
+            <h3 class="pillar-name">{c.p2Name}</h3>
+            <p class="pillar-info">
+              {c.p2Info}
+            </p>
+          </div>
+        </div>
+
+        <!-- 03. Análisis de Datos -->
+        <div class="rupture-pillar-item">
+          <span class="pillar-bullet">03</span>
+          <div>
+            <h3 class="pillar-name">{c.p3Name}</h3>
+            <p class="pillar-info">
+              {c.p3Info}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="rupture-cta">
+        <a href={getLocalizedPath("/servicios", currentLang)} class="pill-morph-btn-light">
+          <span>{c.cta}</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .brand-ecosystem-section {
+    background-color: var(--contra-red);
+    color: #FFFFFF;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .rupture-content {
+    max-width: 1060px;
+    margin-inline: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .rupture-badge {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #FFFFFF;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.4rem 1rem;
+    border-radius: 9999px;
+    margin-bottom: 2rem;
+    display: inline-block;
+  }
+
+  .rupture-headline {
+    font-size: clamp(2.2rem, 1.8rem + 2.8vw, 4.4rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    color: #FFFFFF;
+    margin-bottom: 3.5rem;
+  }
+
+  .rupture-pillars-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    text-align: left;
+    width: 100%;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    margin-bottom: 3.5rem;
+  }
+
+  .rupture-pillar-item {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+
+  .pillar-bullet {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #000000;
+    background: #FFFFFF;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .pillar-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    letter-spacing: -0.015em;
+    margin-bottom: 0.35rem;
+  }
+
+  .pillar-info {
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.5;
+  }
+
+  .rupture-cta {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  @media (max-width: 860px) {
+    .rupture-pillars-row {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>

@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap oficial
+Sitemap: https://juansadigital.com/sitemap-index.xml
+
+# Archivos de contexto para Modelos de Lenguaje e IA (AEO)
+# LLMs: https://juansadigital.com/llms.txt
+# LLMs Full: https://juansadigital.com/llms-full.txt

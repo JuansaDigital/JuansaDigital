@@ -1,0 +1,25 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import SitemapContent from '../../components/pages/SitemapContent.astro';
+
+const sitemapSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemPage",
+  "name": "Plan du Site | JuanSa Digital",
+  "description": "Répertoire structuré de toutes les sections, services, études de cas et publications de JuanSa Digital."
+};
+---
+
+<Layout 
+  lang="fr"
+  title="Plan du Site | JuanSa Digital · Développement Web & Analytique Touristique"
+  description="Plan complet du site JuanSa Digital : répertoire des pages principales, services de développement web, études de cas, articles et ressources."
+  keywords="plan du site juansa digital"
+  pageSchema={sitemapSchema}
+>
+  <Navbar />
+  <SitemapContent lang="fr" />
+  <Footer />
+</Layout>

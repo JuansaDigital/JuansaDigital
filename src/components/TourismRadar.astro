@@ -1,0 +1,411 @@
+---
+---
+
+<section class="section-gap radar-section" id="radar">
+  <div class="container">
+    <div class="radar-header">
+      <div class="badge-tag">Simulador Interactivo de Mercado</div>
+      <h2 class="title-section">Radar de Demanda Turística & Contratación</h2>
+      <p class="text-lead">
+        Selecciona un territorio o sector para auditar indicadores de mercado recopilados mediante analítica, web scraping y monitoreo de licitaciones.
+      </p>
+    </div>
+
+    <!-- Live Thing Interactive Component -->
+    <div class="glass-panel radar-widget">
+      <!-- Selector Tabs -->
+      <div class="radar-tabs" role="tablist">
+        <button class="radar-tab active" data-target="santamarta" role="tab" aria-selected="true">
+          <span>Santa Marta & Tayrona</span>
+        </button>
+        <button class="radar-tab" data-target="guajira" role="tab" aria-selected="false">
+          <span>La Guajira & Desierto</span>
+        </button>
+        <button class="radar-tab" data-target="valledupar" role="tab" aria-selected="false">
+          <span>Valledupar (SITUR)</span>
+        </button>
+        <button class="radar-tab" data-target="licitaciones" role="tab" aria-selected="false">
+          <span>Licitaciones Estatales</span>
+        </button>
+      </div>
+
+      <!-- Tab Content Panels -->
+      <div class="radar-content">
+        <!-- Santa Marta -->
+        <div class="radar-panel active" id="panel-santamarta">
+          <div class="radar-grid">
+            <div class="radar-info">
+              <span class="panel-eyebrow">Destino Consolidado</span>
+              <h3 class="panel-title">Santa Marta & Sierra Nevada</h3>
+              <p class="panel-desc">
+                Destino de alta demanda turística. El mayor retorno se logra canalizando el tráfico de viajeros internacionales a través de una web rápida, bien posicionada en Google y optimizada para reservas directas.
+              </p>
+              <div class="panel-checklist">
+                <div class="check-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Canal Directo: <strong>Venta directa y reservas de alta conversión</strong></span>
+                </div>
+                <div class="check-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Tráfico objetivo: Viajeros de Europa y Norteamérica con pago en USD/EUR</span>
+                </div>
+              </div>
+            </div>
+            <div class="radar-kpis">
+              <div class="kpi-card">
+                <span class="kpi-num text-gold">100%</span>
+                <span class="kpi-label">Control canal directo</span>
+              </div>
+              <div class="kpi-card">
+                <span class="kpi-num text-cobalt">&lt; 0.9s</span>
+                <span class="kpi-label">Velocidad de carga móvil</span>
+              </div>
+              <div class="kpi-card">
+                <span class="kpi-num">Top 3</span>
+                <span class="kpi-label">Ranking SEO orgánico local</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- La Guajira -->
+        <div class="radar-panel" id="panel-guajira">
+          <div class="radar-grid">
+            <div class="radar-info">
+              <span class="panel-eyebrow">Destino de Aventura & Cultura</span>
+              <h3 class="panel-title">La Guajira & Alta Guajira</h3>
+              <p class="panel-desc">
+                El viajero busca paquetes completos con transporte, guianza Wayuu y hospedaje en rancherías. La clave es la confianza visual y la resolución de dudas técnicas antes de la compra.
+              </p>
+              <div class="panel-checklist">
+                <div class="check-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Referente real: Proyecto oficial <strong>Discoverlaguajira.travel</strong></span>
+                </div>
+                <div class="check-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Estrategia: Storytelling inmersivo y confirmación instantánea por WhatsApp</span>
+                </div>
+              </div>
+            </div>
+            <div class="radar-kpis">
+              <div class="kpi-card">
+                <span class="kpi-num text-gold">Meta Ads</span>
+                <span class="kpi-label">Pauta hipersegmentada</span>
+              </div>
+              <div class="kpi-card">
+                <span class="kpi-num text-cobalt">100%</span>
+                <span class="kpi-label">Optimización SEO en español</span>
+              </div>
+              <div class="kpi-card">
+                <span class="kpi-num">Directo</span>
+                <span class="kpi-label">Canal preferente de cierre</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Valledupar -->
+        <div class="radar-panel" id="panel-valledupar">
+          <div class="radar-grid">
+            <div class="radar-info">
+              <span class="panel-eyebrow">Analítica Departamental</span>
+              <h3 class="panel-title">SITUR Valledupar & Cesar</h3>
+              <p class="panel-desc">
+                Monitoreo continuo de oferta turística y flujos territoriales mediante dashboards de Looker Studio alimentados por Web Scraping de información pública del sector.
+              </p>
+              <div class="panel-checklist">
+                <div class="check-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Dashboard oficial en Looker Studio: <strong>SITUR Valledupar</strong></span>
+                </div>
+                <div class="check-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Consolidación de alojamientos, agencias de viaje y atractivos</span>
+                </div>
+              </div>
+            </div>
+            <div class="radar-kpis">
+              <div class="kpi-card">
+                <span class="kpi-num text-gold">BI Live</span>
+                <span class="kpi-label">Visualización Google Looker</span>
+              </div>
+              <div class="kpi-card">
+                <span class="kpi-num text-cobalt">Scraping</span>
+                <span class="kpi-label">Extracción automática de oferta</span>
+              </div>
+              <div class="kpi-card">
+                <span class="kpi-num">Territorial</span>
+                <span class="kpi-label">Enfoque departamental</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TurisData -->
+        <div class="radar-panel" id="panel-licitaciones">
+          <div class="radar-grid">
+            <div class="radar-info">
+              <span class="panel-eyebrow">Plataforma Propietaria</span>
+              <h3 class="panel-title">TurisData · Inteligencia Territorial</h3>
+              <p class="panel-desc">
+                Inteligencia turística nacional y place branding para Colombia. Mapeo geoespacial interactivo de +1.100 municipios con datos de prestadores RNT, capacidad hotelera y flujos internacionales asistida por Lumina AI.
+              </p>
+              <div class="panel-checklist">
+                <div class="check-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Acceso a la plataforma: <strong>turisdata.tornus.agency</strong></span>
+                </div>
+                <div class="check-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Modelado continuo de +1.280.000 camas hoteleras RNT</span>
+                </div>
+              </div>
+            </div>
+            <div class="radar-kpis">
+              <div class="kpi-card">
+                <span class="kpi-num text-gold">SECOP</span>
+                <span class="kpi-label">Rastreo de oportunidades</span>
+              </div>
+              <div class="kpi-card">
+                <span class="kpi-num text-cobalt">Afinidad</span>
+                <span class="kpi-label">Cálculo de compatibilidad</span>
+              </div>
+              <div class="kpi-card">
+                <span class="kpi-num">Alertas</span>
+                <span class="kpi-label">Filtros personalizados</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Banner inside widget -->
+      <div class="radar-cta">
+        <span class="radar-cta-text">¿Quieres una auditoría de presencia digital y datos de tu mercado turístico?</span>
+        <a 
+          href="https://wa.me/message/VZOWCP5BYGXJD1" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="btn-primary"
+        >
+          <span>Solicitar Diagnóstico por WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Tab switcher logic
+  const tabs = document.querySelectorAll('.radar-tab');
+  const panels = document.querySelectorAll('.radar-panel');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const targetId = tab.getAttribute('data-target');
+
+      tabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      panels.forEach(p => p.classList.remove('active'));
+
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      const targetPanel = document.getElementById(`panel-${targetId}`);
+      if (targetPanel) {
+        targetPanel.classList.add('active');
+      }
+    });
+  });
+</script>
+
+<style>
+  .radar-header {
+    text-align: center;
+    max-width: 680px;
+    margin-inline: auto;
+    margin-bottom: 2.75rem;
+  }
+
+  .badge-tag {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent-cobalt);
+    margin-bottom: 0.75rem;
+  }
+
+  .radar-widget {
+    padding: clamp(1.25rem, 3vw, 2.5rem);
+    overflow: hidden;
+  }
+
+  .radar-tabs {
+    display: flex;
+    gap: 0.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .radar-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .radar-tab {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-muted);
+    padding: 0.65rem 1.25rem;
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+  }
+
+  .radar-tab:hover {
+    color: var(--text-main);
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .radar-tab.active {
+    background: rgba(59, 130, 246, 0.15);
+    border-color: var(--accent-cobalt);
+    color: #FFFFFF;
+    box-shadow: 0 0 16px rgba(59, 130, 246, 0.3);
+  }
+
+  .radar-content {
+    padding-block: 2rem 1.5rem;
+  }
+
+  .radar-panel {
+    display: none;
+  }
+
+  .radar-panel.active {
+    display: block;
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .radar-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .panel-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .panel-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.4rem, 2vw, 1.85rem);
+    color: var(--text-main);
+    margin-block: 0.4rem 0.75rem;
+  }
+
+  .panel-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+
+  .panel-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.88rem;
+    color: var(--text-main);
+  }
+
+  .radar-kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1rem;
+  }
+
+  .kpi-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 1.25rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    text-align: center;
+  }
+
+  .kpi-num {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-main);
+    font-family: var(--font-serif);
+  }
+
+  .text-gold {
+    color: var(--accent-gold);
+  }
+
+  .text-cobalt {
+    color: var(--accent-cobalt);
+  }
+
+  .kpi-label {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    line-height: 1.3;
+  }
+
+  .radar-cta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1.5rem;
+    margin-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .radar-cta-text {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 860px) {
+    .radar-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .radar-cta {
+      flex-direction: column;
+      align-items: stretch;
+      text-align: center;
+    }
+  }
+</style>

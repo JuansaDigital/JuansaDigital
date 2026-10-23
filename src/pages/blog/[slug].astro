@@ -1,0 +1,58 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import BlogPostContent from '../../components/pages/BlogPostContent.astro';
+import { blogPosts, type BlogPost } from '../../data/blogPosts';
+
+export function getStaticPaths() {
+  return blogPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post }
+  }));
+}
+
+interface Props {
+  post: BlogPost;
+}
+
+const { post } = Astro.props;
+---
+
+<Layout 
+  lang="es"
+  title={`${post.title} | Blog JuanSa Digital`}
+  description={post.excerpt}
+  keywords={post.keywords}
+  image={post.image}
+  articleDate={post.isoDate}
+>
+  <Navbar />
+  <BlogPostContent post={post} lang="es" />
+  <Footer />
+</Layout>
+
+<!-- JSON-LD Structured Data for BlogPosting -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": post.title,
+  "description": post.excerpt,
+  "image": new URL(post.image, Astro.site || "https://juansadigital.com").toString(),
+  "datePublished": post.isoDate,
+  "dateModified": post.isoDate,
+  "author": {
+    "@type": "Person",
+    "name": post.author.name,
+    "url": "https://juansadigital.com/nosotros"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "JuanSa Digital",
+    "url": "https://juansadigital.com"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": Astro.url.href
+  }
+})} />

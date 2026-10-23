@@ -1,0 +1,262 @@
+---
+import { getBlogPosts } from '../../data/blogPosts';
+import { getLocalizedPath, type SupportedLanguage } from '../../i18n/ui';
+
+interface Props {
+  lang?: SupportedLanguage;
+}
+
+const { lang = "es" } = Astro.props;
+const posts = getBlogPosts(lang);
+
+const copy = {
+  es: {
+    badge: "Artículos & Perspectivas",
+    title: "Estrategia, código y datos para el sector turístico.",
+    lead: "Guías prácticas, análisis de tendencias y casos de estudio sobre cómo escalar la visibilidad y las reservas directas de marcas turísticas y empresas en Colombia.",
+    readMore: "Leer artículo completo"
+  },
+  en: {
+    badge: "Articles & Perspectives",
+    title: "Strategy, web engineering, and data for tourism growth.",
+    lead: "Practical guides, technical perspectives, and case studies on scaling direct bookings and market authority for tourism brands in Colombia.",
+    readMore: "Read full article"
+  },
+  fr: {
+    badge: "Articles & Perspectives",
+    title: "Stratégie, ingénierie web et données pour le tourisme.",
+    lead: "Guides pratiques, analyses de tendances et retours d'expérience pour accroître les réservations directes et la visibilité des entreprises en Colombie.",
+    readMore: "Lire l'article complet"
+  }
+};
+
+const c = copy[lang] || copy.es;
+---
+
+<main id="main-content" class="blog-index-page section-paper">
+  <!-- Header -->
+  <section class="studio-page-header">
+    <div class="container">
+      <span class="studio-section-label reveal-on-scroll">
+        <span class="contra-star contra-star-red">✦</span>
+        {c.badge}
+      </span>
+      <h1 class="page-main-headline reveal-on-scroll delay-100">
+        {c.title}
+      </h1>
+      <p class="text-lead page-lead reveal-on-scroll delay-200">
+        {c.lead}
+      </p>
+    </div>
+  </section>
+
+  <!-- Articles List Section -->
+  <section class="section-gap blog-list-section">
+    <div class="container">
+      <div class="articles-editorial-grid">
+        {posts.map((post, pIdx) => (
+          <article class={`article-editorial-card reveal-on-scroll delay-${(pIdx + 1) * 150}`}>
+            <a href={getLocalizedPath(lang, `/blog/${post.slug}`)} class="card-media-link">
+              <img 
+                src={post.image} 
+                alt={post.title} 
+                class="article-cover-img" 
+                loading="lazy"
+              />
+            </a>
+
+            <div class="card-content">
+              <div class="article-top-meta">
+                <span class="article-badge">{post.category}</span>
+                <span class="article-date">{post.date}</span>
+                <span class="article-read-time">· {post.readTime}</span>
+              </div>
+
+              <h2 class="article-card-title">
+                <a href={getLocalizedPath(lang, `/blog/${post.slug}`)} class="title-link">
+                  {post.title}
+                </a>
+              </h2>
+
+              <p class="article-card-excerpt">
+                {post.excerpt}
+              </p>
+
+              <div class="article-card-footer">
+                <a href={getLocalizedPath(lang, `/blog/${post.slug}`)} class="read-more-btn">
+                  <span>{c.readMore}</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                    <polyline points="7 7 17 7 17 17"></polyline>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</main>
+
+<style>
+  .blog-index-page {
+    padding-bottom: 2rem;
+  }
+
+  .studio-page-header {
+    padding-top: clamp(3.5rem, 6vw, 6rem);
+    padding-bottom: clamp(2.5rem, 4vw, 3.5rem);
+    border-bottom: 1px solid var(--line-light);
+  }
+
+  .studio-section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--contra-red);
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+  }
+
+  .page-main-headline {
+    font-size: clamp(2.4rem, 1.8rem + 3.2vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    color: var(--ink-primary);
+    max-width: 980px;
+    margin-bottom: 1.25rem;
+  }
+
+  .page-lead {
+    max-width: 760px;
+    font-size: clamp(1.05rem, 0.95rem + 0.35vw, 1.25rem);
+    color: var(--ink-muted);
+    line-height: 1.6;
+  }
+
+  .articles-editorial-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(2rem, 4vw, 3.5rem);
+  }
+
+  .article-editorial-card {
+    background: #FFFFFF;
+    border: 1px solid var(--line-light);
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+
+  .article-editorial-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--contra-black);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+  }
+
+  .card-media-link {
+    display: block;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #F1F5F9;
+  }
+
+  .article-cover-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .article-editorial-card:hover .article-cover-img {
+    transform: scale(1.04);
+  }
+
+  .card-content {
+    padding: clamp(1.75rem, 3vw, 2.25rem);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .article-top-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .article-badge {
+    color: var(--contra-red);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .article-date,
+  .article-read-time {
+    color: var(--ink-dim);
+  }
+
+  .article-card-title {
+    font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.6rem);
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.85rem;
+  }
+
+  .title-link {
+    color: var(--ink-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .title-link:hover {
+    color: var(--contra-red);
+  }
+
+  .article-card-excerpt {
+    font-size: 0.96rem;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+
+  .article-card-footer {
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line-light);
+  }
+
+  .read-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--ink-primary);
+    text-decoration: none;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+
+  .read-more-btn:hover {
+    color: var(--contra-red);
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 860px) {
+    .articles-editorial-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

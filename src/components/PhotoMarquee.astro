@@ -1,0 +1,188 @@
+---
+import { getLangFromUrl, type SupportedLanguage } from '../i18n/ui';
+
+interface Props {
+  lang?: SupportedLanguage;
+}
+
+const { lang: propLang } = Astro.props;
+const currentLang = propLang || getLangFromUrl(Astro.url);
+
+const labels = {
+  es: {
+    aria: "Galería en movimiento del estudio",
+    cards: [
+      { image: "/images/santa-marta-hero.webp", tag: "Territorio Base", title: "Santa Marta & Sierra Nevada" },
+      { image: "/images/wiwa-tour-real.webp", tag: "Ecoturismo", title: "Wiwa Tour · Sierra Nevada" },
+      { image: "/images/juan-salinas-portrait.webp", tag: "Dirección", title: "Estrategia & Código Frontend" },
+      { image: "/images/ciudad-perdida-real.webp", tag: "SEO Especializado", title: "Ciudad Perdida Trek" },
+      { image: "/images/visit-valle-real.webp", tag: "Destino Departamental", title: "Visit Valle del Cauca" },
+      { image: "/images/tornus-real.webp", tag: "Inteligencia Territorial", title: "TurisData · Inteligencia Territorial & Place Branding" },
+      { image: "/images/chez-boaz-real.webp", tag: "Hospitality Boutique", title: "Chez Boaz Tours & Hospitalidad" },
+      { image: "/images/providencia-real.webp", tag: "Plataforma Insular", title: "Providencia Isla · Reserva de Biosfera" }
+    ]
+  },
+  en: {
+    aria: "Moving studio gallery showcase",
+    cards: [
+      { image: "/images/santa-marta-hero.webp", tag: "Hub Territory", title: "Santa Marta & Sierra Nevada" },
+      { image: "/images/wiwa-tour-real.webp", tag: "Ecotourism", title: "Wiwa Tour · Sierra Nevada" },
+      { image: "/images/juan-salinas-portrait.webp", tag: "Direction", title: "Digital Strategy & Web Engineering" },
+      { image: "/images/ciudad-perdida-real.webp", tag: "Specialized SEO", title: "Ciudad Perdida Trek" },
+      { image: "/images/visit-valle-real.webp", tag: "Departmental Destination", title: "Visit Valle del Cauca" },
+      { image: "/images/tornus-real.webp", tag: "Territorial Intelligence", title: "TurisData · Territorial Intelligence & Place Branding" },
+      { image: "/images/chez-boaz-real.webp", tag: "Boutique Hospitality", title: "Chez Boaz Tours & Hospitality" },
+      { image: "/images/providencia-real.webp", tag: "Island Platform", title: "Providencia Island · Biosphere Reserve" }
+    ]
+  },
+  fr: {
+    aria: "Galerie animée du studio",
+    cards: [
+      { image: "/images/santa-marta-hero.webp", tag: "Territoire d'Ancrage", title: "Santa Marta & Sierra Nevada" },
+      { image: "/images/wiwa-tour-real.webp", tag: "Écotourisme", title: "Wiwa Tour · Sierra Nevada" },
+      { image: "/images/juan-salinas-portrait.webp", tag: "Direction", title: "Stratégie & Ingénierie Web" },
+      { image: "/images/ciudad-perdida-real.webp", tag: "SEO Spécialisé", title: "Ciudad Perdida Trek" },
+      { image: "/images/visit-valle-real.webp", tag: "Destination Départementale", title: "Visit Valle del Cauca" },
+      { image: "/images/tornus-real.webp", tag: "Intelligence Territoriale", title: "TurisData · Intelligence Territoriale & Place Branding" },
+      { image: "/images/chez-boaz-real.webp", tag: "Hospitalité Boutique", title: "Chez Boaz Tours & Hospitalité" },
+      { image: "/images/providencia-real.webp", tag: "Plateforme Insulaire", title: "Île de Providencia · Réserve de Biosphère" }
+    ]
+  }
+};
+
+const c = labels[currentLang] || labels.es;
+const photoCards = c.cards;
+---
+
+<section class="image-marquee-section" aria-label={c.aria}>
+  <div class="image-marquee-wrapper">
+    <div class="image-marquee-track">
+      {photoCards.map((card) => (
+        <div class="image-marquee-card">
+          <img 
+            src={card.image} 
+            alt={card.title} 
+            class="image-marquee-img" 
+            loading="lazy" 
+          />
+          <div class="image-marquee-overlay">
+            <span class="image-marquee-tag">{card.tag}</span>
+            <span class="image-marquee-title">{card.title}</span>
+          </div>
+        </div>
+      ))}
+      <!-- Duplicated set for seamless infinite looping -->
+      {photoCards.map((card) => (
+        <div class="image-marquee-card" aria-hidden="true">
+          <img 
+            src={card.image} 
+            alt="" 
+            class="image-marquee-img" 
+            loading="lazy" 
+          />
+          <div class="image-marquee-overlay">
+            <span class="image-marquee-tag">{card.tag}</span>
+            <span class="image-marquee-title">{card.title}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .image-marquee-section {
+    padding: 3rem 0;
+    overflow: hidden;
+    position: relative;
+    border-top: 1px solid var(--line-light);
+    border-bottom: 1px solid var(--line-light);
+    background-color: var(--canvas-dark);
+  }
+
+  .image-marquee-wrapper {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+  }
+
+  .image-marquee-track {
+    display: flex;
+    gap: 1.5rem;
+    animation: marqueeScroll 45s linear infinite;
+    width: max-content;
+  }
+
+  .image-marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  .image-marquee-card {
+    position: relative;
+    width: 290px;
+    height: 380px;
+    flex-shrink: 0;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--line-light);
+    background: var(--canvas-secondary);
+  }
+
+  .image-marquee-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.85) contrast(1.05);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+  }
+
+  .image-marquee-card:hover .image-marquee-img {
+    transform: scale(1.06);
+    filter: brightness(1) contrast(1.08);
+  }
+
+  .image-marquee-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem 1.25rem 1.25rem;
+    background: linear-gradient(to top, rgba(7, 10, 19, 0.95) 0%, rgba(7, 10, 19, 0.6) 60%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    pointer-events: none;
+  }
+
+  .image-marquee-tag {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    color: var(--accent-gold);
+  }
+
+  .image-marquee-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--ink-pure);
+    line-height: 1.3;
+  }
+
+  @keyframes marqueeScroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .image-marquee-card {
+      width: 230px;
+      height: 300px;
+    }
+  }
+</style>

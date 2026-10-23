@@ -1,0 +1,63 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Hero from '../../components/Hero.astro';
+import WorkStickyShowcase from '../../components/WorkStickyShowcase.astro';
+import WhyItMatters from '../../components/WhyItMatters.astro';
+import PartnersSlider from '../../components/PartnersSlider.astro';
+import EcosystemSection from '../../components/EcosystemSection.astro';
+import Services from '../../components/Services.astro';
+import DataPlatforms from '../../components/DataPlatforms.astro';
+import BlogPreview from '../../components/BlogPreview.astro';
+import Footer from '../../components/Footer.astro';
+
+const homeSchemaEn = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "JuanSa Digital",
+  "url": "https://juansadigital.com/en",
+  "description": "Tourism marketing strategist, web engineering and data analytics in Santa Marta, Colombia.",
+  "inLanguage": "en-US",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://juansadigital.com/en/blog?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+};
+---
+
+<Layout 
+  lang="en"
+  title="JuanSa Digital | Tourism Marketing, Web Engineering & Data Analytics · Santa Marta"
+  description="Consulting in tourism marketing, web engineering and data analytics in Santa Marta, Colombia. High-conversion web platforms, targeted Ads, and BI market tools."
+  keywords="tourism marketing santa marta"
+  pageSchema={homeSchemaEn}
+>
+  <Navbar lang="en" />
+  <main id="main-content">
+    <!-- 01. Hero Showcase with Panoramic Frame & Marquee -->
+    <Hero lang="en" />
+
+    <!-- 02. Sticky Projects Showcase (GSAP) -->
+    <WorkStickyShowcase lang="en" />
+
+    <!-- 03. Strategic Approach & Interactive Accordions -->
+    <WhyItMatters lang="en" />
+
+    <!-- 04. Partners & Testimonials Slider -->
+    <PartnersSlider lang="en" />
+
+    <!-- 05. Strategic Pillars -->
+    <EcosystemSection lang="en" />
+
+    <!-- 06. Core Capabilities & Services -->
+    <Services lang="en" />
+
+    <!-- 07. Proprietary Data Platforms (TurisData & SITUR) -->
+    <DataPlatforms lang="en" />
+
+    <!-- 08. Editorial Articles & Perspectives -->
+    <BlogPreview lang="en" />
+  </main>
+  <Footer lang="en" />
+</Layout>

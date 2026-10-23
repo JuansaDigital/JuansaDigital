@@ -1,0 +1,63 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Hero from '../../components/Hero.astro';
+import WorkStickyShowcase from '../../components/WorkStickyShowcase.astro';
+import WhyItMatters from '../../components/WhyItMatters.astro';
+import PartnersSlider from '../../components/PartnersSlider.astro';
+import EcosystemSection from '../../components/EcosystemSection.astro';
+import Services from '../../components/Services.astro';
+import DataPlatforms from '../../components/DataPlatforms.astro';
+import BlogPreview from '../../components/BlogPreview.astro';
+import Footer from '../../components/Footer.astro';
+
+const homeSchemaFr = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "JuanSa Digital",
+  "url": "https://juansadigital.com/fr",
+  "description": "Stratège en marketing touristique, ingénierie web et analyse de données à Santa Marta, Colombie.",
+  "inLanguage": "fr-FR",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://juansadigital.com/fr/blog?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+};
+---
+
+<Layout 
+  lang="fr"
+  title="JuanSa Digital | Marketing Touristique, Ingénierie Web & Analyse de Données · Santa Marta"
+  description="Conseil en marketing touristique, ingénierie web et analyse de données à Santa Marta, Colombie. Plateformes web à haute conversion, référencement SEO et outils BI."
+  keywords="marketing touristique santa marta"
+  pageSchema={homeSchemaFr}
+>
+  <Navbar lang="fr" />
+  <main id="main-content">
+    <!-- 01. Hero Showcase avec Panoramic Frame & Marquee -->
+    <Hero lang="fr" />
+
+    <!-- 02. Sticky Projects Showcase (GSAP) -->
+    <WorkStickyShowcase lang="fr" />
+
+    <!-- 03. Approche Stratégique & Accordéons Interactifs -->
+    <WhyItMatters lang="fr" />
+
+    <!-- 04. Slider Partenaires & Témoignages -->
+    <PartnersSlider lang="fr" />
+
+    <!-- 05. Écosystème Stratégique -->
+    <EcosystemSection lang="fr" />
+
+    <!-- 06. Capacités & Services -->
+    <Services lang="fr" />
+
+    <!-- 07. Plateformes de Données Propriétaires (TurisData & SITUR) -->
+    <DataPlatforms lang="fr" />
+
+    <!-- 08. Perspectives & Articles Éditoriaux -->
+    <BlogPreview lang="fr" />
+  </main>
+  <Footer lang="fr" />
+</Layout>

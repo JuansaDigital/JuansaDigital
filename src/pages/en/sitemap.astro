@@ -1,0 +1,25 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import SitemapContent from '../../components/pages/SitemapContent.astro';
+
+const sitemapSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemPage",
+  "name": "Sitemap | JuanSa Digital",
+  "description": "Structured directory of all sections, services, case studies, and perspectives from JuanSa Digital."
+};
+---
+
+<Layout 
+  lang="en"
+  title="Sitemap | JuanSa Digital · Web Engineering & Tourism Analytics"
+  description="Full sitemap for JuanSa Digital: index of main pages, web development services, portfolio case studies, articles, and technical resources."
+  keywords="juansa digital sitemap"
+  pageSchema={sitemapSchema}
+>
+  <Navbar />
+  <SitemapContent lang="en" />
+  <Footer />
+</Layout>

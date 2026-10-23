@@ -1,0 +1,33 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import ContactContent from '../../components/pages/ContactContent.astro';
+
+const contactSchemaFr = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact | JuanSa Digital",
+  "description": "Formulaire de contact et canaux de communication directe pour le conseil en marketing touristique, ingénierie web et analyse de données à Santa Marta, Colombie.",
+  "mainEntity": {
+    "@type": "ContactPoint",
+    "contactType": "Customer Support & Sales",
+    "telephone": "+57-300-845-6677",
+    "email": "Info@juansadigital.com",
+    "availableLanguage": ["French", "English", "Spanish"],
+    "areaServed": "Global"
+  }
+};
+---
+
+<Layout 
+  lang="fr"
+  title="Contact | JuanSa Digital · Santa Marta, Colombie"
+  description="Contactez JuanSa Digital : ingénierie web pour le tourisme, référencement SEO, campagnes Ads et analyse de données depuis Santa Marta, Colombie."
+  keywords="contact juansa digital"
+  pageSchema={contactSchemaFr}
+>
+  <Navbar />
+  <ContactContent lang="fr" />
+  <Footer showCta={false} />
+</Layout>

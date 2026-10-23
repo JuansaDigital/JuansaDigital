@@ -1,0 +1,260 @@
+---
+import { getLangFromUrl, type SupportedLanguage } from '../i18n/ui';
+
+interface Props {
+  lang?: SupportedLanguage;
+}
+
+const { lang: propLang } = Astro.props;
+const currentLang = propLang || getLangFromUrl(Astro.url);
+
+const copy = {
+  es: {
+    label: "Software & Analítica",
+    headline: "Plataformas de Inteligencia de Datos",
+    counter: "Sistemas Propietarios",
+    turisdataBadge: "Inteligencia Territorial",
+    turisdataTitle: "TurisData · Inteligencia Territorial & Place Branding",
+    turisdataDesc: "Plataforma nacional de inteligencia turística y place branding para Colombia. Centraliza y visualiza datos oficiales del <strong>Registro Nacional de Turismo (RNT), capacidad de camas, flujos de viajeros internacionales (+1.100 municipios)</strong> y diagnósticos estratégicos territoriales con asistencia de IA (Lumina AI).",
+    turisdataBtn: "Acceder a TurisData",
+    siturBadge: "Business Intelligence",
+    siturTitle: "SITUR Valledupar · Web Scraping de Información",
+    siturDesc: "Dashboard interactivo para el <strong>Sistema de Información Turística de Valledupar / Cesar</strong>. Integra estudios de mercado alimentados por extracción automatizada de información para consolidar la oferta de alojamientos, agencias de viaje y tendencias territoriales.",
+    siturBtn: "Ver Reporte en Looker Studio"
+  },
+  en: {
+    label: "Software & Analytics",
+    headline: "Data Intelligence Platforms",
+    counter: "Proprietary Systems",
+    turisdataBadge: "Territorial Intelligence",
+    turisdataTitle: "TurisData · Territorial Intelligence & Place Branding",
+    turisdataDesc: "National tourism intelligence and place branding platform for Colombia. Centralizes and models official registries from the <strong>National Tourism Registry (RNT), bed capacity, international traveler flows (+1,100 municipalities)</strong>, and strategic territorial diagnostics powered by Lumina AI.",
+    turisdataBtn: "Access TurisData",
+    siturBadge: "Business Intelligence",
+    siturTitle: "SITUR Valledupar · Web Scraping of Market Data",
+    siturDesc: "Interactive dashboard for the <strong>Tourism Information System of Valledupar / Cesar</strong>. Powered by automated public data pipelines consolidating accommodation supply, travel agencies, and regional seasonality metrics.",
+    siturBtn: "View Report in Looker Studio"
+  },
+  fr: {
+    label: "Logiciels & Analytique",
+    headline: "Plateformes d'Intelligence de Données",
+    counter: "Systèmes Propriétaires",
+    turisdataBadge: "Intelligence Territoriale",
+    turisdataTitle: "TurisData · Intelligence Territoriale & Place Branding",
+    turisdataDesc: "Plateforme nationale d'intelligence touristique et de place branding pour la Colombie. Centralise et visualise les données officielles du <strong>Registre National du Tourisme (RNT), la capacité hôtelière, les flux de voyageurs internationaux (+1 100 municipalités)</strong> et les diagnostics stratégiques assistés par Lumina AI.",
+    turisdataBtn: "Accéder à TurisData",
+    siturBadge: "Business Intelligence",
+    siturTitle: "SITUR Valledupar · Web Scraping d'Informations",
+    siturDesc: "Tableau de bord interactif pour le <strong>Système d'Information Touristique de Valledupar / Cesar</strong>. Intègre des études de marché alimentées par l'extraction automatisée de données pour consolider l'offre d'hébergement, d'agences et les tendances sectorielles.",
+    siturBtn: "Consulter le Rapport sur Looker Studio"
+  }
+};
+
+const c = copy[currentLang] || copy.es;
+---
+
+<section class="section-gap data-platforms-section section-paper" id="datos">
+  <div class="container">
+    <div class="section-top-bar">
+      <div>
+        <span class="studio-section-label">{c.label}</span>
+        <h2 class="section-headline">{c.headline}</h2>
+      </div>
+      <p class="section-counter">{c.counter}</p>
+    </div>
+
+    <div class="studio-platforms-grid">
+      <!-- TurisData -->
+      <div class="studio-platform-box">
+        <div class="box-header">
+          <span class="box-badge">{c.turisdataBadge}</span>
+          <span class="box-link-indicator">turisdata.tornus.agency</span>
+        </div>
+        <div class="box-media">
+          <img src="/images/turisdata.webp" alt="Plataforma TurisData · Inteligencia Territorial" class="platform-preview-img" loading="lazy" />
+        </div>
+        <h3 class="box-title">{c.turisdataTitle}</h3>
+        <p class="box-desc" set:html={c.turisdataDesc} />
+        <div class="box-action">
+          <a 
+            href="https://turisdata.tornus.agency" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="pill-morph-btn"
+          >
+            <span>{c.turisdataBtn}</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- SITUR Valledupar -->
+      <div class="studio-platform-box">
+        <div class="box-header">
+          <span class="box-badge gold">{c.siturBadge}</span>
+          <span class="box-link-indicator">Google Looker Studio</span>
+        </div>
+        <div class="box-media">
+          <img src="/images/situr-valledupar.webp" alt="Dashboard SITUR Valledupar en Google Looker Studio" class="platform-preview-img" loading="lazy" />
+        </div>
+        <h3 class="box-title">{c.siturTitle}</h3>
+        <p class="box-desc" set:html={c.siturDesc} />
+        <div class="box-action">
+          <a 
+            href="https://datastudio.google.com/reporting/676a917d-8ae3-4d53-b386-5c277e605e05" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="pill-morph-btn"
+          >
+            <span>{c.siturBtn}</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .data-platforms-section {
+    border-top: 1px solid var(--line-light);
+  }
+
+  .section-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--line-light);
+    margin-bottom: 3.5rem;
+  }
+
+  .studio-section-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    color: var(--contra-blue);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-counter {
+    font-size: 0.88rem;
+    color: var(--ink-dim);
+    font-weight: 500;
+  }
+
+  .studio-platforms-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+
+  .studio-platform-box {
+    background: #FFFFFF;
+    border: 1px solid var(--line-light);
+    border-radius: 14px;
+    padding: clamp(2rem, 3.5vw, 3rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .studio-platform-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.06);
+    border-color: var(--contra-black);
+  }
+
+  .box-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.75rem;
+  }
+
+  .box-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--contra-blue);
+    background: rgba(60, 130, 213, 0.1);
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+  }
+
+  .box-badge.gold {
+    color: var(--contra-orange);
+    background: rgba(225, 143, 74, 0.12);
+  }
+
+  .box-link-indicator {
+    font-size: 0.82rem;
+    color: var(--ink-dim);
+    font-weight: 600;
+  }
+
+  .box-media {
+    width: 100%;
+    aspect-ratio: 16 / 9.5;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--line-light);
+    background: #0d1527;
+  }
+
+  .platform-preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s var(--ease-contra);
+  }
+
+  .studio-platform-box:hover .platform-preview-img {
+    transform: scale(1.03);
+  }
+
+  .box-title {
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink-primary);
+    margin-bottom: 1rem;
+    line-height: 1.25;
+  }
+
+  .box-desc {
+    font-size: 0.96rem;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .box-desc strong {
+    color: var(--ink-primary);
+  }
+
+  .box-action {
+    display: flex;
+    align-items: center;
+  }
+
+  @media (max-width: 900px) {
+    .studio-platforms-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

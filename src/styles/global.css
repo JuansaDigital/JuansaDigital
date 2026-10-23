@@ -1,0 +1,517 @@
+/* ==========================================================================
+   JuanSa Digital · Design System
+   Warm Paper Canvas (#FAF8F4) · Pitch Black (#000000) · Electric Red (#EC3A3A)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+
+:root {
+  /* Brand Primary Palette */
+  --contra-paper: #FAF8F4;
+  --contra-black: #000000;
+  --contra-dark: #0A0D14;
+  --contra-dark-surface: #121722;
+  --contra-white: #FFFFFF;
+  
+  /* Brand Vibrant Accents */
+  --contra-red: #EC3A3A;
+  --contra-blue: #3C82D5;
+  --contra-orange: #E18F4A;
+  --contra-yellow: #FEC800;
+  --contra-emerald: #10B981;
+
+  /* Typography Colors - Light Surfaces (Default) */
+  --ink-primary: #000000;
+  --ink-muted: #555A64;
+  --ink-dim: #8A92A0;
+
+  /* Typography Colors - Dark Surfaces */
+  --ink-dark-primary: #FFFFFF;
+  --ink-dark-muted: #9BA3AF;
+  --ink-dark-dim: #64748B;
+
+  /* Studio Hairlines */
+  --line-light: rgba(0, 0, 0, 0.09);
+  --line-light-hover: rgba(0, 0, 0, 0.22);
+  --line-dark: rgba(255, 255, 255, 0.12);
+  --line-dark-hover: rgba(255, 255, 255, 0.28);
+
+  /* Typography Scale */
+  --font-studio: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  
+  --step-hero: clamp(2.75rem, 2rem + 4.2vw, 5.2rem);
+  --step-title: clamp(2rem, 1.5rem + 2.5vw, 3.2rem);
+  --step-sub: clamp(1.15rem, 1.05rem + 0.4vw, 1.4rem);
+  --step-body: 1rem;
+  --step-meta: 0.88rem;
+  --step-tag: 0.75rem;
+
+  /* Animation Timings */
+  --ease-contra: cubic-bezier(0.889, -0.009, 0.099, 0.996);
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Skip link for accessibility (A11y) */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  background: var(--contra-black);
+  color: #FFFFFF;
+  padding: 0.75rem 1.25rem;
+  z-index: 9999;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+  outline: 3px solid var(--contra-red);
+}
+
+html {
+  font-family: var(--font-studio);
+  background-color: var(--contra-paper);
+  color: var(--ink-primary);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  background-color: var(--contra-paper);
+  color: var(--ink-primary);
+  overflow-x: hidden;
+}
+
+/* Container & Layout */
+.container {
+  width: 100%;
+  max-width: 1360px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4.5vw, 3.5rem);
+}
+
+.section-gap {
+  padding-block: clamp(4.5rem, 7.5vw, 8rem);
+}
+
+/* Section Background Inversions */
+.section-paper {
+  background-color: var(--contra-paper);
+  color: var(--ink-primary);
+}
+
+.section-dark {
+  background-color: var(--contra-dark);
+  color: var(--ink-dark-primary);
+}
+
+.section-black {
+  background-color: var(--contra-black);
+  color: var(--ink-dark-primary);
+}
+
+.section-contra-red {
+  background-color: var(--contra-red);
+  color: var(--contra-white);
+}
+
+/* Typography Classes */
+.hero-headline {
+  font-family: var(--font-studio);
+  font-size: var(--step-hero);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: var(--ink-primary);
+}
+
+.section-headline {
+  font-family: var(--font-studio);
+  font-size: var(--step-title);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.text-lead {
+  font-size: var(--step-sub);
+  color: var(--ink-muted);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* ==========================================================================
+   Signature Micro-Interaction: Pill Morph Button
+   Border-radius transitions from 9999px to 8px on hover
+   ========================================================================== */
+
+.pill-morph-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: var(--contra-black);
+  color: #FFFFFF;
+  font-family: var(--font-studio);
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 0.85rem 1.85rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  border: 1px solid var(--contra-black);
+  cursor: pointer;
+  white-space: nowrap;
+  max-width: 100%;
+  transition: 
+    border-radius 0.38s var(--ease-contra),
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s var(--ease-smooth),
+    box-shadow 0.25s ease;
+}
+
+.pill-morph-btn:hover {
+  border-radius: 8px;
+  background-color: var(--contra-red);
+  border-color: var(--contra-red);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(236, 58, 58, 0.25);
+}
+
+.pill-morph-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: transparent;
+  color: var(--ink-primary);
+  font-family: var(--font-studio);
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 0.85rem 1.85rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  border: 1px solid var(--line-light-hover);
+  cursor: pointer;
+  white-space: nowrap;
+  max-width: 100%;
+  transition: 
+    border-radius 0.38s var(--ease-contra),
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s var(--ease-smooth);
+}
+
+.pill-morph-btn-outline:hover {
+  border-radius: 8px;
+  border-color: var(--contra-black);
+  background-color: var(--contra-black);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+/* Dark mode variants of Pill Morph Button */
+.pill-morph-btn-light {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: #FFFFFF;
+  color: #000000;
+  font-family: var(--font-studio);
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 0.85rem 1.85rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  border: 1px solid #FFFFFF;
+  cursor: pointer;
+  white-space: nowrap;
+  max-width: 100%;
+  transition: 
+    border-radius 0.38s var(--ease-contra),
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s var(--ease-smooth),
+    box-shadow 0.25s ease;
+}
+
+.pill-morph-btn-light:hover {
+  border-radius: 8px;
+  background-color: var(--contra-red);
+  border-color: var(--contra-red);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(236, 58, 58, 0.3);
+}
+
+.pill-morph-btn-dark-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: transparent;
+  color: #FFFFFF;
+  font-family: var(--font-studio);
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 0.85rem 1.85rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  white-space: nowrap;
+  max-width: 100%;
+  transition: 
+    border-radius 0.38s var(--ease-contra),
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s var(--ease-smooth);
+}
+
+.pill-morph-btn-dark-outline:hover {
+  border-radius: 8px;
+  border-color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 640px) {
+  .pill-morph-btn,
+  .pill-morph-btn-outline,
+  .pill-morph-btn-light,
+  .pill-morph-btn-dark-outline {
+    padding: 0.75rem 1.35rem;
+    font-size: 0.86rem;
+  }
+}
+
+/* ==========================================================================
+   Infinite Marquee Banner Component (Contra Studio Style)
+   ========================================================================== */
+
+.marquee-strip {
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--contra-black);
+  color: #FFFFFF;
+  padding-block: 1rem;
+  border-block: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  user-select: none;
+}
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  white-space: nowrap;
+  animation: marqueeLoop 28s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 2.5rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #FFFFFF;
+}
+
+.marquee-item .sep {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--contra-red);
+  display: inline-block;
+}
+
+@keyframes marqueeLoop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--contra-paper);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* ==========================================================================
+   Brand Accent Visuals: Colorful Asterisks / Glyphs
+   ========================================================================== */
+.contra-star {
+  display: inline-block;
+  vertical-align: middle;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.contra-star:hover {
+  transform: rotate(90deg) scale(1.15);
+}
+
+.contra-star-red { color: var(--contra-red); }
+.contra-star-blue { color: var(--contra-blue); }
+.contra-star-orange { color: var(--contra-orange); }
+.contra-star-yellow { color: var(--contra-yellow); }
+
+/* Section Subhead Label with Brand Asterisk */
+.studio-section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-dim);
+  margin-bottom: 0.85rem;
+}
+
+.studio-section-label.red-label {
+  color: var(--contra-red);
+}
+
+.studio-section-label.blue-label {
+  color: var(--contra-blue);
+}
+
+/* ==========================================================================
+   Image Marquee Ribbon (Infinite Photo Reel)
+   ========================================================================== */
+.image-marquee-wrapper {
+  width: 100%;
+  overflow: hidden;
+  padding-block: 2.5rem 3rem;
+  user-select: none;
+  background-color: var(--contra-black);
+}
+
+.image-marquee-track {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  animation: photoMarqueeLoop 38s linear infinite;
+  will-change: transform;
+}
+
+.image-marquee-wrapper:hover .image-marquee-track {
+  animation-play-state: paused;
+}
+
+.image-marquee-card {
+  flex-shrink: 0;
+  width: clamp(280px, 28vw, 380px);
+  height: clamp(220px, 22vw, 300px);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  background-color: #111;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.4s var(--ease-smooth);
+}
+
+.image-marquee-card:hover {
+  transform: translateY(-6px) scale(1.02);
+}
+
+.image-marquee-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-smooth);
+}
+
+.image-marquee-card:hover .image-marquee-img {
+  transform: scale(1.08);
+}
+
+.image-marquee-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.1) 50%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.25rem;
+  color: #FFFFFF;
+}
+
+.image-marquee-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--contra-red);
+}
+
+.image-marquee-title {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 0.2rem;
+}
+
+@keyframes photoMarqueeLoop {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ==========================================================================
+   Universal Scroll-Reveal Animation Utilities
+   ========================================================================== */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s var(--ease-smooth), transform 0.75s var(--ease-smooth);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+
+

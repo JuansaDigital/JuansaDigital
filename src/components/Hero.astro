@@ -1,0 +1,237 @@
+---
+import { getLangFromUrl, getLocalizedPath, type SupportedLanguage } from "../i18n/ui";
+
+interface Props {
+  lang?: SupportedLanguage;
+}
+
+const { lang: propLang } = Astro.props;
+const lang = propLang || getLangFromUrl(Astro.url);
+
+const heroTexts = {
+  es: {
+    meta: "Consultoría & Desarrollo · Santa Marta, Colombia",
+    headline: "Marketing turístico, desarrollo web y analítica de datos.",
+    desc: "Impulsamos hoteles, agencias de viajes, operadores de tours y marcas institucionales mediante plataformas web optimizadas para posicionamiento SEO, publicidad digital Ads y analítica de mercado.",
+    ctaWhatsApp: "Escribir por WhatsApp",
+    ctaProjects: "Explorar Proyectos",
+    captionTitle: "Parque Tayrona · Santa Marta",
+    captionTag: "Sierra Nevada & Mar Caribe · Territorio Estratégico",
+    alt: "Parque Nacional Natural Tayrona, Santa Marta · Ecosistema Turístico del Caribe"
+  },
+  en: {
+    meta: "Consulting & Web Engineering · Santa Marta, Colombia",
+    headline: "Tourism marketing, web engineering and data analytics.",
+    desc: "We empower hotels, travel agencies, tour operators and destination brands with high-converting web platforms, SEO positioning, Google & Meta Ads, and market analytics.",
+    ctaWhatsApp: "Chat on WhatsApp",
+    ctaProjects: "Explore Projects",
+    captionTitle: "Tayrona National Park · Santa Marta",
+    captionTag: "Sierra Nevada & Caribbean Sea · Strategic Hub",
+    alt: "Tayrona National Natural Park, Santa Marta · Caribbean Tourism Ecosystem"
+  },
+  fr: {
+    meta: "Conseil & Ingénierie Web · Santa Marta, Colombie",
+    headline: "Marketing touristique, ingénierie web et analyse de données.",
+    desc: "Nous propulsons les hôtels, agences de voyages, tour-opérateurs et marques institutionnelles avec des sites web à haute conversion, le référencement SEO, les campagnes Ads et l'analytique.",
+    ctaWhatsApp: "Écrire sur WhatsApp",
+    ctaProjects: "Explorer les Projets",
+    captionTitle: "Parc National Tayrona · Santa Marta",
+    captionTag: "Sierra Nevada & Mer des Caraïbes · Hub Stratégique",
+    alt: "Parc Naturel National Tayrona, Santa Marta · Écosystème Touristique des Caraïbes"
+  }
+};
+
+const t = heroTexts[lang] || heroTexts.es;
+---
+
+<section class="studio-hero-section section-paper" id="top">
+  <div class="container">
+    <div class="hero-header-block">
+      <div class="hero-top-meta">
+        <span class="hero-discipline">{t.meta}</span>
+      </div>
+
+      <h1 class="hero-headline">
+        {t.headline}
+      </h1>
+
+      <p class="text-lead hero-description">
+        {t.desc}
+      </p>
+      
+      <div class="hero-cta-row">
+        <a 
+          href="https://wa.me/message/VZOWCP5BYGXJD1" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="pill-morph-btn"
+        >
+          <span>{t.ctaWhatsApp}</span>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </a>
+
+        <a href={getLocalizedPath("/proyectos", lang)} class="pill-morph-btn-outline">
+          <span>{t.ctaProjects}</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Panoramic Showcase -->
+    <div class="hero-showcase">
+      <div class="showcase-media-frame">
+        <img 
+          src="/images/parque-tayrona-hero.webp" 
+          alt={t.alt} 
+          class="showcase-img"
+          loading="eager"
+          decoding="async"
+        />
+        <div class="showcase-caption">
+          <span class="caption-title">{t.captionTitle}</span>
+          <span class="caption-tag">{t.captionTag}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Running Marquee Banner -->
+  <div class="hero-marquee-wrap">
+    <div class="marquee-strip">
+      <div class="marquee-track">
+        <span class="marquee-item">WIWA TOURS <span class="sep"></span></span>
+        <span class="marquee-item">DISCOVER LA GUAJIRA <span class="sep"></span></span>
+        <span class="marquee-item">VISIT VALLE <span class="sep"></span></span>
+        <span class="marquee-item">LOGAN VALUATION <span class="sep"></span></span>
+        <span class="marquee-item">TORNUS AGENCY <span class="sep"></span></span>
+        <span class="marquee-item">TURISDATA · INTELIGENCIA TURÍSTICA <span class="sep"></span></span>
+        <span class="marquee-item">CIUDAD PERDIDA <span class="sep"></span></span>
+        <span class="marquee-item">LOOKER STUDIO SITUR <span class="sep"></span></span>
+        <span class="marquee-item">CHEZ BOAZ TOURS <span class="sep"></span></span>
+        <!-- Duplicated for seamless loop -->
+        <span class="marquee-item">WIWA TOURS <span class="sep"></span></span>
+        <span class="marquee-item">DISCOVER LA GUAJIRA <span class="sep"></span></span>
+        <span class="marquee-item">VISIT VALLE <span class="sep"></span></span>
+        <span class="marquee-item">LOGAN VALUATION <span class="sep"></span></span>
+        <span class="marquee-item">TORNUS AGENCY <span class="sep"></span></span>
+        <span class="marquee-item">TURISDATA · INTELIGENCIA TURÍSTICA <span class="sep"></span></span>
+        <span class="marquee-item">CIUDAD PERDIDA <span class="sep"></span></span>
+        <span class="marquee-item">LOOKER STUDIO SITUR <span class="sep"></span></span>
+        <span class="marquee-item">CHEZ BOAZ TOURS <span class="sep"></span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .studio-hero-section {
+    padding-top: clamp(3rem, 5.5vw, 5.5rem);
+    padding-bottom: 0;
+  }
+
+  .hero-header-block {
+    max-width: 1040px;
+    margin-bottom: clamp(3rem, 5vw, 4.5rem);
+  }
+
+  .hero-top-meta {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-discipline {
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-dim);
+  }
+
+  .hero-description {
+    margin-top: 1.6rem;
+    max-width: 780px;
+    font-size: clamp(1.1rem, 1rem + 0.4vw, 1.35rem);
+  }
+
+  .hero-cta-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2.25rem;
+    flex-wrap: wrap;
+  }
+
+  /* Panoramic Showcase Frame */
+  .hero-showcase {
+    width: 100%;
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  .showcase-media-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 600px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #E5E1D8;
+    border: 1px solid var(--line-light);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
+  }
+
+  .showcase-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s var(--ease-contra);
+  }
+
+  .showcase-media-frame:hover .showcase-img {
+    transform: scale(1.025);
+  }
+
+  .showcase-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem 1.75rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.35) 60%, transparent 100%);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    color: #FFFFFF;
+  }
+
+  .caption-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .caption-tag {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+  }
+
+  .hero-marquee-wrap {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .showcase-caption {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+      padding: 1rem;
+    }
+  }
+</style>

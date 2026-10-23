@@ -1,0 +1,362 @@
+---
+import { getLangFromUrl, type SupportedLanguage } from "../i18n/ui";
+
+interface Props {
+  lang?: SupportedLanguage;
+}
+
+const { lang: propLang } = Astro.props;
+const currentLang = propLang || getLangFromUrl(Astro.url);
+
+const copy = {
+  es: {
+    label: "Enfoque de trabajo",
+    title: "Tu presencia web debe ser un canal activo de ventas y contacto.",
+    lead: "Muchas empresas turísticas invierten en sitios web que terminan siendo folletos digitales estáticos: lentos, difíciles de actualizar o desconectados de las ventas del día a día.",
+    body: "Nosotros construimos sitios pensados para funcionar: rápidos en móviles, fáciles de administrar y respaldados por publicidad digital y datos reales del sector.",
+    rightSub: "El impacto en tu negocio",
+    rightTitle: "Esto es lo que pasa cuando un producto digital se construye como debe:",
+    items: [
+      {
+        title: "Una experiencia clara que orienta y genera reservas",
+        content: "Los viajeros entienden las experiencias, habitaciones y servicios al instante. Diseñamos para que navegar desde el celular sea fácil y cómodo, facilitando las reservas directas y el contacto por WhatsApp."
+      },
+      {
+        title: "Desarrollo web a medida con WordPress y Astro",
+        content: "Elegimos la tecnología según la necesidad de cada proyecto: plataformas completas y fáciles de autogestionar en WordPress, o sitios ultrarrápidos en Astro. Siempre con código limpio y optimización para buscadores (SEO)."
+      },
+      {
+        title: "Canales de venta directa y control de tus ingresos",
+        content: "Integramos motores de reserva fáciles de usar y pasarelas de pago seguras para que tu hotel o agencia reciba pagos de forma directa y fortalezca su canal propio."
+      },
+      {
+        title: "Información útil de mercado y analítica",
+        content: "Decisiones con criterio. Implementamos tableros en Google Looker Studio y recopilación de información turística para entender la demanda y el comportamiento de los viajeros en tu destino."
+      }
+    ]
+  },
+  en: {
+    label: "Strategic Approach",
+    title: "Your web presence must be an active channel for sales and direct inquiries.",
+    lead: "Many travel businesses invest in websites that end up being static digital brochures: slow, cumbersome to update, and detached from day-to-day reservations.",
+    body: "We build platforms engineered to convert: ultra-fast on mobile, intuitive to administer, and powered by targeted ads and real sector intelligence.",
+    rightSub: "Business Impact",
+    rightTitle: "Here is what happens when a digital product is engineered with precision:",
+    items: [
+      {
+        title: "Frictionless journeys driving direct bookings",
+        content: "Travelers understand rooms, itineraries, and experiences in seconds. We design lightweight mobile interfaces that streamline checkout and WhatsApp inquiries."
+      },
+      {
+        title: "Tailored engineering in WordPress & Astro",
+        content: "We select the optimal architecture for each need: flexible, self-managed systems on enterprise WordPress, or sub-second static sites in Astro with top SEO."
+      },
+      {
+        title: "Direct revenue ownership & commission freedom",
+        content: "We integrate intuitive booking engines and secure payment checkouts so your hotel or tour agency secures direct revenue and retains guest relationships."
+      },
+      {
+        title: "Actionable market data & clear business intelligence",
+        content: "Evidence-driven decisions. We deploy interactive Google Looker Studio dashboards and public tourism data to decode traveler inflows and regional tariffs."
+      }
+    ]
+  },
+  fr: {
+    label: "Approche Stratégique",
+    title: "Votre présence web doit être un canal actif de vente et de contact direct.",
+    lead: "Trop d'entreprises touristiques investissent dans des sites qui finissent en brochures statiques : lents, rigides et déconnectés des réservations quotidiennes.",
+    body: "Nous concevons des plateformes performantes : rapides sur smartphone, faciles à administrer et soutenues par une publicité ciblée et des données concrètes.",
+    rightSub: "L'impact sur votre activité",
+    rightTitle: "Voici ce qui se produit lorsqu'un produit digital est conçu dans les règles de l'art :",
+    items: [
+      {
+        title: "Un parcours limpide qui stimule la réservation",
+        content: "Les voyageurs visualisent les chambres, excursions et tarifs en un clin d'œil. Nous créons des interfaces mobiles fluides qui facilitent la réservation directe et le contact WhatsApp."
+      },
+      {
+        title: "Développement sur-mesure sous WordPress et Astro",
+        content: "Nous choisissons l'architecture adaptée : WordPress avancé pour une gestion dynamique des contenus, ou Astro pour une vitesse statique record et un SEO optimal."
+      },
+      {
+        title: "Vente directe et maîtrise totale de vos marges",
+        content: "Nous intégrons des moteurs de réservation sans commission et des paiements sécurisés pour s'émanciper des intermédiaires et fidéliser vos clients."
+      },
+      {
+        title: "Intelligence de marché et données exploitables",
+        content: "Des décisions fondées sur l'évidence. Tableaux de bord interactifs Looker Studio et cartographie de l'offre pour anticiper la demande sur votre destination."
+      }
+    ]
+  }
+};
+
+const c = copy[currentLang] || copy.es;
+const accordionItems = c.items;
+---
+
+<section class="section-gap contra-wim-section section-paper">
+  <div class="container">
+    <div class="wim-grid">
+      <!-- Left Column: Manifesto -->
+      <div class="wim-left">
+        <span class="contra-section-label">{c.label}</span>
+        <h2 class="wim-title">
+          {c.title}
+        </h2>
+        <p class="wim-lead">
+          {c.lead}
+        </p>
+        <p class="wim-body">
+          {c.body}
+        </p>
+      </div>
+
+      <!-- Right Column: Interactive Accordions -->
+      <div class="wim-right">
+        <div class="wim-right-header">
+          <span class="wim-right-sub">{c.rightSub}</span>
+          <h3 class="wim-right-title">{c.rightTitle}</h3>
+        </div>
+
+        <div class="accordions-container" id="wimAccordions">
+          {accordionItems.map((item, idx) => (
+            <div class:list={["accordion-card", { "is-open": idx === 0 }]}>
+              <button 
+                type="button" 
+                class="accordion-trigger" 
+                aria-expanded={idx === 0 ? "true" : "false"}
+              >
+                <span class="accordion-heading">{item.title}</span>
+                <span class="accordion-icon-wrap">
+                  <!-- Plus Icon -->
+                  <svg class="plus-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                  <!-- Minus Icon -->
+                  <svg class="minus-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </span>
+              </button>
+
+              <div class="accordion-content">
+                <p class="accordion-text">{item.content}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initAccordions() {
+    const cards = document.querySelectorAll('.accordion-card');
+    cards.forEach(card => {
+      const trigger = card.querySelector('.accordion-trigger');
+      if (!trigger) return;
+
+      trigger.addEventListener('click', () => {
+        const isOpen = card.classList.contains('is-open');
+
+        // Close others for neat single-open accordion feel
+        cards.forEach(c => {
+          c.classList.remove('is-open');
+          c.querySelector('.accordion-trigger')?.setAttribute('aria-expanded', 'false');
+        });
+
+        if (!isOpen) {
+          card.classList.add('is-open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAccordions);
+  } else {
+    initAccordions();
+  }
+</script>
+
+<style>
+  .contra-wim-section {
+    border-top: 1px solid var(--line-light);
+  }
+
+  .contra-section-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    color: var(--contra-red);
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .wim-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    gap: clamp(3rem, 6vw, 6.5rem);
+    align-items: start;
+  }
+
+  .wim-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: sticky;
+    top: 6rem;
+  }
+
+  .wim-title {
+    font-size: clamp(2.2rem, 1.8rem + 2vw, 3.4rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--ink-primary);
+    line-height: 1.1;
+  }
+
+  .wim-lead {
+    font-size: 1.15rem;
+    color: var(--ink-muted);
+    line-height: 1.65;
+  }
+
+  .wim-body {
+    font-size: 1rem;
+    color: var(--ink-dim);
+    line-height: 1.6;
+  }
+
+  /* Right Accordions */
+  .wim-right-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .wim-right-sub {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-dim);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .wim-right-title {
+    font-size: clamp(1.4rem, 1.2rem + 1vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink-primary);
+    line-height: 1.25;
+  }
+
+  .accordions-container {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--line-light);
+  }
+
+  .accordion-card {
+    border-bottom: 1px solid var(--line-light);
+    transition: background-color 0.2s ease;
+  }
+
+  .accordion-trigger {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding-block: 1.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .accordion-heading {
+    font-size: 1.22rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--ink-primary);
+    line-height: 1.35;
+    transition: color 0.2s ease;
+  }
+
+  .accordion-trigger:hover .accordion-heading {
+    color: var(--contra-red);
+  }
+
+  .accordion-icon-wrap {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--line-light-hover);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--ink-primary);
+    transition: all 0.25s var(--ease-smooth);
+  }
+
+  .accordion-trigger:hover .accordion-icon-wrap {
+    border-color: var(--contra-black);
+    background: var(--contra-black);
+    color: #FFFFFF;
+  }
+
+  .minus-icon {
+    display: none;
+  }
+
+  /* When open */
+  .accordion-card.is-open .plus-icon {
+    display: none;
+  }
+
+  .accordion-card.is-open .minus-icon {
+    display: block;
+  }
+
+  .accordion-card.is-open .accordion-icon-wrap {
+    background: var(--contra-red);
+    border-color: var(--contra-red);
+    color: #FFFFFF;
+  }
+
+  .accordion-card.is-open .accordion-heading {
+    color: var(--contra-red);
+  }
+
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s var(--ease-smooth), padding-bottom 0.3s ease;
+  }
+
+  .accordion-card.is-open .accordion-content {
+    max-height: 200px;
+    padding-bottom: 1.75rem;
+  }
+
+  .accordion-text {
+    font-size: 1.02rem;
+    color: var(--ink-muted);
+    line-height: 1.65;
+  }
+
+  @media (max-width: 900px) {
+    .wim-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .wim-left {
+      position: static;
+    }
+  }
+</style>

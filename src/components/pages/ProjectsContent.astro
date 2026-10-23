@@ -1,0 +1,745 @@
+---
+import { type SupportedLanguage } from '../../i18n/ui';
+
+interface Props {
+  lang?: SupportedLanguage;
+}
+
+const { lang = "es" } = Astro.props;
+
+const rawProjects = [
+  {
+    title: "Logan Valuation",
+    subtitle: {
+      es: "Firma Institucional de Avalúos en Latinoamérica",
+      en: "Institutional Valuation Firm in Latin America",
+      fr: "Cabinet Institutionnel d'Évaluation en Amérique Latine"
+    },
+    tag: {
+      es: "Valuación · MAI · IFRS",
+      en: "Valuation · MAI · IFRS",
+      fr: "Évaluation · MAI · IFRS"
+    },
+    category: "corporativo",
+    categoryLabel: {
+      es: "Corporativo & Consultoría",
+      en: "Corporate & Consulting",
+      fr: "Entreprise & Conseil"
+    },
+    image: "/images/logan-valuation.webp",
+    url: "http://loganvaluation.com/",
+    description: {
+      es: "Plataforma corporativa multilingüe para firma multinacional líder en avalúos inmobiliarios institucionales en Colombia, México, Perú, Costa Rica y Panamá, bajo normas internacionales MAI y NIIF / IFRS.",
+      en: "Multilingual enterprise platform for a multinational valuation leader operating across Colombia, Mexico, Peru, Costa Rica, and Panama under international MAI and IFRS standards.",
+      fr: "Plateforme d'entreprise multilingue pour un leader multinational de l'évaluation immobilière opérant en Colombie, Mexique, Pérou, Costa Rica et Panama sous les normes MAI et IFRS."
+    }
+  },
+  {
+    title: "Discover La Guajira",
+    subtitle: {
+      es: "Portal Gubernamental de Turismo y Cultura",
+      en: "Regional Government Tourism & Culture Portal",
+      fr: "Portail Régional de Tourisme & Culture"
+    },
+    tag: {
+      es: "Turismo · SEO · Web",
+      en: "Tourism · SEO · Web",
+      fr: "Tourisme · SEO · Web"
+    },
+    category: "turismo",
+    categoryLabel: {
+      es: "Turismo & Destinos",
+      en: "Tourism & Destinations",
+      fr: "Tourisme & Destinations"
+    },
+    image: "/images/discover-guajira.webp",
+    url: "https://discoverlaguajira.travel",
+    description: {
+      es: "Portal turístico y gubernamental enfocado en resaltar la identidad cultural Wayuu y los atractivos del desierto de La Guajira, con posicionamiento orgánico internacional.",
+      en: "Government destination portal celebrating Wayuu indigenous heritage and the La Guajira desert, engineered for international search discoverability.",
+      fr: "Portail touristique institutionnel valorisant l'héritage indigène Wayuu et le désert de La Guajira, optimisé pour le référencement international."
+    }
+  },
+  {
+    title: "Visit Valle",
+    subtitle: {
+      es: "Plataforma Turística y Destino Departamental",
+      en: "Departmental Destination & Tourism Platform",
+      fr: "Plateforme Touristique et Destination Régionale"
+    },
+    tag: {
+      es: "Turismo Cultural · SEO",
+      en: "Cultural Tourism · SEO",
+      fr: "Tourisme Culturel · SEO"
+    },
+    category: "turismo",
+    categoryLabel: {
+      es: "Turismo & Destinos",
+      en: "Tourism & Destinations",
+      fr: "Tourisme & Destinations"
+    },
+    image: "/images/visit-valle.webp",
+    url: "https://visitvalle.travel",
+    description: {
+      es: "Plataforma turística oficial del departamento del Valle del Cauca, destacando gastronomía, salsa, pueblos mágicos y biodiversidad pacífica.",
+      en: "Official tourism portal for Valle del Cauca, highlighting heritage gastronomy, salsa culture, colonial towns, and Pacific coastal biodiversity.",
+      fr: "Plateforme officielle du département de Valle del Cauca, mettant en valeur la gastronomie, la salsa, les villages coloniaux et la biodiversité du Pacifique."
+    }
+  },
+  {
+    title: "Wiwa Tour",
+    subtitle: {
+      es: "Plataforma Integral con Motor de Reservas",
+      en: "Ecotourism Platform with Direct Booking Engine",
+      fr: "Plateforme Écotouristique avec Réservation Directe"
+    },
+    tag: {
+      es: "Reservas · Ecoturismo",
+      en: "Bookings · Ecotourism",
+      fr: "Réservations · Écotourisme"
+    },
+    category: "turismo",
+    categoryLabel: {
+      es: "Turismo & Destinos",
+      en: "Tourism & Destinations",
+      fr: "Tourisme & Destinations"
+    },
+    image: "/images/wiwa-tour.webp",
+    url: "https://wiwatour.com",
+    description: {
+      es: "Web transaccional con motor de reservas y experiencia inmersiva para expediciones de ecoturismo en la Sierra Nevada de Santa Marta (Teyuna / Ciudad Perdida).",
+      en: "Transactional platform featuring a direct booking engine and immersive storytelling for expeditions in the Sierra Nevada de Santa Marta and Lost City trek.",
+      fr: "Plateforme transactionnelle avec moteur de réservation directe et parcours immersif pour les expéditions dans la Sierra Nevada de Santa Marta et la Cité Perdue."
+    }
+  },
+  {
+    title: "Providencia Isla",
+    subtitle: {
+      es: "Sitio Web Oficial del Destino Insular",
+      en: "Official Portal for the Seaflower Island Destination",
+      fr: "Portail Officiel de la Destination Insulaire"
+    },
+    tag: {
+      es: "Turismo · Biodiversidad",
+      en: "Tourism · Biodiversity",
+      fr: "Tourisme · Biodiversité"
+    },
+    category: "turismo",
+    categoryLabel: {
+      es: "Turismo & Destinos",
+      en: "Tourism & Destinations",
+      fr: "Tourisme & Destinations"
+    },
+    image: "/images/providencia.webp",
+    url: "https://providenciaisla.travel",
+    description: {
+      es: "Portal digital oficial para la promoción de la isla de Providencia y Santa Catalina, promoviendo turismo sostenible y reserva de biosfera marina.",
+      en: "Official destination portal promoting Providencia and Santa Catalina, championing community-based sustainable tourism in the UNESCO Seaflower biosphere reserve.",
+      fr: "Portail officiel pour la promotion de l'île de Providencia et Santa Catalina, soutenant un tourisme durable dans la réserve de biosphère UNESCO Seaflower."
+    }
+  },
+  {
+    title: "Tornus Agency",
+    subtitle: {
+      es: "Estudio Creativo y Placebranding de Destinos",
+      en: "Creative Studio & Destination Placebranding",
+      fr: "Studio Créatif & Placebranding de Destinations"
+    },
+    tag: {
+      es: "Identidad · Storytelling",
+      en: "Identity · Storytelling",
+      fr: "Identité · Storytelling"
+    },
+    category: "corporativo",
+    categoryLabel: {
+      es: "Estudio Creativo",
+      en: "Creative Studio",
+      fr: "Studio Créatif"
+    },
+    image: "/images/tornus.webp",
+    url: "https://tornus.agency",
+    description: {
+      es: "Sitio web para agencia de placebranding y contenidos de marca con enfoque en identidad territorial y narrativa de destinos.",
+      en: "High-end portfolio for a placebranding agency specializing in territorial identity, narrative film, and tourism destination branding.",
+      fr: "Site vitrine pour une agence de placebranding spécialisée dans l'identité territoriale et les récits de destination."
+    }
+  },
+  {
+    title: "Chez Boaz Tours",
+    subtitle: {
+      es: "Tours Personalizados y Mercado Internacional",
+      en: "Boutique Private Tours for Global Travelers",
+      fr: "Circuits Privés pour Voyageurs Internationaux"
+    },
+    tag: {
+      es: "Tours Boutique · Web",
+      en: "Boutique Tours · Web",
+      fr: "Tours Boutique · Web"
+    },
+    category: "turismo",
+    categoryLabel: {
+      es: "Turismo & Destinos",
+      en: "Tourism & Destinations",
+      fr: "Tourisme & Destinations"
+    },
+    image: "/images/chez-boaz.webp",
+    url: "https://chezboaztours.com/",
+    description: {
+      es: "Plataforma para operador de tours boutique orientado a viajeros internacionales que buscan experiencias personalizadas y de alto estándar.",
+      en: "Web platform for an inbound boutique tour operator catering to international travelers demanding curated, high-end private itineraries.",
+      fr: "Plateforme pour un opérateur de circuits personnalisés s'adressant aux voyageurs internationaux en quête d'expériences sur-mesure."
+    }
+  },
+  {
+    title: "Ciudad Perdida Santa Marta",
+    subtitle: {
+      es: "Portal Especializado con Posicionamiento Orgánico",
+      en: "Specialized Expedition Portal with Top Organic SEO",
+      fr: "Portail Spécialisé avec Référencement Naturel de Pointe"
+    },
+    tag: {
+      es: "Destino · SEO Técnico",
+      en: "Destination · Technical SEO",
+      fr: "Destination · SEO Technique"
+    },
+    category: "turismo",
+    categoryLabel: {
+      es: "Turismo & Destinos",
+      en: "Tourism & Destinations",
+      fr: "Tourisme & Destinations"
+    },
+    image: "/images/ciudad-perdida.webp",
+    url: "https://ciudadperdidasantamarta.com/",
+    description: {
+      es: "Portal especializado en SEO orgánico para uno de los destinos de trekking y arqueología más reconocidos de Colombia y Suramérica.",
+      en: "High-ranking SEO content portal dedicated to South America's most renowned jungle trek and archaeological wonder in the Sierra Nevada.",
+      fr: "Portail de référence avec un excellent référencement naturel dédié à l'un des treks archéologiques majeurs d'Amérique du Sud."
+    }
+  },
+  {
+    title: "Hotel Parque Tayrona (Yachay)",
+    subtitle: {
+      es: "Eco-Hotel Boutique & Motor de Reservas Directas",
+      en: "Boutique Eco-Lodge & Commission-Free Direct Bookings",
+      fr: "Éco-Lodge de Charme & Réservations Directes Sans Commission"
+    },
+    tag: {
+      es: "Eco-Hotel · Reservas Directas · SEO",
+      en: "Eco-Lodge · Direct Bookings · SEO",
+      fr: "Éco-Lodge · Réservations Directes · SEO"
+    },
+    category: "turismo",
+    categoryLabel: {
+      es: "Turismo & Destinos",
+      en: "Tourism & Destinations",
+      fr: "Tourisme & Destinations"
+    },
+    image: "/images/hotel-tayrona.webp",
+    url: "https://hotelparquetayrona.com",
+    description: {
+      es: "Plataforma web de alta conversión para eco-hotel boutique en el Parque Nacional Natural Tayrona, con motor de reservas directas, optimización SEO para viajeros internacionales y experiencia de usuario fluida.",
+      en: "High-converting web platform for an eco-boutique hotel at Tayrona National Park, featuring a direct booking engine, multilingual international SEO, and frictionless mobile UX.",
+      fr: "Plateforme web à forte conversion pour un hôtel écologique de charme au Parc National Tayrona, avec moteur de réservation directe et SEO multilingue."
+    }
+  },
+  {
+    title: "TurisData",
+    subtitle: {
+      es: "Plataforma de Inteligencia Territorial & Place Branding",
+      en: "Territorial Intelligence & Place Branding Platform",
+      fr: "Plateforme d'Intelligence Territoriale & Place Branding"
+    },
+    tag: {
+      es: "Big Data · +1.100 Municipios · RNT",
+      en: "Big Data · +1,100 Municipalities · RNT",
+      fr: "Big Data · +1.100 Municipalités · RNT"
+    },
+    category: "datos",
+    categoryLabel: {
+      es: "Inteligencia de Datos",
+      en: "Data Intelligence",
+      fr: "Intelligence de Données"
+    },
+    image: "/images/turisdata.webp",
+    url: "https://turisdata.tornus.agency",
+    description: {
+      es: "Plataforma nacional de inteligencia turística y place branding para Colombia. Centraliza y visualiza datos oficiales del RNT, capacidad de camas, flujos de viajeros internacionales (+1.100 municipios) e insights con Lumina AI.",
+      en: "National tourism intelligence and destination analytics platform for Colombia. Geospatial visualization covering +1,100 municipalities, official RNT registries, lodging capacity, and Lumina AI diagnostics.",
+      fr: "Plateforme nationale d'intelligence touristique pour la Colombie. Visualisation géospatiale couvrant +1.100 municipalités, prestataires officiels RNT et diagnostics par Lumina AI."
+    }
+  },
+  {
+    title: "SITUR Valledupar / Cesar",
+    subtitle: {
+      es: "Dashboard en Looker Studio & Web Scraping",
+      en: "Looker Studio Dashboard & Automated Scraping",
+      fr: "Tableau de Bord Looker Studio & Web Scraping"
+    },
+    tag: {
+      es: "BI · Web Scraping de Información",
+      en: "BI · Tourism Web Scraping",
+      fr: "BI · Web Scraping Touristique"
+    },
+    category: "datos",
+    categoryLabel: {
+      es: "Inteligencia de Datos",
+      en: "Data Intelligence",
+      fr: "Intelligence de Données"
+    },
+    image: "/images/situr-valledupar.webp",
+    url: "https://datastudio.google.com/reporting/676a917d-8ae3-4d53-b386-5c277e605e05",
+    description: {
+      es: "Tablero dinámico de analítica turística departamental alimentado por extracción y consolidación de información sobre alojamientos, agencias de viaje y oferta del sector.",
+      en: "Dynamic departmental tourism analytics dashboard fueled by automated extraction and consolidation of lodging directories, tour operators, and sector pricing.",
+      fr: "Tableau de bord dynamique d'analyse touristique départementale alimenté par la collecte automatisée de données sur l'hébergement et les agences."
+    }
+  }
+];
+
+const allProjects = rawProjects.map(p => ({
+  title: p.title,
+  subtitle: p.subtitle[lang] || p.subtitle.es,
+  tag: p.tag[lang] || p.tag.es,
+  category: p.category,
+  categoryLabel: p.categoryLabel[lang] || p.categoryLabel.es,
+  image: p.image,
+  url: p.url,
+  description: p.description[lang] || p.description.es
+}));
+
+const categoriesData = {
+  es: [
+    { id: "todos", label: "Todos", count: allProjects.length },
+    { id: "turismo", label: "Turismo & Destinos", count: allProjects.filter(p => p.category === 'turismo').length },
+    { id: "corporativo", label: "Corporativo & Placebranding", count: allProjects.filter(p => p.category === 'corporativo').length },
+    { id: "datos", label: "Inteligencia de Datos & Software", count: allProjects.filter(p => p.category === 'datos').length }
+  ],
+  en: [
+    { id: "todos", label: "All Work", count: allProjects.length },
+    { id: "turismo", label: "Tourism & Destinations", count: allProjects.filter(p => p.category === 'turismo').length },
+    { id: "corporativo", label: "Corporate & Placebranding", count: allProjects.filter(p => p.category === 'corporativo').length },
+    { id: "datos", label: "Data Intelligence & Software", count: allProjects.filter(p => p.category === 'datos').length }
+  ],
+  fr: [
+    { id: "todos", label: "Tous les Projets", count: allProjects.length },
+    { id: "turismo", label: "Tourisme & Destinations", count: allProjects.filter(p => p.category === 'turismo').length },
+    { id: "corporativo", label: "Entreprises & Placebranding", count: allProjects.filter(p => p.category === 'corporativo').length },
+    { id: "datos", label: "Intelligence de Données & Logiciels", count: allProjects.filter(p => p.category === 'datos').length }
+  ]
+};
+
+const impactStatsData = {
+  es: [
+    { target: 10, suffix: "+", label: "Casos de Estudio Reales" },
+    { target: 100, suffix: "%", label: "Control de Marca y Canal Directo" },
+    { target: 1, prefix: "< ", suffix: "s", label: "Velocidad Core Web Vitals" },
+    { target: 5, suffix: " Países", label: "Alcance Internacional en Latam" }
+  ],
+  en: [
+    { target: 10, suffix: "+", label: "Verified Case Studies" },
+    { target: 100, suffix: "%", label: "Brand Control & Direct Revenue" },
+    { target: 1, prefix: "< ", suffix: "s", label: "Core Web Vitals Speed" },
+    { target: 5, suffix: " Countries", label: "International Reach in Latam" }
+  ],
+  fr: [
+    { target: 10, suffix: "+", label: "Études de Cas Concrètes" },
+    { target: 100, suffix: "%", label: "Maîtrise de Marque & Vente Directe" },
+    { target: 1, prefix: "< ", suffix: "s", label: "Vitesse Core Web Vitals" },
+    { target: 5, suffix: " Pays", label: "Rayonnement en Amérique Latine" }
+  ]
+};
+
+const copy = {
+  es: {
+    badge: "Portafolio Seleccionado",
+    title: "Proyectos, plataformas y casos de estudio.",
+    lead: "Plataformas web de alto impacto desarrolladas para destinos turísticos, firmas institucionales y sistemas de analítica con datos en tiempo real."
+  },
+  en: {
+    badge: "Selected Portfolio",
+    title: "Projects, platforms, and verified case studies.",
+    lead: "High-impact web platforms engineered for regional tourism destinations, corporate institutions, and real-time data intelligence systems."
+  },
+  fr: {
+    badge: "Portfolio Sélectionné",
+    title: "Projets, plateformes et études de cas concrètes.",
+    lead: "Plateformes web à fort impact développées pour destinations touristiques, entreprises et systèmes d'analyse de données en temps réel."
+  }
+};
+
+const c = copy[lang] || copy.es;
+const categories = categoriesData[lang] || categoriesData.es;
+const impactStats = impactStatsData[lang] || impactStatsData.es;
+---
+
+<main id="main-content" class="projects-page section-paper">
+  <!-- Header with animated reveals & Impact stats -->
+  <section class="studio-page-header">
+    <div class="container">
+      <div class="header-top-row reveal-on-scroll">
+        <span class="studio-section-label">{c.badge}</span>
+      </div>
+
+      <h1 class="page-main-headline reveal-on-scroll delay-100">
+        {c.title}
+      </h1>
+      <p class="text-lead page-lead reveal-on-scroll delay-200">
+        {c.lead}
+      </p>
+
+      <!-- Dynamic Impact Stats Bar -->
+      <div class="impact-stats-bar reveal-on-scroll delay-300">
+        {impactStats.map((stat) => (
+          <div class="impact-stat-item">
+            <span class="stat-number">
+              {stat.prefix || ""}<span class="counter-val" data-target={stat.target}>{stat.target}</span>{stat.suffix}
+            </span>
+            <span class="stat-label">{stat.label}</span>
+          </div>
+        ))}
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="filter-bar reveal-on-scroll delay-400" id="portfolioFilterBar">
+        {categories.map((cat, idx) => (
+          <button 
+            type="button" 
+            class:list={["filter-pill", { active: idx === 0 }]}
+            data-filter={cat.id}
+          >
+            <span>{cat.label}</span>
+            <span class="filter-count">({cat.count})</span>
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 2-Column Projects Grid on Contrast Black Canvas -->
+  <section class="section-gap projects-archive-section section-black">
+    <div class="container">
+      <div class="contra-projects-grid" id="projectsGrid">
+        {allProjects.map((project, idx) => (
+          <article 
+            class={`project-entry reveal-on-scroll delay-${((idx % 4) + 1) * 100}`} 
+            data-category={project.category}
+          >
+            <a href={project.url} target="_blank" rel="noopener noreferrer" class="project-card-link">
+              <div class="project-image-box">
+                <img 
+                  src={project.image} 
+                  alt={`${project.title} - ${project.subtitle}`} 
+                  class="project-thumbnail"
+                  loading="lazy"
+                />
+                <div class="project-hover-arrow">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                    <polyline points="7 7 17 7 17 17"></polyline>
+                  </svg>
+                </div>
+              </div>
+              
+              <div class="project-meta-line">
+                <div class="meta-left">
+                  <h2 class="meta-title">{project.title}</h2>
+                  <span class="meta-sub">{project.subtitle}</span>
+                </div>
+                <span class="meta-tag">{project.tag}</span>
+              </div>
+
+              <p class="project-card-desc">{project.description}</p>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Filter pill logic with smooth animated transitions
+  const filterBtns = document.querySelectorAll('.filter-pill');
+  const projectEntries = document.querySelectorAll('.project-entry');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filterValue = btn.getAttribute('data-filter');
+
+      projectEntries.forEach(entry => {
+        const entryCategory = entry.getAttribute('data-category');
+        if (filterValue === 'todos' || entryCategory === filterValue) {
+          (entry as HTMLElement).style.display = 'block';
+          entry.classList.add('is-visible');
+        } else {
+          (entry as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Animated impact numbers
+  function animateCounters() {
+    const counters = document.querySelectorAll('.counter-val');
+    counters.forEach(c => {
+      const target = Number(c.getAttribute('data-target'));
+      if (isNaN(target)) return;
+      let count = 0;
+      const speed = target > 50 ? 20 : 60;
+      const step = Math.ceil(target / 25) || 1;
+
+      const timer = setInterval(() => {
+        count += step;
+        if (count >= target) {
+          c.textContent = String(target);
+          clearInterval(timer);
+        } else {
+          c.textContent = String(count);
+        }
+      }, speed);
+    });
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounters();
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const statsSection = document.querySelector('.impact-stats-bar');
+  if (statsSection) observer.observe(statsSection);
+</script>
+
+<style>
+  .projects-page {
+    padding-bottom: 0;
+  }
+
+  .header-top-row {
+    margin-bottom: 1.5rem;
+  }
+
+  /* Impact Stats Bar */
+  .impact-stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--line-light);
+  }
+
+  .impact-stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .stat-label {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  /* Filter Bar */
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 3rem;
+  }
+
+  .filter-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.25rem;
+    border-radius: 100px;
+    background: #FFFFFF;
+    border: 1px solid var(--line-light);
+    color: var(--text-dark);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .filter-pill:hover {
+    border-color: rgba(0, 0, 0, 0.3);
+    background: var(--bg-paper-subtle);
+  }
+
+  .filter-pill.active {
+    background: var(--text-dark);
+    color: #FFFFFF;
+    border-color: var(--text-dark);
+  }
+
+  .filter-pill.active .filter-count {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .filter-count {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  /* Projects Grid */
+  .projects-archive-section {
+    padding-top: 5rem;
+    padding-bottom: 7rem;
+  }
+
+  .contra-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+
+  .project-entry {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .project-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .project-image-box {
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #111;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    aspect-ratio: 16 / 10;
+    margin-bottom: 1.5rem;
+  }
+
+  .project-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.95);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+  }
+
+  .project-card-link:hover .project-thumbnail {
+    transform: scale(1.04);
+    filter: brightness(1.05);
+  }
+
+  .project-hover-arrow {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    color: #0A0A0A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translate(-6px, 6px) scale(0.9);
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .project-card-link:hover .project-hover-arrow {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+
+  .project-meta-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .meta-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .meta-title {
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #FFFFFF;
+    transition: color 0.2s ease;
+  }
+
+  .project-card-link:hover .meta-title {
+    color: var(--contra-red);
+  }
+
+  .meta-sub {
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  .meta-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--contra-red);
+    background: rgba(225, 29, 72, 0.1);
+    border: 1px solid rgba(225, 29, 72, 0.25);
+    padding: 0.3rem 0.65rem;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  .project-card-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.65);
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .contra-projects-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .impact-stats-bar {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .impact-stats-bar {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

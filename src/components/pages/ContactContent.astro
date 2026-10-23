@@ -1,0 +1,629 @@
+---
+import type { SupportedLanguage } from "../../i18n/ui";
+
+interface Props {
+  lang?: SupportedLanguage;
+}
+
+const { lang = "es" } = Astro.props;
+
+const copy = {
+  es: {
+    badge: "Contacto & Colaboración",
+    title: "Hablemos de tu proyecto.",
+    lead: "Cuéntanos qué necesitas: desarrollo web en WordPress o Astro, campañas de publicidad digital, o analítica de datos para tu negocio o destino turístico.",
+    directHeading: "Canales Directos",
+    directLead: "¿Prefieres escribirnos directamente? Estamos disponibles por WhatsApp o correo electrónico:",
+    formHeading: "Envíanos un mensaje",
+    formSub: "Completa el formulario y te responderemos a la brevedad.",
+    nameLabel: "Nombre o Empresa *",
+    namePlaceholder: "Tu nombre o el de tu negocio",
+    emailLabel: "Correo Electrónico *",
+    emailPlaceholder: "correo@ejemplo.com",
+    phoneLabel: "Teléfono / WhatsApp",
+    phonePlaceholder: "+57 300 000 0000",
+    messageLabel: "Mensaje *",
+    messagePlaceholder: "Cuéntanos brevemente sobre tu proyecto, requerimiento o idea...",
+    submitBtn: "Enviar Mensaje",
+    orWhatsApp: "O chatea directo por WhatsApp",
+    socialLabel: "Redes Sociales:",
+    channels: [
+      { label: "WhatsApp Directo", value: "Chatear por WhatsApp", href: "https://wa.me/message/VZOWCP5BYGXJD1", subtext: "Atención rápida para proyectos y consultas", isExternal: true },
+      { label: "Correo Electrónico", value: "Info@juansadigital.com", href: "mailto:Info@juansadigital.com", subtext: "Propuestas formales y alianzas", isExternal: false },
+      { label: "Ubicación", value: "Santa Marta, Colombia", href: "#", subtext: "Caribe colombiano · Cobertura nacional y remota", isExternal: false }
+    ],
+    feedbackSuccess: "¡Gracias! Abriendo tu gestor de correo para enviar el mensaje...",
+    feedbackError: "Por favor completa todos los campos requeridos."
+  },
+  en: {
+    badge: "Contact & Collaboration",
+    title: "Let's talk about your project.",
+    lead: "Tell us what you need: high-speed web engineering in WordPress or Astro, performance digital Ads, or data analytics for your tourism business.",
+    directHeading: "Direct Channels",
+    directLead: "Prefer writing directly? We are available via WhatsApp or email:",
+    formHeading: "Send us a message",
+    formSub: "Fill out the form and we'll get back to you shortly.",
+    nameLabel: "Name or Company *",
+    namePlaceholder: "Your name or business name",
+    emailLabel: "Email Address *",
+    emailPlaceholder: "email@example.com",
+    phoneLabel: "Phone / WhatsApp",
+    phonePlaceholder: "+57 300 000 0000",
+    messageLabel: "Message *",
+    messagePlaceholder: "Tell us briefly about your project, goals or requirements...",
+    submitBtn: "Send Message",
+    orWhatsApp: "Or chat directly on WhatsApp",
+    socialLabel: "Social Networks:",
+    channels: [
+      { label: "Direct WhatsApp", value: "Chat on WhatsApp", href: "https://wa.me/message/VZOWCP5BYGXJD1", subtext: "Fast response for project inquiries", isExternal: true },
+      { label: "Email Address", value: "Info@juansadigital.com", href: "mailto:Info@juansadigital.com", subtext: "Formal proposals & partnerships", isExternal: false },
+      { label: "Location", value: "Santa Marta, Colombia", href: "#", subtext: "Colombian Caribbean · Remote & Global coverage", isExternal: false }
+    ],
+    feedbackSuccess: "Thank you! Opening your email client to send the message...",
+    feedbackError: "Please fill out all required fields."
+  },
+  fr: {
+    badge: "Contact & Collaboration",
+    title: "Parlons de votre projet.",
+    lead: "Dites-nous ce dont vous avez besoin : ingénierie web WordPress ou Astro, campagnes de publicité ciblée ou analyse de données pour votre entreprise.",
+    directHeading: "Canaux Directs",
+    directLead: "Vous préférez nous écrire directement ? Nous sommes disponibles par WhatsApp ou email :",
+    formHeading: "Envoyez-nous un message",
+    formSub: "Remplissez le formulaire et nous vous répondrons rapidement.",
+    nameLabel: "Nom ou Entreprise *",
+    namePlaceholder: "Votre nom ou celui de votre entreprise",
+    emailLabel: "Adresse Email *",
+    emailPlaceholder: "email@exemple.com",
+    phoneLabel: "Téléphone / WhatsApp",
+    phonePlaceholder: "+57 300 000 0000",
+    messageLabel: "Message *",
+    messagePlaceholder: "Décrivez brièvement votre projet, vos objectifs ou vos besoins...",
+    submitBtn: "Envoyer le Message",
+    orWhatsApp: "Ou discutez directement sur WhatsApp",
+    socialLabel: "Réseaux Sociaux :",
+    channels: [
+      { label: "WhatsApp Direct", value: "Discuter sur WhatsApp", href: "https://wa.me/message/VZOWCP5BYGXJD1", subtext: "Réponse rapide pour vos projets", isExternal: true },
+      { label: "Courrier Électronique", value: "Info@juansadigital.com", href: "mailto:Info@juansadigital.com", subtext: "Propositions formelles et partenariats", isExternal: false },
+      { label: "Localisation", value: "Santa Marta, Colombie", href: "#", subtext: "Caraïbes colombiennes · Couverture globale et à distance", isExternal: false }
+    ],
+    feedbackSuccess: "Merci ! Ouverture de votre messagerie pour envoyer le message...",
+    feedbackError: "Veuillez remplir tous les champs obligatoires."
+  }
+};
+
+const t = copy[lang] || copy.es;
+
+const socials = [
+  { name: "LinkedIn", href: "https://www.linkedin.com/company/juansadigital" },
+  { name: "Instagram", href: "https://www.instagram.com/juansadigital/" },
+  { name: "GitHub", href: "https://github.com/JuansaDigital" }
+];
+---
+
+<main id="main-content" class="contact-page section-paper">
+  <!-- Header -->
+  <section class="studio-page-header">
+    <div class="container">
+      <span class="studio-section-label">
+        <span class="contra-star contra-star-red">✦</span>
+        {t.badge}
+      </span>
+      <h1 class="page-main-headline">
+        {t.title}
+      </h1>
+      <p class="text-lead page-lead">
+        {t.lead}
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Content: Simple 2-column layout -->
+  <section class="section-gap contact-main-section">
+    <div class="container">
+      <div class="contact-simple-grid">
+        
+        <!-- Left Column: Direct Info -->
+        <aside class="contact-aside">
+          <h2 class="aside-heading">{t.directHeading}</h2>
+          <p class="aside-lead">{t.directLead}</p>
+
+          <div class="aside-channels">
+            {t.channels.map((item) => (
+              <div class="channel-card">
+                <span class="card-label">{item.label}</span>
+                {item.href !== "#" ? (
+                  <a 
+                    href={item.href} 
+                    target={item.isExternal ? "_blank" : undefined}
+                    rel={item.isExternal ? "noopener noreferrer" : undefined}
+                    class="card-link"
+                  >
+                    <span>{item.value}</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <line x1="7" y1="17" x2="17" y2="7"></line>
+                      <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                  </a>
+                ) : (
+                  <span class="card-value-plain">{item.value}</span>
+                )}
+                <span class="card-sub">{item.subtext}</span>
+              </div>
+            ))}
+          </div>
+
+          <!-- Social Links Compact -->
+          <div class="aside-socials">
+            <span class="socials-label">{t.socialLabel}</span>
+            <div class="social-tags">
+              {socials.map((s) => (
+                <a href={s.href} target="_blank" rel="noopener noreferrer" class="social-tag-link">
+                  {s.name} ↗
+                </a>
+              ))}
+            </div>
+          </div>
+        </aside>
+
+        <!-- Right Column: Simple Clean Form -->
+        <div class="contact-form-wrap">
+          <div class="form-card">
+            <h2 class="form-heading">{t.formHeading}</h2>
+            <p class="form-subheading">{t.formSub}</p>
+
+            <form id="simpleContactForm" class="clean-form" data-success={t.feedbackSuccess} data-error={t.feedbackError}>
+              <div class="form-group">
+                <label for="name" class="clean-label">{t.nameLabel}</label>
+                <input 
+                  type="text" 
+                  id="name" 
+                  name="name" 
+                  required 
+                  placeholder={t.namePlaceholder} 
+                  class="clean-input"
+                />
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email" class="clean-label">{t.emailLabel}</label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    required 
+                    placeholder={t.emailPlaceholder} 
+                    class="clean-input"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="phone" class="clean-label">{t.phoneLabel}</label>
+                  <input 
+                    type="tel" 
+                    id="phone" 
+                    name="phone" 
+                    placeholder={t.phonePlaceholder} 
+                    class="clean-input"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="message" class="clean-label">{t.messageLabel}</label>
+                <textarea 
+                  id="message" 
+                  name="message" 
+                  rows="5" 
+                  required 
+                  placeholder={t.messagePlaceholder} 
+                  class="clean-textarea"
+                ></textarea>
+              </div>
+
+              <div class="form-footer-actions">
+                <button type="submit" class="pill-morph-btn-dark submit-btn" id="submitBtn">
+                  <span>{t.submitBtn}</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
+                </button>
+
+                <a 
+                  href="https://wa.me/message/VZOWCP5BYGXJD1" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="whatsapp-inline-link"
+                >
+                  <span>{t.orWhatsApp}</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                    <polyline points="7 7 17 7 17 17"></polyline>
+                  </svg>
+                </a>
+              </div>
+
+              <div id="formFeedback" class="form-feedback hidden" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  const form = document.getElementById('simpleContactForm') as HTMLFormElement | null;
+  const feedback = document.getElementById('formFeedback');
+
+  if (form) {
+    const successMsg = form.getAttribute('data-success') || '¡Gracias! Abriendo correo...';
+    const errorMsg = form.getAttribute('data-error') || 'Por favor completa todos los campos requeridos.';
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const nameInput = document.getElementById('name') as HTMLInputElement;
+      const emailInput = document.getElementById('email') as HTMLInputElement;
+      const phoneInput = document.getElementById('phone') as HTMLInputElement;
+      const messageInput = document.getElementById('message') as HTMLTextAreaElement;
+
+      const name = nameInput?.value.trim() || '';
+      const email = emailInput?.value.trim() || '';
+      const phone = phoneInput?.value.trim() || 'N/A';
+      const message = messageInput?.value.trim() || '';
+
+      if (!name || !email || !message) {
+        if (feedback) {
+          feedback.textContent = errorMsg;
+          feedback.className = 'form-feedback error';
+        }
+        return;
+      }
+
+      const subject = encodeURIComponent(`Nuevo mensaje / New message: ${name}`);
+      const body = encodeURIComponent(
+        `Nombre/Name: ${name}\n` +
+        `Email: ${email}\n` +
+        `Phone/WhatsApp: ${phone}\n\n` +
+        `Mensaje/Message:\n${message}\n\n` +
+        `---\nJuanSa Digital Website`
+      );
+
+      if (feedback) {
+        feedback.textContent = successMsg;
+        feedback.className = 'form-feedback success';
+      }
+
+      window.location.href = `mailto:Info@juansadigital.com?subject=${subject}&body=${body}`;
+
+      setTimeout(() => {
+        form.reset();
+      }, 1500);
+    });
+  }
+</script>
+
+<style>
+  .contact-page {
+    padding-bottom: 2rem;
+  }
+
+  .studio-page-header {
+    padding-top: clamp(3.5rem, 6vw, 6rem);
+    padding-bottom: clamp(2.5rem, 4vw, 3.5rem);
+    border-bottom: 1px solid var(--line-light);
+  }
+
+  .studio-section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--contra-red);
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+  }
+
+  .page-main-headline {
+    font-size: clamp(2.4rem, 1.8rem + 3.2vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    color: var(--ink-primary);
+    max-width: 900px;
+    margin-bottom: 1.25rem;
+  }
+
+  .page-lead {
+    max-width: 720px;
+    font-size: clamp(1.05rem, 0.95rem + 0.35vw, 1.25rem);
+    color: var(--ink-muted);
+    line-height: 1.6;
+  }
+
+  .contact-simple-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: clamp(2.5rem, 5vw, 5rem);
+    align-items: start;
+  }
+
+  .contact-aside {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .aside-heading {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--ink-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .aside-lead {
+    font-size: 0.98rem;
+    color: var(--ink-muted);
+    line-height: 1.55;
+    margin-top: -0.5rem;
+  }
+
+  .aside-channels {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .channel-card {
+    background: #FFFFFF;
+    border: 1px solid var(--line-light);
+    border-radius: 12px;
+    padding: 1.25rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .channel-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--contra-black);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  }
+
+  .card-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-dim);
+  }
+
+  .card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: var(--ink-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .card-link:hover {
+    color: var(--contra-red);
+  }
+
+  .card-value-plain {
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: var(--ink-primary);
+  }
+
+  .card-sub {
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+  }
+
+  .aside-socials {
+    margin-top: 0.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line-light);
+  }
+
+  .socials-label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-dim);
+    margin-bottom: 0.75rem;
+  }
+
+  .social-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .social-tag-link {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--ink-primary);
+    text-decoration: none;
+    padding: 0.4rem 0.85rem;
+    background: #FFFFFF;
+    border: 1px solid var(--line-light);
+    border-radius: 9999px;
+    transition: all 0.2s ease;
+  }
+
+  .social-tag-link:hover {
+    background: var(--contra-black);
+    color: #FFFFFF;
+    border-color: var(--contra-black);
+  }
+
+  .form-card {
+    background: #FFFFFF;
+    border: 1px solid var(--line-light);
+    border-radius: 20px;
+    padding: clamp(2rem, 4vw, 3rem);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  }
+
+  .form-heading {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: var(--ink-primary);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.35rem;
+  }
+
+  .form-subheading {
+    font-size: 0.95rem;
+    color: var(--ink-muted);
+    margin-bottom: 2rem;
+  }
+
+  .clean-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .clean-label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-primary);
+  }
+
+  .clean-input,
+  .clean-textarea {
+    width: 100%;
+    padding: 0.85rem 1.1rem;
+    font-family: var(--font-studio);
+    font-size: 0.95rem;
+    color: var(--ink-primary);
+    background: #FAF8F4;
+    border: 1px solid var(--line-light-hover);
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    outline: none;
+  }
+
+  .clean-input:focus,
+  .clean-textarea:focus {
+    background: #FFFFFF;
+    border-color: var(--contra-black);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+  }
+
+  .clean-textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .form-footer-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  .pill-morph-btn-dark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    background: var(--contra-black);
+    color: #FFFFFF;
+    font-family: var(--font-studio);
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.9rem 2rem;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .pill-morph-btn-dark:hover {
+    background: var(--contra-red);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(236, 58, 58, 0.25);
+  }
+
+  .whatsapp-inline-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #10B981;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .whatsapp-inline-link:hover {
+    color: #059669;
+    text-decoration: underline;
+  }
+
+  .form-feedback {
+    padding: 0.85rem 1.1rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+  }
+
+  .form-feedback.success {
+    background: rgba(16, 185, 129, 0.12);
+    color: #059669;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+  }
+
+  .form-feedback.error {
+    background: rgba(236, 58, 58, 0.12);
+    color: var(--contra-red);
+    border: 1px solid rgba(236, 58, 58, 0.3);
+  }
+
+  .form-feedback.hidden {
+    display: none;
+  }
+
+  @media (max-width: 860px) {
+    .contact-simple-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,29 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Navbar from '../../../components/Navbar.astro';
+import Footer from '../../../components/Footer.astro';
+import BlogContent from '../../../components/pages/BlogContent.astro';
+
+const blogIndexSchema = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Blog Marketing Touristique & Développement Web | JuanSa Digital",
+  "description": "Articles, guides techniques et perspectives sur le développement web, le SEO et l'analyse de données à Santa Marta et dans les Caraïbes.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "JuanSa Digital"
+  }
+};
+---
+
+<Layout 
+  lang="fr"
+  title="Blog & Perspectives | JuanSa Digital · Santa Marta, Colombie"
+  description="Guides pratiques, analyses et perspectives sur le développement web sous WordPress et Astro, marketing touristique, SEO et analytique dans les Caraïbes colombiennes."
+  keywords="blog marketing touristique"
+  pageSchema={blogIndexSchema}
+>
+  <Navbar />
+  <BlogContent lang="fr" />
+  <Footer />
+</Layout>

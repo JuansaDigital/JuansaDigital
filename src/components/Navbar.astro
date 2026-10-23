@@ -1,0 +1,639 @@
+---
+import LogoMark from "./LogoMark.astro";
+import { getLangFromUrl, useTranslations, getLocalizedPath, languages, type SupportedLanguage } from "../i18n/ui";
+
+interface Props {
+  lang?: SupportedLanguage;
+}
+
+const { lang: propLang } = Astro.props;
+const pathname = new URL(Astro.request.url).pathname;
+const currentLang = propLang || getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+
+const rawLinks = [
+  { key: "nav.home", path: "/" },
+  { key: "nav.about", path: "/nosotros" },
+  { key: "nav.services", path: "/servicios" },
+  { key: "nav.projects", path: "/proyectos" },
+  { key: "nav.ai", path: "/ia-lab" },
+  { key: "nav.blog", path: "/blog" },
+  { key: "nav.contact", path: "/contacto" }
+] as const;
+
+const navLinks = rawLinks.map((item) => ({
+  name: t(item.key),
+  href: getLocalizedPath(item.path, currentLang)
+}));
+
+const currentPathClean = pathname.replace(/\/$/, "") || "/";
+---
+
+<header class="studio-header">
+  <div class="container header-container">
+    <a href={getLocalizedPath("/", currentLang)} class="studio-logo" aria-label="Juansa Digital by Dijumedia">
+      <span class="logo-mark-wrap">
+        <LogoMark size={32} class="nav-logo-mark" />
+      </span>
+      <span class="logo-text-col">
+        <span class="logo-main">Juansa Digital</span>
+        <span class="logo-sub">by Dijumedia</span>
+      </span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="studio-nav" aria-label="Navegación principal">
+      {navLinks.map((link) => {
+        const isActive = link.href === "/" || link.href === `/${currentLang}`
+          ? (currentPathClean === "/" || currentPathClean === `/${currentLang}`)
+          : currentPathClean.startsWith(link.href);
+        return (
+          <a 
+            href={link.href} 
+            class:list={["nav-item", { active: isActive }]}
+            aria-current={isActive ? "page" : undefined}
+          >
+            {link.name}
+          </a>
+        );
+      })}
+    </nav>
+
+    <div class="header-action">
+      <!-- Language Switcher Dropdown (Desktop) -->
+      <div class="lang-switch-dropdown-wrap" id="langDropdownWrap">
+        <button 
+          type="button" 
+          class="lang-switch-trigger" 
+          id="langTriggerBtn" 
+          aria-label="Seleccionar idioma" 
+          aria-expanded="false"
+        >
+          <svg class="globe-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <span class="current-lang-code">{currentLang.toUpperCase()}</span>
+          <svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+
+        <div class="lang-dropdown-menu" id="langMenu">
+          <a 
+            href={getLocalizedPath(pathname, "es")} 
+            class:list={["lang-menu-item", { active: currentLang === "es" }]}
+          >
+            <span class="lang-pill-badge">ES</span>
+            <span>Español</span>
+          </a>
+          <a 
+            href={getLocalizedPath(pathname, "en")} 
+            class:list={["lang-menu-item", { active: currentLang === "en" }]}
+          >
+            <span class="lang-pill-badge">EN</span>
+            <span>English</span>
+          </a>
+          <a 
+            href={getLocalizedPath(pathname, "fr")} 
+            class:list={["lang-menu-item", { active: currentLang === "fr" }]}
+          >
+            <span class="lang-pill-badge">FR</span>
+            <span>Français</span>
+          </a>
+        </div>
+      </div>
+
+      <a 
+        href="https://wa.me/message/VZOWCP5BYGXJD1" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="whatsapp-pill pill-morph-btn"
+        title="WhatsApp"
+      >
+        <span class="pill-text">{t("cta.whatsapp")}</span>
+      </a>
+
+      <!-- Mobile Hamburger Button -->
+      <button 
+        type="button" 
+        class="mobile-menu-btn" 
+        id="mobileMenuToggle" 
+        aria-label="Alternar menú de navegación"
+        aria-expanded="false"
+      >
+        <svg class="hamburger-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        <svg class="close-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <nav class="mobile-nav">
+      <!-- Mobile Language Selector Strip -->
+      <div class="mobile-lang-strip">
+        <span class="mobile-lang-label">{t("lang.switch")}:</span>
+        <div class="mobile-lang-buttons">
+          <a 
+            href={getLocalizedPath(pathname, "es")} 
+            class:list={["mobile-lang-btn", { active: currentLang === "es" }]}
+          >
+            ES
+          </a>
+          <a 
+            href={getLocalizedPath(pathname, "en")} 
+            class:list={["mobile-lang-btn", { active: currentLang === "en" }]}
+          >
+            EN
+          </a>
+          <a 
+            href={getLocalizedPath(pathname, "fr")} 
+            class:list={["mobile-lang-btn", { active: currentLang === "fr" }]}
+          >
+            FR
+          </a>
+        </div>
+      </div>
+
+      {navLinks.map((link) => {
+        const isActive = link.href === "/" || link.href === `/${currentLang}`
+          ? (currentPathClean === "/" || currentPathClean === `/${currentLang}`)
+          : currentPathClean.startsWith(link.href);
+        return (
+          <a 
+            href={link.href} 
+            class:list={["mobile-nav-item", { active: isActive }]}
+            aria-current={isActive ? "page" : undefined}
+          >
+            {link.name}
+          </a>
+        );
+      })}
+      <a 
+        href="https://wa.me/message/VZOWCP5BYGXJD1" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="mobile-whatsapp-link pill-morph-btn"
+      >
+        <span>{t("cta.whatsapp_long")}</span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector('.studio-header') as HTMLElement | null;
+  const toggleBtn = document.getElementById('mobileMenuToggle');
+  const drawer = document.getElementById('mobileDrawer');
+
+  if (toggleBtn && drawer) {
+    toggleBtn.addEventListener('click', () => {
+      const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+      toggleBtn.setAttribute('aria-expanded', String(!isExpanded));
+      drawer.classList.toggle('is-open');
+      toggleBtn.classList.toggle('is-active');
+    });
+  }
+
+  // Scroll inteligente: ocultar al bajar, mostrar al subir
+  let lastScrollY = window.scrollY;
+  let ticking = false;
+  const threshold = 8; // Mínimo cambio en píxeles para evitar parpadeos
+
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY;
+
+    // Si el menú móvil está abierto, no ocultar el navbar
+    const isMobileOpen = drawer?.classList.contains('is-open');
+    if (isMobileOpen) {
+      lastScrollY = currentScrollY;
+      ticking = false;
+      return;
+    }
+
+    if (Math.abs(currentScrollY - lastScrollY) >= threshold) {
+      if (currentScrollY > lastScrollY && currentScrollY > 80) {
+        // Scroll hacia abajo: ocultar menú
+        header?.classList.add('header-hidden');
+      } else {
+        // Scroll hacia arriba: mostrar menú
+        header?.classList.remove('header-hidden');
+      }
+      lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
+    }
+
+    if (currentScrollY > 20) {
+      header?.classList.add('header-scrolled');
+    } else {
+      header?.classList.remove('header-scrolled');
+    }
+
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(handleScroll);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // Language Dropdown Interaction
+  const langTrigger = document.getElementById('langTriggerBtn');
+  const langWrap = document.getElementById('langDropdownWrap');
+
+  if (langTrigger && langWrap) {
+    langTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = langWrap.classList.toggle('is-active');
+      langTrigger.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!langWrap.contains(e.target as Node)) {
+        langWrap.classList.remove('is-active');
+        langTrigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+</script>
+
+<style>
+  .studio-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250, 248, 244, 0.94);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--line-light);
+    padding-block: 1.15rem;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform;
+  }
+
+  .studio-header.header-hidden {
+    transform: translateY(-100%);
+  }
+
+  .studio-header.header-scrolled {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .studio-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    text-decoration: none;
+    color: var(--ink-primary);
+    transition: opacity 0.2s ease;
+  }
+
+  .studio-logo:hover {
+    opacity: 0.88;
+  }
+
+  .logo-mark-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--ink-primary);
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .studio-logo:hover .logo-mark-wrap {
+    transform: translateY(-1px) scale(1.05);
+  }
+
+  .logo-text-col {
+    display: flex;
+    align-items: baseline;
+    gap: 0.45rem;
+  }
+
+  .logo-main {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .logo-sub {
+    font-size: 0.78rem;
+    color: var(--ink-dim);
+    letter-spacing: -0.01em;
+    font-weight: 500;
+    line-height: 1.1;
+  }
+
+  .studio-nav {
+    display: flex;
+    align-items: center;
+    gap: clamp(1.1rem, 1.8vw, 2rem);
+  }
+
+  .nav-item {
+    font-size: 0.92rem;
+    color: var(--ink-muted);
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    transition: color 0.2s ease;
+    position: relative;
+    padding-block: 0.25rem;
+  }
+
+  .nav-item:hover {
+    color: var(--ink-primary);
+  }
+
+  .nav-item.active {
+    color: var(--ink-primary);
+    font-weight: 700;
+  }
+
+  .nav-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--contra-red);
+    border-radius: 2px;
+  }
+
+  .header-action {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .whatsapp-pill {
+    padding: 0.55rem 1.15rem;
+    font-size: 0.85rem;
+  }
+
+  .online-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: var(--contra-emerald);
+    flex-shrink: 0;
+    animation: pulseDot 2s infinite ease-in-out;
+  }
+
+  @keyframes pulseDot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+  }
+
+  /* Mobile menu button */
+  .mobile-menu-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--ink-primary);
+    cursor: pointer;
+    padding: 0.4rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .close-icon {
+    display: none;
+  }
+
+  .mobile-menu-btn.is-active .hamburger-icon {
+    display: none;
+  }
+
+  .mobile-menu-btn.is-active .close-icon {
+    display: block;
+  }
+
+  /* Mobile Drawer */
+  .mobile-drawer {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--contra-paper);
+    border-bottom: 1px solid var(--line-light);
+    padding: 1.5rem;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+  }
+
+  .mobile-drawer.is-open {
+    display: block;
+  }
+
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .mobile-nav-item {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ink-muted);
+    text-decoration: none;
+    padding-block: 0.4rem;
+    border-bottom: 1px solid var(--line-light);
+  }
+
+  .mobile-nav-item.active {
+    color: var(--ink-primary);
+    font-weight: 700;
+  }
+
+  /* Language Switcher Dropdown (Desktop) */
+  .lang-switch-dropdown-wrap {
+    position: relative;
+  }
+
+  .lang-switch-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid var(--line-light-hover);
+    padding: 0.5rem 0.85rem;
+    border-radius: 9999px;
+    font-family: var(--font-studio);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--ink-primary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .lang-switch-trigger:hover,
+  .lang-switch-dropdown-wrap.is-active .lang-switch-trigger {
+    background: var(--contra-black);
+    color: #FFFFFF;
+    border-color: var(--contra-black);
+  }
+
+  .current-lang-code {
+    letter-spacing: 0.05em;
+  }
+
+  .chevron-icon {
+    transition: transform 0.2s ease;
+  }
+
+  .lang-switch-dropdown-wrap.is-active .chevron-icon {
+    transform: rotate(180deg);
+  }
+
+  .lang-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    background: #FFFFFF;
+    border: 1px solid var(--line-light-hover);
+    border-radius: 12px;
+    padding: 0.4rem;
+    min-width: 140px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    display: none;
+    flex-direction: column;
+    gap: 0.2rem;
+    z-index: 110;
+  }
+
+  .lang-switch-dropdown-wrap.is-active .lang-dropdown-menu {
+    display: flex;
+  }
+
+  .lang-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink-muted);
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+
+  .lang-menu-item:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--ink-primary);
+  }
+
+  .lang-menu-item.active {
+    background: rgba(236, 58, 58, 0.08);
+    color: var(--contra-red);
+    font-weight: 700;
+  }
+
+  .lang-pill-badge {
+    font-size: 0.7rem;
+    font-weight: 800;
+    background: rgba(0, 0, 0, 0.08);
+    padding: 0.15rem 0.35rem;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  .lang-menu-item.active .lang-pill-badge {
+    background: var(--contra-red);
+    color: #FFFFFF;
+  }
+
+  /* Mobile Language Selector Strip */
+  .mobile-lang-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0.85rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--line-light);
+  }
+
+  .mobile-lang-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-dim);
+  }
+
+  .mobile-lang-buttons {
+    display: flex;
+    gap: 0.4rem;
+  }
+
+  .mobile-lang-btn {
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--ink-muted);
+    background: rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+  }
+
+  .mobile-lang-btn.active {
+    background: var(--contra-black);
+    color: #FFFFFF;
+  }
+
+  .mobile-whatsapp-link {
+    margin-top: 0.75rem;
+    padding: 0.85rem;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 960px) {
+    .studio-nav {
+      display: none;
+    }
+    .mobile-menu-btn {
+      display: flex;
+    }
+    .header-action .whatsapp-pill {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .studio-logo {
+      gap: 0.55rem;
+    }
+    .logo-text-col {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.1rem;
+    }
+    .logo-main {
+      font-size: 1.08rem;
+    }
+    .logo-sub {
+      font-size: 0.68rem;
+    }
+  }
+</style>

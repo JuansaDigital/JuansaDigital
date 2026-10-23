@@ -1,0 +1,1090 @@
+---
+import PhotoMarquee from '../PhotoMarquee.astro';
+import { getLocalizedPath, type SupportedLanguage } from '../../i18n/ui';
+
+interface Props {
+  lang?: SupportedLanguage;
+}
+
+const { lang = "es" } = Astro.props;
+
+const clients = [
+  { 
+    name: "Logan Valuation", 
+    sector: {
+      es: "Avalúos Corporativos & MAI / IFRS Latam",
+      en: "Corporate Valuations & MAI / IFRS Latam",
+      fr: "Évaluations d'Entreprises & MAI / IFRS Latam"
+    }, 
+    url: "http://loganvaluation.com/" 
+  },
+  { 
+    name: "Discover La Guajira", 
+    sector: {
+      es: "Destino Departamental & Turismo Cultural",
+      en: "Departmental Destination & Cultural Tourism",
+      fr: "Destination Départementale & Tourisme Culturel"
+    }, 
+    url: "https://discoverlaguajira.travel" 
+  },
+  { 
+    name: "Visit Valle", 
+    sector: {
+      es: "Plataforma Turística Departamental",
+      en: "Departmental Tourism Platform",
+      fr: "Plateforme Touristique Départementale"
+    }, 
+    url: "https://visitvalle.travel" 
+  },
+  { 
+    name: "Providencia Isla", 
+    sector: {
+      es: "Destino Insular & Biodiversidad",
+      en: "Island Destination & Biodiversity",
+      fr: "Destination Insulaire & Biodiversité"
+    }, 
+    url: "https://providenciaisla.travel" 
+  },
+  { 
+    name: "Wiwa Tour", 
+    sector: {
+      es: "Operador Ecoturístico & Sierra Nevada",
+      en: "Ecotourism Operator & Sierra Nevada",
+      fr: "Opérateur Écotouristique & Sierra Nevada"
+    }, 
+    url: "https://wiwatour.com" 
+  },
+  { 
+    name: "Tornus Agency", 
+    sector: {
+      es: "Estudio Creativo & Placebranding",
+      en: "Creative Studio & Placebranding",
+      fr: "Studio Créatif & Placebranding"
+    }, 
+    url: "https://tornus.agency" 
+  },
+  { 
+    name: "Chez Boaz Tours", 
+    sector: {
+      es: "Tours Boutique Internacionales",
+      en: "Boutique International Tours",
+      fr: "Tours Boutique Internationaux"
+    }, 
+    url: "https://chezboaztours.com/" 
+  },
+  { 
+    name: "Ciudad Perdida Santa Marta", 
+    sector: {
+      es: "Portal Especializado & SEO",
+      en: "Specialized Portal & SEO",
+      fr: "Portail Spécialisé & SEO"
+    }, 
+    url: "https://ciudadperdidasantamarta.com/" 
+  },
+  { 
+    name: "Hotel Parque Tayrona (Yachay)", 
+    sector: {
+      es: "Eco-Hotel Boutique & Motor de Reservas",
+      en: "Eco-Hotel Boutique & Direct Booking Engine",
+      fr: "Éco-Hôtel Boutique & Moteur de Réservation"
+    }, 
+    url: "https://hotelparquetayrona.com" 
+  },
+  { 
+    name: "SITUR Valledupar / Cesar", 
+    sector: {
+      es: "Sistema de Información Turística",
+      en: "Tourism Information System",
+      fr: "Système d'Information Touristique"
+    }, 
+    url: "https://datastudio.google.com/reporting/676a917d-8ae3-4d53-b386-5c277e605e05" 
+  }
+];
+
+const cultureData = {
+  es: [
+    {
+      num: "01",
+      title: "Tu canal web como punto central",
+      subtitle: "Sitios web pensados para captar clientes y generar reservas de forma directa.",
+      desc: "Desarrollamos páginas web para que quienes te visiten encuentren rápido lo que buscan, confíen en tu propuesta y se contacten o reserven con facilidad. Integramos posicionamiento en Google, pauta digital y sistemas de reserva directos y sencillos de gestionar.",
+      starClass: "contra-star-red"
+    },
+    {
+      num: "02",
+      title: "Sitios web rápidos y bien estructurados",
+      subtitle: "Usamos la tecnología indicada para cada proyecto: WordPress o Astro.",
+      desc: "Trabajamos con WordPress avanzado (Custom Post Types, motores de reserva, pasarelas de pago y soporte multilingüe) y también con Astro cuando se requiere máxima velocidad y rendimiento estático. Cuidamos que cada página cargue rápido y se navegue sin trabas desde el celular.",
+      starClass: "contra-star-blue"
+    },
+    {
+      num: "03",
+      title: "Datos útiles para tomar decisiones",
+      subtitle: "Métricas claras sobre visitas, reservas y comportamiento de usuarios.",
+      desc: "Nos enfocamos en lo que de verdad le sirve a tu equipo: cuántas personas visitan tu sitio, de dónde vienen, cómo interactúan con tus servicios y cómo se comporta la oferta turística en tu mercado. Diseñamos tableros en Google Looker Studio y herramientas de análisis a medida.",
+      starClass: "contra-star-yellow"
+    },
+    {
+      num: "04",
+      title: "Arraigo territorial y autenticidad del destino",
+      subtitle: "Operando desde Santa Marta, el corazón del Caribe y la Sierra Nevada.",
+      desc: "Entendemos la singularidad de cada territorio porque vivimos y trabajamos en el Caribe colombiano. Cada proyecto —sea un operador ecoturístico en la Sierra Nevada, un portal departamental o una consultora en avalúos— es tratado con respeto por su identidad, huyendo de clichés turísticos genéricos.",
+      starClass: "contra-star-orange"
+    }
+  ],
+  en: [
+    {
+      num: "01",
+      title: "Your web channel as the core engine",
+      subtitle: "Websites designed to capture clients and generate direct bookings.",
+      desc: "We develop digital platforms so visitors quickly find what they need, trust your offer, and book or inquire effortlessly. We integrate Google SEO, digital ads, and direct booking systems that are seamless to manage.",
+      starClass: "contra-star-red"
+    },
+    {
+      num: "02",
+      title: "Fast, well-structured architectures",
+      subtitle: "The right tech stack for each challenge: advanced WordPress or Astro.",
+      desc: "We engineer with enterprise WordPress (Custom Post Types, booking engines, payment gateways, multilingual WPML) and Astro for maximum static speed and performance. Every page loads instantly with effortless mobile responsiveness.",
+      starClass: "contra-star-blue"
+    },
+    {
+      num: "03",
+      title: "Actionable data for clear decisions",
+      subtitle: "Clear metrics on traffic, bookings, and user behavior.",
+      desc: "We focus on what truly moves the needle: visitor volume, origin markets, booking interactions, and regional tourism supply trends. We build custom Looker Studio dashboards and dedicated BI tools.",
+      starClass: "contra-star-yellow"
+    },
+    {
+      num: "04",
+      title: "Territorial grounding and authentic narratives",
+      subtitle: "Operating from Santa Marta, the heart of the Colombian Caribbean.",
+      desc: "We understand the authentic spirit of each territory because we live and work here. Whether for an eco-tour operator in the Sierra Nevada or a regional tourism board, we craft tailored experiences free from generic travel clichés.",
+      starClass: "contra-star-orange"
+    }
+  ],
+  fr: [
+    {
+      num: "01",
+      title: "Votre canal web comme levier central",
+      subtitle: "Des sites conçus pour capter des clients et générer des réservations directes.",
+      desc: "Nous développons des plateformes web permettant aux visiteurs de trouver rapidement ce qu'ils recherchent, d'avoir confiance en votre offre et de réserver en toute simplicité. Nous intégrons le référencement Google, la publicité et des passerelles de paiement fluides.",
+      starClass: "contra-star-red"
+    },
+    {
+      num: "02",
+      title: "Des architectures rapides et rigoureuses",
+      subtitle: "La bonne technologie pour chaque projet : WordPress avancé ou Astro.",
+      desc: "Nous concevons avec WordPress sur-mesure (Custom Post Types, moteurs de réservation, WPML multilingue) et Astro pour une vitesse statique absolue. Chaque site se charge instantanément et s'adapte parfaitement aux mobiles.",
+      starClass: "contra-star-blue"
+    },
+    {
+      num: "03",
+      title: "Des données exploitables pour décider",
+      subtitle: "Des métriques limpides sur les visites, réservations et tendances.",
+      desc: "Nous nous concentrons sur les données qui comptent : flux de visiteurs, provenance des marchés, taux de conversion et dynamique de l'offre territoriale. Nous concevons des tableaux de bord sur-mesure sur Google Looker Studio.",
+      starClass: "contra-star-yellow"
+    },
+    {
+      num: "04",
+      title: "Ancrage territorial et authenticité",
+      subtitle: "Basés à Santa Marta, au cœur des Caraïbes et de la Sierra Nevada.",
+      desc: "Nous comprenons la singularité de chaque territoire car nous vivons et créons dans les Caraïbes colombiennes. Chaque initiative est valorisée dans le respect de son identité, loin des stéréotypes touristiques standardisés.",
+      starClass: "contra-star-orange"
+    }
+  ]
+};
+
+const pillarsData = {
+  es: [
+    {
+      num: "01",
+      title: "Diseño Web & Publicidad Digital",
+      desc: "Creamos sitios web a medida y gestionamos campañas en Google y Meta Ads orientadas a atraer clientes calificados y generar contactos o reservas efectivas.",
+      metric: "WordPress & Astro"
+    },
+    {
+      num: "02",
+      title: "Velocidad y Experiencia Móvil",
+      desc: "Desarrollamos sitios rápidos y bien adaptados a teléfonos móviles, optimizados para que carguen de inmediato y se posicionen bien en buscadores.",
+      metric: "Navegación Fluida"
+    },
+    {
+      num: "03",
+      title: "Analítica y Datos de Mercado",
+      desc: "Implementamos tableros interactivos en Google Looker Studio y plataformas de datos para monitorear visitantes, la oferta del sector y demanda de viajeros.",
+      metric: "Looker Studio & BI"
+    }
+  ],
+  en: [
+    {
+      num: "01",
+      title: "Web Engineering & Digital Ads",
+      desc: "We build custom websites and run high-intent Google and Meta Ads campaigns designed to attract qualified leads and secure direct bookings.",
+      metric: "WordPress & Astro"
+    },
+    {
+      num: "02",
+      title: "Speed & Mobile Excellence",
+      desc: "We develop lightning-fast websites optimized for mobile devices, ensuring sub-second load times and superior Google SEO performance.",
+      metric: "Fluid UX"
+    },
+    {
+      num: "03",
+      title: "Analytics & Market Intelligence",
+      desc: "We deploy live interactive Google Looker Studio dashboards and data engines to monitor traveler origins, conversion funnels, and supply data.",
+      metric: "Looker Studio & BI"
+    }
+  ],
+  fr: [
+    {
+      num: "01",
+      title: "Ingénierie Web & Publicité Digitale",
+      desc: "Nous créons des sites sur-mesure et gérons des campagnes Google et Meta Ads ciblées pour attirer des voyageurs qualifiés et booster vos réservations.",
+      metric: "WordPress & Astro"
+    },
+    {
+      num: "02",
+      title: "Vitesse & Expérience Mobile",
+      desc: "Nous concevons des sites ultra rapides et parfaitement adaptés aux smartphones, optimisés pour un chargement instantané et un excellent SEO.",
+      metric: "Navigation Fluide"
+    },
+    {
+      num: "03",
+      title: "Analytique & Intelligence de Marché",
+      desc: "Nous mettons en place des tableaux de bord interactifs sur Looker Studio pour suivre la provenance des visiteurs, les réservations et l'offre touristique.",
+      metric: "Looker Studio & BI"
+    }
+  ]
+};
+
+const techStackData = {
+  es: [
+    {
+      num: "01",
+      category: "Desarrollo Web & CMS",
+      title: "Desarrollo Web en WordPress & Astro",
+      desc: "Desarrollamos con WordPress avanzado (JetEngine, CPT, WooCommerce, pasarelas de pago y WPML multilingüe) y con Astro para sitios estáticos ultrarrápidos y optimizados para SEO.",
+      tags: ["WordPress Avanzado", "Astro", "JetEngine & CPT", "WPML Multilingüe", "SEO Técnico"]
+    },
+    {
+      num: "02",
+      category: "Business Intelligence",
+      title: "Inteligencia de Datos & BI",
+      desc: "Dashboards interactivos territoriales en Google Looker Studio (SITUR), consolidación de la oferta en el sector turístico y analítica con GA4.",
+      tags: ["Looker Studio", "Google Analytics 4", "Web Scraping Turístico", "Benchmarking"]
+    },
+    {
+      num: "03",
+      category: "Inteligencia Territorial",
+      title: "Plataformas de Big Data & IA",
+      desc: "Desarrollo de TurisData (turisdata.tornus.agency) para visualización geoespacial de +1.100 municipios, analítica de prestadores RNT, capacidad de camas y diagnósticos de place branding con Lumina AI.",
+      tags: ["TurisData", "Inteligencia Territorial", "RNT Big Data", "Lumina AI", "Geoespacial"]
+    }
+  ],
+  en: [
+    {
+      num: "01",
+      category: "Web Development & CMS",
+      title: "Web Engineering in WordPress & Astro",
+      desc: "We build with advanced WordPress (JetEngine, CPT, WooCommerce, custom payment gateways, and multilingual WPML) and Astro for ultra-fast, SEO-optimized static sites.",
+      tags: ["Advanced WordPress", "Astro", "JetEngine & CPT", "Multilingual WPML", "Technical SEO"]
+    },
+    {
+      num: "02",
+      category: "Business Intelligence",
+      title: "Data Intelligence & BI",
+      desc: "Interactive territorial dashboards in Google Looker Studio (SITUR), tourism supply consolidation, and advanced tracking via GA4.",
+      tags: ["Looker Studio", "Google Analytics 4", "Tourism Web Scraping", "Benchmarking"]
+    },
+    {
+      num: "03",
+      category: "Territorial Intelligence",
+      title: "Big Data & AI Platforms",
+      desc: "Development of TurisData (turisdata.tornus.agency) for geospatial visualization across +1,100 Colombian municipalities, official RNT hotel bed capacity, and AI placebranding via Lumina AI.",
+      tags: ["TurisData", "Territorial Intelligence", "RNT Big Data", "Lumina AI", "Geospatial"]
+    }
+  ],
+  fr: [
+    {
+      num: "01",
+      category: "Développement Web & CMS",
+      title: "Développement Web sous WordPress & Astro",
+      desc: "Nous développons avec WordPress avancé (JetEngine, CPT, WooCommerce, passerelles de paiement sécurisées et WPML) et Astro pour des sites statiques ultra-rapides.",
+      tags: ["WordPress Avancé", "Astro", "JetEngine & CPT", "WPML Multilingue", "SEO Technique"]
+    },
+    {
+      num: "02",
+      category: "Business Intelligence",
+      title: "Intelligence de Données & BI",
+      desc: "Tableaux de bord territoriaux sur Google Looker Studio (SITUR), consolidation de l'offre touristique et analyse comportementale GA4.",
+      tags: ["Looker Studio", "Google Analytics 4", "Web Scraping Touristique", "Benchmarking"]
+    },
+    {
+      num: "03",
+      category: "Intelligence Territoriale",
+      title: "Plateformes Big Data & IA",
+      desc: "Conception de TurisData (turisdata.tornus.agency) pour la cartographie de +1.100 municipalités, suivi des prestataires officiels RNT et diagnostics de marque avec Lumina AI.",
+      tags: ["TurisData", "Intelligence Territoriale", "RNT Big Data", "Lumina AI", "Géospatial"]
+    }
+  ]
+};
+
+const copy = {
+  es: {
+    badge: "Sobre JuanSa Digital",
+    title: "Estrategia digital, desarrollo web y analítica desde Santa Marta.",
+    lead: "Ayudamos a hoteles, agencias de viajes, operadores de tours y empresas a consolidar su presencia digital mediante desarrollo web en WordPress y Astro, posicionamiento SEO, campañas de publicidad digital y herramientas de datos.",
+    philoBadge: "Filosofía de Trabajo",
+    philoTitle: "Soluciones digitales pensadas para el día a día de tu empresa.",
+    role: "Estratega de Marketing Turístico & Desarrollo Web",
+    bio1: "Entendemos una página web como una herramienta práctica de trabajo y ventas, no como un adorno. Ya sea un sitio en WordPress con motor de reservas y pasarelas de pago, o una plataforma a medida en Astro para máxima velocidad, el objetivo siempre es el mismo: que tus clientes naveguen con facilidad y tomen acción.",
+    bio2: "Complementamos el desarrollo con estrategias de SEO orgánico, publicidad digital en Google y Meta, y tableros analíticos en Google Looker Studio para entender el comportamiento de los usuarios y de tu mercado.",
+    ctaBtn: "Iniciar una Conversación",
+    cultureBadge: "Metodología & Ética de Trabajo",
+    cultureTitle: "La cultura que define lo que hacemos",
+    cultureLead: "Inspirados en la artesanía de software y la rigurosidad analítica. Cuatro convicciones no negociables que guían cada proyecto de JuanSa Digital:",
+    techBadge: "Infraestructura & Herramientas",
+    techTitle: "Stack Tecnológico",
+    techSub: "Desarrollo Web & Analítica",
+    clientsBadge: "Trayectoria Comprobada",
+    clientsTitle: "Marcas & Proyectos",
+    clientsCount: "10 Organizaciones",
+    exploreBtn: "Explorar Sitio"
+  },
+  en: {
+    badge: "About JuanSa Digital",
+    title: "Digital strategy, web development, and data analytics from Santa Marta.",
+    lead: "We help boutique hotels, travel agencies, tour operators, and companies establish high-performing digital channels through WordPress and Astro engineering, organic SEO, targeted advertising, and business intelligence.",
+    philoBadge: "Work Philosophy",
+    philoTitle: "Digital solutions designed for your organization's daily commercial reality.",
+    role: "Tourism Marketing Strategist & Web Developer",
+    bio1: "We treat a website as a revenue and operational machine, never just visual ornamentation. Whether building on custom WordPress with booking engines and payment checkouts, or delivering ultra-fast Astro architecture, our objective remains crystal clear: empower visitors to explore frictionlessly and convert.",
+    bio2: "We accompany every deployment with organic search strategy, Google and Meta ads management, and live Google Looker Studio dashboards to demystify user acquisition and territory dynamics.",
+    ctaBtn: "Start a Conversation",
+    cultureBadge: "Methodology & Work Ethic",
+    cultureTitle: "The principles that define our craft",
+    cultureLead: "Rooted in software craftsmanship and analytical discipline. Four non-negotiable convictions that shape every JuanSa Digital engagement:",
+    techBadge: "Infrastructure & Tools",
+    techTitle: "Technology Stack",
+    techSub: "Web Engineering & BI",
+    clientsBadge: "Proven Track Record",
+    clientsTitle: "Brands & Case Studies",
+    clientsCount: "10 Organizations",
+    exploreBtn: "Explore Website"
+  },
+  fr: {
+    badge: "À Propos de JuanSa Digital",
+    title: "Stratégie digitale, développement web et analytique depuis Santa Marta.",
+    lead: "Nous accompagnons les hôtels de charme, agences de voyages, tour-opérateurs et entreprises dans la création de canaux digitaux performants : développement web WordPress et Astro, SEO organique, publicité ciblée et intelligence de données.",
+    philoBadge: "Philosophie de Travail",
+    philoTitle: "Des solutions numériques conçues pour la réalité quotidienne de votre entreprise.",
+    role: "Stratège en Marketing Touristique & Développeur Web",
+    bio1: "Nous considérons un site web comme un outil concret de vente et de gestion, jamais comme un simple habillage. Qu'il s'agisse d'un WordPress sur-mesure avec moteur de réservation et paiement en ligne, ou d'un site Astro ultra-rapide, l'objectif est d'offrir une expérience fluide menant à l'action.",
+    bio2: "Nous combinons le développement technique avec un référencement naturel pérenne, des campagnes publicitaires ciblées et des tableaux de bord interactifs sous Google Looker Studio.",
+    ctaBtn: "Démarrer une Conversation",
+    cultureBadge: "Méthodologie & Déontologie",
+    cultureTitle: "Les principes qui guident nos réalisations",
+    cultureLead: "Inspirés par l'artisanat logiciel et l'exigence analytique. Quatre piliers qui définissent l'engagement de JuanSa Digital à chaque projet :",
+    techBadge: "Infrastructure & Outils",
+    techTitle: "Stack Technologique",
+    techSub: "Développement Web & BI",
+    clientsBadge: "Expérience Éprouvée",
+    clientsTitle: "Marques & Références",
+    clientsCount: "10 Organisations",
+    exploreBtn: "Explorer le Site"
+  }
+};
+
+const c = copy[lang] || copy.es;
+const cultureItems = cultureData[lang] || cultureData.es;
+const pillars = pillarsData[lang] || pillarsData.es;
+const techStack = techStackData[lang] || techStackData.es;
+---
+
+<main id="main-content" class="about-page section-paper">
+  <!-- Header Hero with animated reveals -->
+  <section class="studio-page-header">
+    <div class="container">
+      <div class="header-badges-row reveal-on-scroll">
+        <span class="studio-section-label">{c.badge}</span>
+      </div>
+
+      <h1 class="page-main-headline reveal-on-scroll delay-100">
+        {c.title}
+      </h1>
+      <p class="text-lead page-lead reveal-on-scroll delay-200">
+        {c.lead}
+      </p>
+    </div>
+  </section>
+
+  <!-- Infinite Photo Reel -->
+  <PhotoMarquee lang={lang} />
+
+  <!-- Manifesto / Philosophy Block with interactive cards -->
+  <section class="section-gap about-philosophy-section">
+    <div class="container">
+      <div class="editorial-columns">
+        <!-- Sticky Left Column: Portrait with 3D Tilt Hover Effect -->
+        <div class="col-sticky-title reveal-on-scroll">
+          <span class="studio-section-label">
+            <span class="contra-star contra-star-red">✦</span>
+            {c.philoBadge}
+          </span>
+          <h2 class="section-headline">{c.philoTitle}</h2>
+          
+          <div class="portrait-card" id="portraitCard">
+            <div class="portrait-media-wrap">
+              <img 
+                src="/images/juan-salinas-portrait.webp" 
+                alt="Juan Salinas Calle · JuanSa Digital" 
+                class="portrait-img"
+                width="1024"
+                height="1024"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="portrait-caption">
+              <span class="portrait-name">Juan Salinas Calle</span>
+              <span class="portrait-role">{c.role}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flow Right Column -->
+        <div class="col-content-flow">
+          <div class="reveal-on-scroll">
+            <p class="body-p">
+              {c.bio1}
+            </p>
+            <p class="body-p" style="margin-top: 1.25rem;">
+              {c.bio2}
+            </p>
+          </div>
+
+          <!-- 3 Pillars List with Hover Micro-Interactions -->
+          <div class="pillars-list">
+            {pillars.map((pillar, i) => (
+              <div class={`pillar-interactive-card reveal-on-scroll delay-${(i + 1) * 100}`}>
+                <div class="pillar-card-header">
+                  <span class="pillar-num">{pillar.num}</span>
+                  <span class="pillar-metric-badge">{pillar.metric}</span>
+                </div>
+                <h3 class="pillar-title">{pillar.title}</h3>
+                <p class="pillar-desc">{pillar.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div class="philosophy-cta reveal-on-scroll">
+            <a href={getLocalizedPath(lang, '/contacto')} class="pill-morph-btn">
+              <span>{c.ctaBtn}</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Culture Accordions ("La cultura que define lo que hacemos") -->
+  <section class="section-gap culture-section section-paper">
+    <div class="container">
+      <div class="culture-header reveal-on-scroll">
+        <span class="studio-section-label">
+          <span class="contra-star contra-star-red">✦</span>
+          {c.cultureBadge}
+        </span>
+        <h2 class="section-headline">{c.cultureTitle}</h2>
+        <p class="text-lead" style="margin-top: 0.75rem; max-width: 720px;">
+          {c.cultureLead}
+        </p>
+      </div>
+
+      <div class="culture-accordions-list">
+        {cultureItems.map((item, idx) => (
+          <div class:list={["culture-accordion-item", { "is-open": idx === 0 }]}>
+            <button 
+              type="button" 
+              class="culture-accordion-trigger" 
+              aria-expanded={idx === 0 ? "true" : "false"}
+            >
+              <div class="trigger-left">
+                <span class="culture-index">{item.num}</span>
+                <div class="culture-titles">
+                  <h3 class="culture-title">{item.title}</h3>
+                  <p class="culture-sub">{item.subtitle}</p>
+                </div>
+              </div>
+              <div class="trigger-right">
+                <span class:list={["contra-star", item.starClass]}>✦</span>
+                <span class="accordion-icon-circle">
+                  <svg class="plus-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                  <svg class="minus-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                </span>
+              </div>
+            </button>
+            <div class="culture-accordion-panel">
+              <div class="culture-panel-inner">
+                <p class="culture-desc-text">{item.desc}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack Summary (Contra Contrast Dark Section with Hover Cards) -->
+  <section class="section-gap tech-stack-section section-black">
+    <div class="container">
+      <div class="section-top-bar dark-bar reveal-on-scroll">
+        <div>
+          <span class="studio-section-label red-label">
+            <span class="contra-star contra-star-red">✦</span>
+            {c.techBadge}
+          </span>
+          <h2 class="section-headline text-white">{c.techTitle}</h2>
+        </div>
+        <p class="section-counter text-dim">{c.techSub}</p>
+      </div>
+
+      <div class="tech-grid">
+        {techStack.map((tech, i) => (
+          <div class={`tech-card-dynamic reveal-on-scroll delay-${(i + 1) * 100}`}>
+            <div class="tech-card-top">
+              <span class="tech-cat">{tech.category}</span>
+              <span class="tech-num">{tech.num}</span>
+            </div>
+            <h3 class="tech-title">{tech.title}</h3>
+            <p class="tech-desc">{tech.desc}</p>
+            
+            <div class="tech-tags-list">
+              {tech.tags.map(t => (
+                <span class="tech-pill">{t}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Clients / Destinos List (Interactive Editorial Roster) -->
+  <section class="section-gap clients-section section-paper">
+    <div class="container">
+      <div class="section-top-bar reveal-on-scroll">
+        <div>
+          <span class="studio-section-label">{c.clientsBadge}</span>
+          <h2 class="section-headline">{c.clientsTitle}</h2>
+        </div>
+        <p class="section-counter">{c.clientsCount}</p>
+      </div>
+
+      <div class="clients-editorial-list">
+        {clients.map((client) => (
+          <a 
+            href={client.url} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="client-item-row"
+          >
+            <div class="client-left">
+              <span class="client-name">{client.name}</span>
+              <span class="client-sector">{client.sector[lang] || client.sector.es}</span>
+            </div>
+            <div class="client-action">
+              <span class="client-view-link">
+                <span>{c.exploreBtn}</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Subtle interactive 3D card tilt for portrait
+  const card = document.getElementById('portraitCard');
+  if (card) {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      const rotateX = (-y / rect.height) * 8;
+      const rotateY = (x / rect.width) * 8;
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+    });
+  }
+
+  // Culture Accordions toggle logic
+  const cultureTriggers = document.querySelectorAll('.culture-accordion-trigger');
+  cultureTriggers.forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const parent = trigger.closest('.culture-accordion-item');
+      if (!parent) return;
+      const isAlreadyOpen = parent.classList.contains('is-open');
+
+      // Close other accordions for clean accordion behavior
+      document.querySelectorAll('.culture-accordion-item').forEach((item) => {
+        item.classList.remove('is-open');
+        const btn = item.querySelector('.culture-accordion-trigger');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      });
+
+      if (!isAlreadyOpen) {
+        parent.classList.add('is-open');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+</script>
+
+<style>
+  .about-page {
+    padding-bottom: 0;
+  }
+
+  /* Culture Accordions Section */
+  .culture-section {
+    border-top: 1px solid var(--line-light);
+  }
+
+  .culture-header {
+    margin-bottom: 3rem;
+  }
+
+  .culture-accordions-list {
+    border-top: 1px solid var(--line-light);
+  }
+
+  .culture-accordion-item {
+    border-bottom: 1px solid var(--line-light);
+    transition: background-color 0.25s ease;
+  }
+
+  .culture-accordion-item.is-open {
+    background-color: rgba(0, 0, 0, 0.015);
+  }
+
+  .culture-accordion-trigger {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 2rem;
+    background: transparent;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .trigger-left {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .culture-index {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--contra-red);
+    letter-spacing: -0.02em;
+    min-width: 2.2rem;
+  }
+
+  .culture-titles {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .culture-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-dark);
+  }
+
+  .culture-sub {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .trigger-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .accordion-icon-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--line-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-paper);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease;
+  }
+
+  .culture-accordion-item.is-open .accordion-icon-circle {
+    background: var(--text-dark);
+    color: #FFFFFF;
+    border-color: var(--text-dark);
+  }
+
+  .minus-icon {
+    display: none;
+  }
+
+  .culture-accordion-item.is-open .plus-icon {
+    display: none;
+  }
+
+  .culture-accordion-item.is-open .minus-icon {
+    display: block;
+  }
+
+  .culture-accordion-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .culture-accordion-item.is-open .culture-accordion-panel {
+    max-height: 400px;
+  }
+
+  .culture-panel-inner {
+    padding-left: 4.2rem;
+    padding-bottom: 2rem;
+    padding-right: 2rem;
+    max-width: 820px;
+  }
+
+  .culture-desc-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text-dark);
+  }
+
+  /* Philosophy Editorial Layout */
+  .about-philosophy-section {
+    border-top: 1px solid var(--line-light);
+  }
+
+  .editorial-columns {
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .col-sticky-title {
+    position: sticky;
+    top: 7rem;
+  }
+
+  .portrait-card {
+    margin-top: 2rem;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #FFFFFF;
+    border: 1px solid var(--line-light);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+    will-change: transform;
+  }
+
+  .portrait-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  }
+
+  .portrait-media-wrap {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: var(--bg-paper-subtle);
+  }
+
+  .portrait-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(15%) contrast(105%);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+  }
+
+  .portrait-card:hover .portrait-img {
+    transform: scale(1.04);
+    filter: grayscale(0%) contrast(102%);
+  }
+
+  .portrait-caption {
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    border-top: 1px solid var(--line-light);
+  }
+
+  .portrait-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    letter-spacing: -0.01em;
+  }
+
+  .portrait-role {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  /* Pillars List with interactive cards */
+  .pillars-list {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .pillar-interactive-card {
+    background: #FFFFFF;
+    border: 1px solid var(--line-light);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.2s ease;
+  }
+
+  .pillar-interactive-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+    border-color: rgba(225, 29, 72, 0.4);
+  }
+
+  .pillar-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .pillar-num {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--contra-red);
+    letter-spacing: -0.03em;
+  }
+
+  .pillar-metric-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.3rem 0.75rem;
+    background: var(--bg-paper-subtle);
+    border: 1px solid var(--line-light);
+    border-radius: 100px;
+    color: var(--text-muted);
+  }
+
+  .pillar-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+    color: var(--text-dark);
+  }
+
+  .pillar-desc {
+    font-size: 0.98rem;
+    line-height: 1.65;
+    color: var(--text-muted);
+  }
+
+  .philosophy-cta {
+    margin-top: 2.5rem;
+  }
+
+  /* Tech Stack Grid */
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .tech-card-dynamic {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .tech-card-dynamic:hover {
+    transform: translateY(-6px);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(225, 29, 72, 0.5);
+  }
+
+  .tech-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .tech-cat {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--contra-red);
+  }
+
+  .tech-num {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .tech-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  .tech-desc {
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+
+  .tech-tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .tech-pill {
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.85);
+    padding: 0.25rem 0.65rem;
+    border-radius: 6px;
+  }
+
+  /* Clients Editorial List */
+  .clients-editorial-list {
+    margin-top: 3rem;
+    border-top: 1px solid var(--line-light);
+  }
+
+  .client-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 1.5rem;
+    border-bottom: 1px solid var(--line-light);
+    text-decoration: none;
+    transition: padding-left 0.25s ease, background-color 0.2s ease;
+  }
+
+  .client-item-row:hover {
+    padding-left: 0.75rem;
+    background-color: rgba(0, 0, 0, 0.015);
+  }
+
+  .client-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .client-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    letter-spacing: -0.01em;
+  }
+
+  .client-sector {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .client-view-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    opacity: 0.4;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .client-item-row:hover .client-view-link {
+    opacity: 1;
+    transform: translateX(4px);
+    color: var(--contra-red);
+  }
+
+  @media (max-width: 900px) {
+    .editorial-columns {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .col-sticky-title {
+      position: static;
+    }
+
+    .portrait-card {
+      max-width: 380px;
+    }
+
+    .tech-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .culture-panel-inner {
+      padding-left: 0;
+    }
+  }
+</style>

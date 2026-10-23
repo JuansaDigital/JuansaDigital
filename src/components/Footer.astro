@@ -1,0 +1,268 @@
+---
+import LogoMark from "./LogoMark.astro";
+import { getLangFromUrl, useTranslations, getLocalizedPath, type SupportedLanguage } from "../i18n/ui";
+
+interface Props {
+  showCta?: boolean;
+  lang?: SupportedLanguage;
+}
+
+const { showCta = true, lang: propLang } = Astro.props;
+const currentLang = propLang || getLangFromUrl(Astro.url);
+const t = useTranslations(currentLang);
+---
+
+<footer class="studio-footer section-black" id="contacto">
+  <div class="container">
+    {showCta && (
+      <div class="footer-cta-block">
+        <span class="studio-section-label">✦ {t("cta.contact")}</span>
+        <h2 class="footer-big-title">{t("footer.title")}</h2>
+        <p class="footer-desc">
+          {t("footer.desc")}
+        </p>
+
+        <div class="footer-direct-actions">
+          <a 
+            href="https://wa.me/message/VZOWCP5BYGXJD1" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="pill-morph-btn-light"
+          >
+            <span>{t("cta.whatsapp_long")}</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+
+          <a 
+            href="mailto:Info@juansadigital.com" 
+            class="pill-morph-btn-dark-outline"
+          >
+            <span>Info@juansadigital.com</span>
+          </a>
+        </div>
+      </div>
+    )}
+
+    <div class="footer-bottom-grid">
+      <div class="footer-col-brand">
+        <div class="footer-brand-header">
+          <LogoMark size={32} class="footer-logo-mark" />
+          <span class="studio-brand-name">Juansa Digital <span class="brand-by">by Dijumedia</span></span>
+        </div>
+        <span class="studio-location">{t("footer.location")}</span>
+        <p class="studio-brand-sub">{t("footer.tagline")}</p>
+      </div>
+
+      <div class="footer-col-nav">
+        <span class="col-heading">{t("footer.navigation")}</span>
+        <div class="col-links">
+          <a href={getLocalizedPath("/", currentLang)}>{t("nav.home")}</a>
+          <a href={getLocalizedPath("/nosotros", currentLang)}>{t("nav.about")}</a>
+          <a href={getLocalizedPath("/servicios", currentLang)}>{t("nav.services")}</a>
+          <a href={getLocalizedPath("/proyectos", currentLang)}>{t("nav.projects")}</a>
+          <a href={getLocalizedPath("/ia-lab", currentLang)}>{t("nav.ai")}</a>
+          <a href={getLocalizedPath("/blog", currentLang)}>{t("nav.blog")}</a>
+          <a href={getLocalizedPath("/contacto", currentLang)}>{t("nav.contact")}</a>
+          <a href={getLocalizedPath("/sitemap", currentLang)}>{t("nav.sitemap")}</a>
+        </div>
+      </div>
+
+      <div class="footer-col-social">
+        <span class="col-heading">{t("footer.social")}</span>
+        <div class="col-links">
+          <a href="https://www.linkedin.com/company/juansadigital" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/JuansaDigital" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://www.instagram.com/juansadigital/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://www.facebook.com/juansadigital/" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href="https://x.com/JuanSaDigital" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-legal-bar">
+      <span>&copy; 2026 JuanSa Digital · {t("footer.rights")}</span>
+      <div class="footer-legal-links">
+        <a href={getLocalizedPath("/sitemap", currentLang)}>{t("nav.sitemap")}</a>
+        <span class="sep">·</span>
+        <a href="/sitemap-index.xml" target="_blank" rel="noopener noreferrer">Sitemap XML</a>
+        <span class="sep">·</span>
+        <span>{t("footer.location")}</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .studio-footer {
+    padding-top: clamp(5rem, 8vw, 8.5rem);
+    padding-bottom: 3.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .footer-cta-block {
+    max-width: 920px;
+    margin-bottom: clamp(4rem, 7vw, 7rem);
+  }
+
+  .studio-section-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    color: var(--contra-red);
+    display: block;
+    margin-bottom: 1.25rem;
+  }
+
+  .footer-big-title {
+    font-size: clamp(2.4rem, 2rem + 3.8vw, 4.8rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    color: #FFFFFF;
+    margin-bottom: 1.75rem;
+  }
+
+  .footer-desc {
+    font-size: clamp(1.1rem, 1rem + 0.35vw, 1.35rem);
+    color: var(--ink-dark-muted);
+    line-height: 1.6;
+    max-width: 720px;
+    margin-bottom: 2.75rem;
+  }
+
+  .footer-direct-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-bottom-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3.5rem;
+    padding-top: 3.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    margin-bottom: 3.5rem;
+  }
+
+  .footer-col-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-brand-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #FFFFFF;
+  }
+
+  .studio-brand-name {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: baseline;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+  }
+
+  .brand-by {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink-dark-dim);
+    letter-spacing: normal;
+  }
+
+  .studio-location {
+    font-size: 0.88rem;
+    color: var(--contra-red);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .studio-brand-sub {
+    font-size: 0.9rem;
+    color: var(--ink-dark-dim);
+    margin-top: 0.5rem;
+    max-width: 340px;
+    line-height: 1.5;
+  }
+
+  .col-heading {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #FFFFFF;
+    display: block;
+    margin-bottom: 1.25rem;
+  }
+
+  .col-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .col-links a {
+    color: var(--ink-dark-muted);
+    text-decoration: none;
+    font-size: 0.94rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: inline-block;
+  }
+
+  .col-links a:hover {
+    color: #FFFFFF;
+    transform: translateX(3px);
+  }
+
+  .footer-legal-bar {
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.82rem;
+    color: var(--ink-dark-dim);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-legal-links {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-legal-links a {
+    color: var(--ink-dark-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-legal-links a:hover {
+    color: #60A5FA;
+  }
+
+  .footer-legal-links .sep {
+    color: rgba(255, 255, 255, 0.2);
+  }
+
+  @media (max-width: 860px) {
+    .footer-bottom-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+  }
+</style>

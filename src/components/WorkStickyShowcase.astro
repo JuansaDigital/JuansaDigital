@@ -1,0 +1,573 @@
+---
+import { getLangFromUrl, getLocalizedPath, type SupportedLanguage } from "../i18n/ui";
+
+interface Props {
+  lang?: SupportedLanguage;
+}
+
+const { lang: propLang } = Astro.props;
+const currentLang = propLang || getLangFromUrl(Astro.url);
+
+const copy = {
+  es: {
+    tag: "PORTAFOLIO DESTACADO",
+    title: "Nuestro trabajo para",
+    btnView: "Visitar Caso de Estudio",
+    btnAll: "Explorar Todos los Proyectos",
+    projects: [
+      {
+        index: 0,
+        title: "Wiwa Tours",
+        category: "Turismo & Reservas Directas",
+        image: "/images/wiwa-tour.webp",
+        url: "https://wiwatour.com",
+        copy: "Plataforma transaccional con motor de reservas y experiencia inmersiva para expediciones de ecoturismo en la Sierra Nevada y Ciudad Perdida, optimizada para ventas directas y posicionamiento SEO."
+      },
+      {
+        index: 1,
+        title: "Discover la Guajira",
+        category: "Destino Departamental & Cultura",
+        image: "/images/discover-guajira.webp",
+        url: "https://discoverlaguajira.travel",
+        copy: "Portal gubernamental y turístico diseñado para posicionar internacionalmente la cultura Wayuu y los atractivos de la península con SEO multilingüe y navegación ágil."
+      },
+      {
+        index: 2,
+        title: "Visit Valle",
+        category: "Plataforma Turística Oficial",
+        image: "/images/visit-valle.webp",
+        url: "https://visitvalle.travel",
+        copy: "Ecosistema digital para el departamento del Valle del Cauca, integrando rutas gastronómicas, turismo de naturaleza y experiencias culturales del Pacífico."
+      },
+      {
+        index: 3,
+        title: "Logan Valuation",
+        category: "Firma Multinacional · 5 Países Latam",
+        image: "/images/logan-valuation.webp",
+        url: "http://loganvaluation.com/",
+        copy: "Plataforma corporativa multilingüe para firma multinacional líder en avalúos inmobiliarios institucionales en Colombia, México, Perú, Costa Rica y Panamá (MAI / IFRS)."
+      },
+      {
+        index: 4,
+        title: "Tornus Agency",
+        category: "Estudio Creativo & Placebranding",
+        image: "/images/tornus.webp",
+        url: "https://tornus.agency",
+        copy: "Sitio web para agencia de placebranding y contenidos de marca con enfoque en identidad territorial, narrativa de destinos y plataformas de inteligencia de datos como TurisData."
+      }
+    ]
+  },
+  en: {
+    tag: "FEATURED WORK",
+    title: "Engineered for",
+    btnView: "Explore Case Study",
+    btnAll: "View All Selected Projects",
+    projects: [
+      {
+        index: 0,
+        title: "Wiwa Tours",
+        category: "Ecotourism & Direct Bookings",
+        image: "/images/wiwa-tour.webp",
+        url: "https://wiwatour.com",
+        copy: "Transactional web platform with an integrated direct booking engine and immersive storytelling for expeditions in the Sierra Nevada and Lost City trek, engineered for commission-free revenue."
+      },
+      {
+        index: 1,
+        title: "Discover la Guajira",
+        category: "Regional Destination & Culture",
+        image: "/images/discover-guajira.webp",
+        url: "https://discoverlaguajira.travel",
+        copy: "Government tourism portal designed to elevate Wayuu indigenous heritage and desert attractions on the international stage with multilingual SEO and fluid mobile UX."
+      },
+      {
+        index: 2,
+        title: "Visit Valle",
+        category: "Official Regional Tourism Portal",
+        image: "/images/visit-valle.webp",
+        url: "https://visitvalle.travel",
+        copy: "Official digital ecosystem for Valle del Cauca, connecting culinary heritage routes, salsa culture, and Pacific nature expeditions."
+      },
+      {
+        index: 3,
+        title: "Logan Valuation",
+        category: "Multinational Firm · 5 Latam Countries",
+        image: "/images/logan-valuation.webp",
+        url: "http://loganvaluation.com/",
+        copy: "Multilingual institutional platform for an appraisal and consulting leader operating in Colombia, Mexico, Peru, Costa Rica, and Panama under MAI and IFRS standards."
+      },
+      {
+        index: 4,
+        title: "Tornus Agency",
+        category: "Creative Studio & Placebranding",
+        image: "/images/tornus.webp",
+        url: "https://tornus.agency",
+        copy: "Digital presence for a placebranding agency focused on territorial identity, destination storytelling, and big data intelligence tools like TurisData."
+      }
+    ]
+  },
+  fr: {
+    tag: "RÉALISATIONS PHARES",
+    title: "Nos réalisations pour",
+    btnView: "Explorer le Projet",
+    btnAll: "Voir Tous les Projets",
+    projects: [
+      {
+        index: 0,
+        title: "Wiwa Tours",
+        category: "Écotourisme & Vente Directe",
+        image: "/images/wiwa-tour.webp",
+        url: "https://wiwatour.com",
+        copy: "Plateforme transactionnelle avec moteur de réservation directe et parcours immersif pour les treks dans la Sierra Nevada et la Cité Perdue, optimisée pour le SEO."
+      },
+      {
+        index: 1,
+        title: "Discover la Guajira",
+        category: "Destination Régionale & Culture",
+        image: "/images/discover-guajira.webp",
+        url: "https://discoverlaguajira.travel",
+        copy: "Portail institutionnel et touristique valorisant la culture Wayuu et les paysages désertiques auprès des voyageurs internationaux avec un SEO multilingue performant."
+      },
+      {
+        index: 2,
+        title: "Visit Valle",
+        category: "Portail Touristique Régional",
+        image: "/images/visit-valle.webp",
+        url: "https://visitvalle.travel",
+        copy: "Écosystème digital pour le département de Valle del Cauca, regroupant itinéraires gastronomiques, salsa et expéditions de nature sur la côte Pacifique."
+      },
+      {
+        index: 3,
+        title: "Logan Valuation",
+        category: "Groupe Multinational · 5 Pays d'Amérique Latine",
+        image: "/images/logan-valuation.webp",
+        url: "http://loganvaluation.com/",
+        copy: "Plateforme d'entreprise multilingue pour un leader de l'évaluation immobilière opérant en Colombie, Mexique, Pérou, Costa Rica et Panama (MAI / IFRS)."
+      },
+      {
+        index: 4,
+        title: "Tornus Agency",
+        category: "Studio Créatif & Placebranding",
+        image: "/images/tornus.webp",
+        url: "https://tornus.agency",
+        copy: "Site vitrine pour une agence de placebranding dédiée à l'identité territoriale, au storytelling de destination et aux plateformes de données comme TurisData."
+      }
+    ]
+  }
+};
+
+const c = copy[currentLang] || copy.es;
+const stickyProjects = c.projects;
+---
+
+<div data-work-track="true" class="contra-work-track">
+  <div data-work-sticky="true" class="contra-work-camera">
+    <!-- Full-screen Background Images -->
+    <div class="contra-images-stack">
+      {stickyProjects.map((p, i) => (
+        <div 
+          data-work-image={i} 
+          class:list={["contra-bg-slide", { "is-active": i === 0 }]}
+          style={`background-image: url('${p.image}');`}
+        >
+          <div class="contra-slide-overlay"></div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Foreground UI Layout -->
+    <div class="container contra-ui-layer">
+      <div class="contra-work-content-grid">
+        <!-- Left Column: Fixed Anchor & Scrolling Item List -->
+        <div class="contra-work-left">
+          <div data-work-anchor="true" class="contra-work-anchor">
+            <span class="contra-tag-caps">{c.tag}</span>
+            <h2 class="contra-anchor-title">{c.title}</h2>
+          </div>
+
+          <div class="contra-list-clip">
+            <div data-work-list="true" class="contra-work-list">
+              {stickyProjects.map((p, i) => (
+                <button
+                  type="button"
+                  data-work-item={i}
+                  data-work-link={p.url}
+                  class:list={["contra-work-item-btn", { "is-active": i === 0 }]}
+                >
+                  <span class="item-number">0{i + 1}</span>
+                  <span class="item-title">{p.title}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Animated Copy Box & Action -->
+        <div class="contra-work-right">
+          <div data-work-copy-wrap="true" class="contra-copy-wrap">
+            {stickyProjects.map((p, i) => (
+              <div 
+                data-work-copy={i} 
+                class:list={["contra-copy-block", { "is-active": i === 0 }]}
+              >
+                <span class="contra-copy-badge">{p.category}</span>
+                <p class="contra-copy-text">{p.copy}</p>
+                <div class="contra-copy-action">
+                  <a href={p.url} target="_blank" rel="noopener noreferrer" class="pill-morph-btn-light">
+                    <span>{c.btnView}</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <line x1="7" y1="17" x2="17" y2="7"></line>
+                      <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div class="contra-work-footer-action">
+            <a href={getLocalizedPath("/proyectos", currentLang)} class="pill-morph-btn-dark-outline">
+              <span>{c.btnAll}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initStickyWorkShowcase() {
+    const track = document.querySelector('[data-work-track="true"]');
+    const items = Array.from(document.querySelectorAll<HTMLElement>('[data-work-item]'));
+    const images = Array.from(document.querySelectorAll<HTMLElement>('[data-work-image]'));
+    const copies = Array.from(document.querySelectorAll<HTMLElement>('[data-work-copy]'));
+
+    if (!track || !items.length || !images.length || !copies.length) return;
+
+    let currentIndex = 0;
+
+    function setActiveSlide(index: number) {
+      if (index === currentIndex) return;
+      currentIndex = index;
+
+      items.forEach((item, i) => {
+        item.classList.toggle('is-active', i === index);
+      });
+
+      images.forEach((img, i) => {
+        img.classList.toggle('is-active', i === index);
+      });
+
+      copies.forEach((copy, i) => {
+        copy.classList.toggle('is-active', i === index);
+      });
+    }
+
+    // Click & hover on item buttons
+    items.forEach((item, i) => {
+      item.addEventListener('click', () => {
+        setActiveSlide(i);
+      });
+      item.addEventListener('mouseenter', () => {
+        setActiveSlide(i);
+      });
+    });
+
+    // ScrollTrigger integration if GSAP is available
+    if (typeof (window as any).gsap !== 'undefined' && typeof (window as any).ScrollTrigger !== 'undefined') {
+      const { gsap, ScrollTrigger } = (window as any);
+      gsap.registerPlugin(ScrollTrigger);
+
+      ScrollTrigger.create({
+        trigger: track,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: true,
+        onUpdate: (self: any) => {
+          const progress = self.progress;
+          const targetIndex = Math.min(
+            items.length - 1,
+            Math.floor(progress * items.length)
+          );
+          setActiveSlide(targetIndex);
+        }
+      });
+    }
+  }
+
+  // Run on DOM load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initStickyWorkShowcase);
+  } else {
+    initStickyWorkShowcase();
+  }
+</script>
+
+<style>
+  /* Sticky Work Track Styles */
+  .contra-work-track {
+    position: relative;
+    height: 380vh;
+    background-color: var(--contra-black);
+  }
+
+  .contra-work-camera {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Background Slides Stack */
+  .contra-images-stack {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .contra-bg-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.55s ease, transform 1s var(--ease-contra), visibility 0.55s;
+    transform: scale(1.04);
+  }
+
+  .contra-bg-slide.is-active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
+
+  .contra-slide-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(0, 0, 0, 0.72) 50%,
+      rgba(0, 0, 0, 0.52) 100%
+    );
+  }
+
+  /* Foreground UI Layer */
+  .contra-ui-layer {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+  }
+
+  .contra-work-content-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+    align-items: center;
+  }
+
+  .contra-tag-caps {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    color: var(--contra-red);
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .contra-anchor-title {
+    font-size: clamp(2.2rem, 1.8rem + 2.5vw, 3.8rem);
+    font-weight: 800;
+    color: #FFFFFF;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+  }
+
+  /* List of projects */
+  .contra-list-clip {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contra-work-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+
+  .contra-work-item-btn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 1.25rem;
+    cursor: pointer;
+    text-align: left;
+    opacity: 0.35;
+    transition: opacity 0.35s ease, transform 0.35s var(--ease-contra);
+  }
+
+  .contra-work-item-btn:hover {
+    opacity: 0.8;
+    transform: translateX(6px);
+  }
+
+  .contra-work-item-btn.is-active {
+    opacity: 1;
+    transform: translateX(12px);
+  }
+
+  .item-number {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--contra-red);
+    letter-spacing: 0.04em;
+  }
+
+  .item-title {
+    font-size: clamp(1.8rem, 1.4rem + 1.6vw, 2.75rem);
+    font-weight: 800;
+    color: #FFFFFF;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+  }
+
+  /* Right column copy */
+  .contra-work-right {
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+    width: 100%;
+    max-width: 580px;
+    justify-self: end;
+  }
+
+  .contra-copy-wrap {
+    display: grid;
+    grid-template-areas: "card";
+    width: 100%;
+    position: relative;
+  }
+
+  .contra-copy-block {
+    grid-area: card;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(12px);
+    transition: opacity 0.4s ease, transform 0.4s var(--ease-smooth), visibility 0.4s;
+    background: rgba(8, 12, 22, 0.72);
+    backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+    border-radius: 16px;
+    padding: clamp(1.6rem, 3.2vw, 2.35rem);
+    align-self: start;
+  }
+
+  .contra-copy-block.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .contra-copy-badge {
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--contra-orange);
+    display: block;
+    margin-bottom: 0.85rem;
+  }
+
+  .contra-copy-text {
+    font-size: clamp(0.96rem, 0.92rem + 0.25vw, 1.06rem);
+    color: rgba(255, 255, 255, 0.92);
+    line-height: 1.65;
+    margin-bottom: 1.85rem;
+  }
+
+  .contra-copy-action {
+    display: flex;
+    align-items: center;
+  }
+
+  .contra-copy-action .pill-morph-btn-light {
+    white-space: nowrap;
+    max-width: 100%;
+  }
+
+  .contra-work-footer-action {
+    display: flex;
+    align-items: center;
+  }
+
+  @media (max-width: 900px) {
+    .contra-work-track {
+      height: auto;
+    }
+    .contra-work-camera {
+      position: relative;
+      height: auto;
+      padding-block: clamp(3.5rem, 8vw, 5rem);
+    }
+    .contra-work-content-grid {
+      grid-template-columns: 1fr;
+      gap: 2.75rem;
+    }
+    .contra-work-right {
+      max-width: 100%;
+      width: 100%;
+      justify-self: stretch;
+      gap: 1.75rem;
+    }
+    .contra-copy-wrap {
+      width: 100%;
+    }
+    .contra-copy-block {
+      padding: clamp(1.35rem, 4.5vw, 1.85rem);
+      border-radius: 14px;
+    }
+    .contra-copy-text {
+      font-size: 0.98rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .contra-copy-block {
+      padding: 1.35rem 1.15rem;
+    }
+    .contra-copy-action {
+      width: 100%;
+    }
+    .contra-copy-action .pill-morph-btn-light {
+      width: 100%;
+      justify-content: center;
+      padding: 0.78rem 1.25rem;
+      font-size: 0.88rem;
+    }
+    .contra-work-footer-action {
+      width: 100%;
+    }
+    .contra-work-footer-action .pill-morph-btn-dark-outline {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

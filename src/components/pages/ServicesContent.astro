@@ -1,0 +1,997 @@
+---
+import { getLocalizedPath, type SupportedLanguage } from '../../i18n/ui';
+
+interface Props {
+  lang?: SupportedLanguage;
+}
+
+const { lang = "es" } = Astro.props;
+
+const servicesData = {
+  es: [
+    {
+      num: "01",
+      tag: "Atracción & Conversión Directa",
+      name: "Marketing Digital Turístico",
+      summary: "Diseñamos estrategias de captación para hoteles, agencias de viajes y operadores turísticos mediante sitios web a medida, posicionamiento SEO, publicidad digital Ads y analítica.",
+      capabilities: [
+        {
+          title: "Campañas en Redes Sociales (Meta & TikTok Ads)",
+          detail: "Estrategias de pauta publicitaria hipersegmentada en Meta Ads (Instagram y Facebook) y TikTok Ads, orientadas a viajeros nacionales e internacionales con alto interés de destino."
+        },
+        {
+          title: "Google Ads & Campañas SEM de Búsqueda",
+          detail: "Campañas de búsqueda para capturar tráfico con alta intención de compra en el momento exacto en que buscan alojamiento, tours o experiencias en la región."
+        },
+        {
+          title: "Email Marketing & Embudos Automatizados",
+          detail: "Embudos automatizados de nutrición, bienvenida, confirmación y fidelización para huéspedes y viajeros, elevando el valor de vida del cliente (LTV)."
+        },
+        {
+          title: "Posicionamiento SEO Turístico Multilingüe",
+          detail: "Optimización orgánica para búsquedas en español, inglés, alemán y francés, posicionando palabras clave transaccionales de turismo en Google."
+        }
+      ]
+    },
+    {
+      num: "02",
+      tag: "WordPress & Astro a Medida",
+      name: "Desarrollo Web para Turismo & Empresas",
+      summary: "Sitios web y plataformas desarrolladas en WordPress y Astro: rápidas, estéticamente cuidadas y diseñadas para facilitar reservas y contactos comerciales.",
+      capabilities: [
+        {
+          title: "Diseño Responsivo & Experiencia Móvil First",
+          detail: "La gran mayoría de las búsquedas se originan en teléfonos móviles. Creamos interfaces táctiles fluidas, cómodas y fáciles de navegar."
+        },
+        {
+          title: "Desarrollo en WordPress & Astro",
+          detail: "Implementamos tanto proyectos avanzados en WordPress (CPT, JetEngine y WPML multilingüe) como desarrollos a medida en Astro, asegurando siempre tiempos de carga rápidos y código ordenado."
+        },
+        {
+          title: "Motores de Reserva y Pasarelas de Pago Seguras",
+          detail: "Integración de motores de reserva directa, calendarios de disponibilidad y pasarelas de pago seguras (Wompi, PayU, Stripe) para procesar transacciones de forma ágil y confiable."
+        },
+        {
+          title: "SEO Técnico & Datos Estructurados Schema.org",
+          detail: "Implementación de Schema.org para hoteles, atracciones y tours, facilitando la indexación avanzada y fragmentos enriquecidos (rich snippets) en Google."
+        }
+      ]
+    },
+    {
+      num: "03",
+      tag: "Business Intelligence & Software",
+      name: "Inteligencia de Datos & Análisis de Mercado",
+      summary: "Decisiones sustentadas en datos objetivos. Levantamiento de información turística, dashboards interactivos en Looker Studio y plataformas territoriales.",
+      capabilities: [
+        {
+          title: "Web Scraping de Información Turística",
+          detail: "Extracción automatizada de información pública sobre oferta de alojamientos, agencias de viaje, restaurantes y atractivos para alimentar sistemas de información territorial y estudios de sector."
+        },
+        {
+          title: "Dashboards Interactivos en Google Looker Studio",
+          detail: "Sistemas de Información Turística (como SITUR Valledupar) que consolidan métricas de visitantes, turismo interno, perfiles de viaje y tendencias de mercado."
+        },
+        {
+          title: "Inteligencia Territorial & Place Branding (TurisData)",
+          detail: "Plataforma analítica nacional (turisdata.tornus.agency) con mapas interactivos, visualización de +1.100 municipios, prestadores RNT y flujos de turismo internacional asistida por IA."
+        },
+        {
+          title: "Estudios de Sector & Análisis de Oferta",
+          detail: "Auditoría de la oferta turística regional para entender la dinámica de prestadores, capacidad del destino y oportunidades de mercado."
+        }
+      ]
+    }
+  ],
+  en: [
+    {
+      num: "01",
+      tag: "Direct Acquisition & Revenue",
+      name: "Tourism Digital Marketing",
+      summary: "We design guest acquisition funnels for hotels, tour operators, and agencies through custom websites, organic SEO, high-intent Ads, and performance analytics.",
+      capabilities: [
+        {
+          title: "Social Advertising (Meta & TikTok Ads)",
+          detail: "Hyper-targeted ad strategies on Meta (Instagram & Facebook) and TikTok, engaging international and domestic travelers with active destination search intent."
+        },
+        {
+          title: "Google Ads & Intent-Driven Search Campaigns",
+          detail: "Search campaigns intercepting high-intent travelers at the precise moment they seek lodging, private expeditions, and regional travel experiences."
+        },
+        {
+          title: "Email Marketing & Automated Guest Workflows",
+          detail: "Automated nurturing, welcome sequences, booking confirmations, and post-stay loyalty funnels designed to increase guest lifetime value (LTV)."
+        },
+        {
+          title: "Multilingual Tourism SEO Engineering",
+          detail: "Organic search optimization in English, Spanish, French, and German, positioning commercial and transactional keywords at the top of Google."
+        }
+      ]
+    },
+    {
+      num: "02",
+      tag: "Tailored WordPress & Astro",
+      name: "Web Development for Tourism & Enterprises",
+      summary: "High-performance websites built on WordPress and Astro: ultra-fast, visually compelling, and engineered to drive direct inquiries and transactions.",
+      capabilities: [
+        {
+          title: "Mobile-First Architecture & Fluid UX",
+          detail: "Over 80% of travel discovery happens on mobile. We build lightweight touch interfaces designed for seamless navigation and instant conversions."
+        },
+        {
+          title: "WordPress & Astro Development",
+          detail: "We engineer enterprise WordPress systems (CPT, JetEngine, WPML multilingual) and custom Astro static sites for unbeatable load speeds and clean code."
+        },
+        {
+          title: "Direct Booking Engines & Payment Gateways",
+          detail: "Integration of commission-free booking engines, live room calendars, and secure payment processors (Stripe, Wompi, PayU) for seamless global checkout."
+        },
+        {
+          title: "Technical SEO & Schema.org Rich Snippets",
+          detail: "Structured data implementation for hospitality, tours, and tourist attractions, securing rich snippet badges and Knowledge Graph authority on Google."
+        }
+      ]
+    },
+    {
+      num: "03",
+      tag: "Business Intelligence & Software",
+      name: "Data Intelligence & Market Analytics",
+      summary: "Strategic decisions grounded in objective market evidence. Public tourism data pipelines, live Looker Studio dashboards, and territorial BI software.",
+      capabilities: [
+        {
+          title: "Automated Tourism Web Scraping",
+          detail: "Programmatic gathering of public data on lodging supply, tour operators, restaurants, and regional rates to power tourism observation systems."
+        },
+        {
+          title: "Interactive Dashboards in Google Looker Studio",
+          detail: "Tourism Information Systems (such as SITUR Valledupar) consolidating traveler origin profiles, internal tourism flows, and market seasonality."
+        },
+        {
+          title: "Territorial Intelligence & Place Branding (TurisData)",
+          detail: "National analytics platform (turisdata.tornus.agency) featuring interactive maps, data for +1,100 municipalities, official RNT registries, and AI diagnostics."
+        },
+        {
+          title: "Market Supply Studies & Competitor Audits",
+          detail: "Comprehensive regional supply audits mapping operator capacity, destination absorption, and untapped market opportunities."
+        }
+      ]
+    }
+  ],
+  fr: [
+    {
+      num: "01",
+      tag: "Acquisition & Conversion Directe",
+      name: "Marketing Digital Touristique",
+      summary: "Nous concevons des stratégies d'acquisition pour hôtels, agences de voyages et réceptifs : sites web sur-mesure, SEO international, Google Ads et analytique.",
+      capabilities: [
+        {
+          title: "Campagnes Réseaux Sociaux (Meta & TikTok Ads)",
+          detail: "Stratégies publicitaires hyper-ciblées sur Meta (Instagram & Facebook) et TikTok, ciblant les voyageurs internationaux avec une intention de séjour affirmée."
+        },
+        {
+          title: "Google Ads & Campagnes de Recherche Ciblées",
+          detail: "Campagnes de recherche captant les requêtes à forte intention d'achat au moment exact où les voyageurs recherchent hébergement et circuits."
+        },
+        {
+          title: "Email Marketing & Tunnels Automatisés",
+          detail: "Séquences automatisées de bienvenue, confirmation et fidélisation des voyageurs pour maximiser la valeur vie client (LTV)."
+        },
+        {
+          title: "Référencement SEO Touristique Multilingue",
+          detail: "Optimisation pour les moteurs de recherche en français, espagnol, anglais et allemand, positionnant vos offres sur les mots-clés les plus rentables."
+        }
+      ]
+    },
+    {
+      num: "02",
+      tag: "WordPress & Astro Sur-Mesure",
+      name: "Développement Web Tourisme & Entreprises",
+      summary: "Sites et plateformes développés sous WordPress et Astro : rapides, esthétiques et conçus pour générer des réservations sans intermédiaire.",
+      capabilities: [
+        {
+          title: "Conception Mobile-First & Navigation Fluide",
+          detail: "La majorité des réservations débute sur smartphone. Nous créons des interfaces tactiles ultra fluides, intuitives et rapides."
+        },
+        {
+          title: "Développement WordPress Avancé & Astro",
+          detail: "Nous maîtrisons les architectures WordPress complexes (CPT, JetEngine, WPML multilingue) et Astro pour des temps de chargement records."
+        },
+        {
+          title: "Moteurs de Réservation & Paiements Sécurisés",
+          detail: "Intégration de moteurs de réservation directe, calendriers de disponibilité et passerelles sécurisées (Stripe, Wompi, PayU) sans commission tierce."
+        },
+        {
+          title: "SEO Technique & Données Structurées Schema.org",
+          detail: "Balisage Schema.org pour hôtels, hébergements et excursions, garantissant un affichage enrichi (rich snippets) sur les résultats Google."
+        }
+      ]
+    },
+    {
+      num: "03",
+      tag: "Business Intelligence & Données",
+      name: "Intelligence de Données & Analyse de Marché",
+      summary: "Des décisions fondées sur des données objectives. Collecte d'informations sectorielles, tableaux de bord interactifs Looker Studio et plateformes territoriales.",
+      capabilities: [
+        {
+          title: "Web Scraping d'Informations Touristiques",
+          detail: "Extraction automatisée de données publiques sur les hébergements, agences, restaurants et tarifs pour nourrir les observatoires territoriaux."
+        },
+        {
+          title: "Tableaux de Bord Interactifs Google Looker Studio",
+          detail: "Systèmes d'Information Touristique (ex. SITUR Valledupar) regroupant profils de voyageurs, flux régionaux et indicateurs clés en direct."
+        },
+        {
+          title: "Intelligence Territoriale & Place Branding (TurisData)",
+          detail: "Plateforme analytique nationale (turisdata.tornus.agency) avec cartographie de +1.100 municipalités, prestataires officiels RNT et analyse assistée par IA."
+        },
+        {
+          title: "Études Sectorielles & Audit de l'Offre",
+          detail: "Audit approfondi de l'offre touristique régionale pour identifier la capacité d'accueil et les opportunités de marché inexploitées."
+        }
+      ]
+    }
+  ]
+};
+
+const industriesData = {
+  es: [
+    {
+      num: "01",
+      sector: "Hotelería & Alojamientos Boutique",
+      headline: "Sitios Web Propios y Venta Directa",
+      desc: "Desarrollamos sitios web en WordPress y Astro para hoteles, eco-lodges y alojamientos boutique. Integramos motores de reserva intuitivos, pasarelas de pago y campañas en Google y Meta Ads para potenciar tus reservas directas.",
+      metric: "WordPress & Astro",
+      badge: "Hospitality & Lodging",
+      image: "/images/wiwa-tour-real.webp",
+      linkText: "Explorar Casos de Hotelería",
+      starColor: "contra-star-red"
+    },
+    {
+      num: "02",
+      sector: "Destinos Departamentales & Territorio",
+      headline: "Plataformas Institucionales y Visibilidad Global",
+      desc: "Diseñamos ecosistemas digitales turísticos para departamentos y regiones completas como Discover La Guajira y Visit Valle. Portales multilingües ultra veloces en Astro v5 con mapas interactivos, arquitectura headless y SEO territorial para posicionar la oferta cultural y natural.",
+      metric: "< 1s tiempo de carga global",
+      badge: "Territorial Branding & SEO",
+      image: "/images/discover-guajira-real.webp",
+      linkText: "Explorar Proyectos de Destino",
+      starColor: "contra-star-blue"
+    },
+    {
+      num: "03",
+      sector: "Inteligencia de Datos & Place Branding",
+      headline: "Sistemas de Información Turística y Plataformas Territoriales",
+      desc: "Transformamos datos dispersos en ventajas estratégicas para gobernanzas y consultoras. Desarrollamos tableros SITUR en Google Looker Studio, monitores de precios por web scraping y la plataforma TurisData para inteligencia territorial y place branding.",
+      metric: "100% decisiones basadas en datos",
+      badge: "Business Intelligence & Software",
+      image: "/images/tornus-real.webp",
+      linkText: "Explorar Plataformas de Datos",
+      starColor: "contra-star-yellow"
+    }
+  ],
+  en: [
+    {
+      num: "01",
+      sector: "Hospitality & Boutique Lodges",
+      headline: "Proprietary Digital Channels & Direct Bookings",
+      desc: "We engineer WordPress and Astro web platforms for boutique hotels, eco-resorts, and luxury lodges. We embed direct reservation engines, multi-currency payment checkout, and high-ROI Google & Meta ads to reclaim margin from OTAs.",
+      metric: "WordPress & Astro",
+      badge: "Hospitality & Lodging",
+      image: "/images/wiwa-tour-real.webp",
+      linkText: "Explore Hospitality Work",
+      starColor: "contra-star-red"
+    },
+    {
+      num: "02",
+      sector: "Regional Tourism Boards & Destinations",
+      headline: "Institutional Portals & Global Discoverability",
+      desc: "We architect complete destination ecosystems for Colombian departments like Discover La Guajira and Visit Valle. Lightning-fast Astro v5 multilingual platforms with interactive maps, headless architecture, and territorial SEO positioning cultural and eco-assets.",
+      metric: "< 1s global load time",
+      badge: "Territorial Branding & SEO",
+      image: "/images/discover-guajira-real.webp",
+      linkText: "Explore Destination Projects",
+      starColor: "contra-star-blue"
+    },
+    {
+      num: "03",
+      sector: "Data Intelligence & Place Branding",
+      headline: "Tourism Observatories & Territorial Platforms",
+      desc: "We turn fragmented records into competitive intelligence for tourism secretariats and consultancies. We build SITUR Looker Studio dashboards, automated market scraping pipelines, and the TurisData national platform for placebranding.",
+      metric: "100% evidence-driven strategy",
+      badge: "Business Intelligence & Software",
+      image: "/images/tornus-real.webp",
+      linkText: "Explore Data Platforms",
+      starColor: "contra-star-yellow"
+    }
+  ],
+  fr: [
+    {
+      num: "01",
+      sector: "Hôtellerie & Éco-Lodges de Charme",
+      headline: "Canaux Propriétaires & Réservations Directes",
+      desc: "Nous développons des plateformes WordPress et Astro pour hôtels de charme, lodges écologiques et éco-resorts. Moteurs de réservation directe, terminaux de paiement sécurisés et campagnes Google Ads pour s'émanciper des commissions d'OTA.",
+      metric: "WordPress & Astro",
+      badge: "Hospitality & Lodging",
+      image: "/images/wiwa-tour-real.webp",
+      linkText: "Explorer les Références Hôtelières",
+      starColor: "contra-star-red"
+    },
+    {
+      num: "02",
+      sector: "Destinations Régionales & Territoires",
+      headline: "Portails Institutionnels & Visibilité Mondiale",
+      desc: "Nous concevons des écosystèmes digitaux pour des départements tels que Discover La Guajira et Visit Valle. Portails multilingues sous Astro v5 avec cartographie interactive, architecture headless et SEO territorial valorisant l'offre culturelle et naturelle.",
+      metric: "< 1s temps de chargement",
+      badge: "Territorial Branding & SEO",
+      image: "/images/discover-guajira-real.webp",
+      linkText: "Explorer les Projets de Destination",
+      starColor: "contra-star-blue"
+    },
+    {
+      num: "03",
+      sector: "Intelligence de Données & Place Branding",
+      headline: "Observatoires Touristiques & Plateformes Territoriales",
+      desc: "Nous convertissons des données complexes en atouts stratégiques pour institutions et cabinets d'études. Tableaux de bord SITUR sur Google Looker Studio, scraping de marché et plateforme TurisData pour l'analyse territoriale.",
+      metric: "100% décisions basées sur la donnée",
+      badge: "Business Intelligence & Software",
+      image: "/images/tornus-real.webp",
+      linkText: "Explorer les Outils de Données",
+      starColor: "contra-star-yellow"
+    }
+  ]
+};
+
+const processData = {
+  es: [
+    { step: "01", title: "Diagnóstico & Datos", desc: "Auditamos tu presencia digital, información del mercado, oferta de la competencia y oportunidades reales de conversión." },
+    { step: "02", title: "Arquitectura & Desarrollo", desc: "Construimos o renovamos tu plataforma con código ultrarrápido, motor de reservas y SEO técnico." },
+    { step: "03", title: "Tráfico & Captación", desc: "Activamos pauta cualificada en Google y Meta para atraer viajeros con intención inmediata de reserva." },
+    { step: "04", title: "Medición & Optimización", desc: "Monitoreamos conversiones, reservas directas y KPIs mediante dashboards analíticos para iterar." }
+  ],
+  en: [
+    { step: "01", title: "Discovery & Market Data", desc: "We audit your existing digital footprint, regional market dynamics, competitor pricing, and direct conversion opportunities." },
+    { step: "02", title: "Architecture & Code", desc: "We build or re-engineer your digital platform with sub-second performance, direct booking engines, and Schema SEO." },
+    { step: "03", title: "Traffic & Acquisition", desc: "We deploy qualified Google and Meta ad campaigns to attract high-intent travelers actively planning their journey." },
+    { step: "04", title: "Analytics & Iteration", desc: "We monitor conversion funnels, direct bookings, and CAC through live dashboards to continuously optimize yield." }
+  ],
+  fr: [
+    { step: "01", title: "Diagnostic & Données", desc: "Nous analysons votre présence en ligne, la dynamique du marché, la concurrence et vos opportunités de réservation directe." },
+    { step: "02", title: "Architecture & Développement", desc: "Nous concevons votre plateforme web avec un temps de chargement ultra rapide, moteur de réservation et SEO technique." },
+    { step: "03", title: "Trafic & Acquisition", desc: "Nous activons des campagnes ciblées sur Google et Meta pour attirer des voyageurs prêts à réserver." },
+    { step: "04", title: "Mesure & Optimisation", desc: "Nous suivons les conversions et réservations directes grâce à des tableaux de bord analytiques pour maximiser le retour sur investissement." }
+  ]
+};
+
+const copy = {
+  es: {
+    badge: "Capacidades & Soluciones",
+    title: "Servicios diseñados para generar reservas directas y decisiones con datos.",
+    lead: "Soluciones integrales de consultoría, ingeniería web y analítica de mercado para hoteles, operadores turísticos, destinos departamentales y empresas.",
+    indBadge: "Sectores de Especialización",
+    indTitle: "Industrias en las que impactamos",
+    indLead: "Diseñamos soluciones técnicas y estratégicas adaptadas a las dinámicas operativas específicas de cada vertical.",
+    procBadge: "Metodología Comprobada",
+    procTitle: "Proceso de Trabajo",
+    procCount: "4 Etapas Clave"
+  },
+  en: {
+    badge: "Capabilities & Solutions",
+    title: "Services engineered for direct bookings and data-driven growth.",
+    lead: "Integrated digital engineering, strategic consulting, and market intelligence for boutique hotels, tour operators, regional destinations, and enterprises.",
+    indBadge: "Industry Verticals",
+    indTitle: "Sectors where we drive impact",
+    indLead: "We architect specialized technical and strategic solutions tailored to the operational nuances of each tourism sector.",
+    procBadge: "Proven Methodology",
+    procTitle: "Operational Process",
+    procCount: "4 Key Phases"
+  },
+  fr: {
+    badge: "Compétences & Solutions",
+    title: "Des services conçus pour générer des réservations directes et décider par la donnée.",
+    lead: "Solutions globales de conseil, développement web et analyse de marché pour l'hôtellerie, les voyagistes, les destinations territoriales et les entreprises.",
+    indBadge: "Secteurs d'Expertise",
+    indTitle: "Industries où nous créons de la valeur",
+    indLead: "Nous développons des solutions techniques et stratégiques adaptées aux spécificités opérationnelles de chaque filière.",
+    procBadge: "Méthodologie Éprouvée",
+    procTitle: "Processus de Travail",
+    procCount: "4 Étapes Clés"
+  }
+};
+
+const c = copy[lang] || copy.es;
+const services = servicesData[lang] || servicesData.es;
+const industries = industriesData[lang] || industriesData.es;
+const process = processData[lang] || processData.es;
+---
+
+<main id="main-content" class="services-page section-paper">
+  <!-- Header with animated reveals -->
+  <section class="studio-page-header">
+    <div class="container">
+      <div class="header-tag-row reveal-on-scroll">
+        <span class="studio-section-label">{c.badge}</span>
+      </div>
+
+      <h1 class="page-main-headline reveal-on-scroll delay-100">
+        {c.title}
+      </h1>
+      <p class="text-lead page-lead reveal-on-scroll delay-200">
+        {c.lead}
+      </p>
+    </div>
+  </section>
+
+  <!-- Detailed Services List with Interactive Expandable Capability Accordions -->
+  <section class="section-gap services-deep-section">
+    <div class="container">
+      <div class="services-deep-list">
+        {services.map((service, sIdx) => (
+          <article class={`service-detail-card reveal-on-scroll delay-${(sIdx + 1) * 100}`}>
+            <div class="service-card-header">
+              <div class="header-left">
+                <span class="service-number">{service.num}</span>
+                <span class="service-pill-tag">{service.tag}</span>
+              </div>
+              <h2 class="service-card-title">{service.name}</h2>
+              <p class="service-card-summary">{service.summary}</p>
+            </div>
+
+            <!-- Interactive Expandable Capabilities -->
+            <div class="capabilities-interactive-grid">
+              {service.capabilities.map((cap, cIdx) => (
+                <div class:list={["cap-accordion-box", { "is-open": cIdx === 0 }]}>
+                  <button 
+                    type="button" 
+                    class="cap-accordion-trigger" 
+                    aria-expanded={cIdx === 0 ? "true" : "false"}
+                  >
+                    <span class="cap-title">{cap.title}</span>
+                    <span class="cap-icon-circle">
+                      <svg class="plus-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                      </svg>
+                      <svg class="minus-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                      </svg>
+                    </span>
+                  </button>
+                  <div class="cap-accordion-body">
+                    <p class="cap-detail">{cap.detail}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Industries Vertical Breakdown -->
+  <section class="section-gap industries-section section-paper">
+    <div class="container">
+      <div class="industries-header reveal-on-scroll">
+        <span class="studio-section-label">
+          <span class="contra-star contra-star-red">✦</span>
+          {c.indBadge}
+        </span>
+        <h2 class="section-headline">{c.indTitle}</h2>
+        <p class="text-lead" style="margin-top: 0.5rem; max-width: 680px;">
+          {c.indLead}
+        </p>
+      </div>
+
+      <div class="industries-stack">
+        {industries.map((ind, idx) => (
+          <div class={`industry-split-card reveal-on-scroll delay-${(idx + 1) * 100}`}>
+            <div class="industry-card-content">
+              <div class="industry-card-meta">
+                <span class="industry-number">{ind.num}</span>
+                <span class="industry-badge-tag">{ind.badge}</span>
+              </div>
+              <h3 class="industry-headline">
+                <span class:list={["contra-star", ind.starColor]}>✦</span>
+                {ind.headline}
+              </h3>
+              <p class="industry-desc">{ind.desc}</p>
+              <div class="industry-card-footer">
+                <div class="industry-metric-highlight">
+                  <span class="metric-icon">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                  </span>
+                  <span class="metric-text">{ind.metric}</span>
+                </div>
+                <a href={getLocalizedPath(lang, '/proyectos')} class="industry-action-link">
+                  <span>{ind.linkText}</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                    <polyline points="7 7 17 7 17 17"></polyline>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="industry-card-media">
+              <img 
+                src={ind.image} 
+                alt={ind.sector} 
+                class="industry-image" 
+                loading="lazy" 
+              />
+              <div class="industry-media-tag">
+                <span>{ind.sector}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Methodology / Process (Contra Contrast Black Section) -->
+  <section class="section-gap process-section section-black">
+    <div class="container">
+      <div class="section-top-bar dark-bar reveal-on-scroll">
+        <div>
+          <span class="studio-section-label red-label">{c.procBadge}</span>
+          <h2 class="section-headline text-white">{c.procTitle}</h2>
+        </div>
+        <p class="section-counter text-dim">{c.procCount}</p>
+      </div>
+
+      <div class="process-grid">
+        {process.map((item, pIdx) => (
+          <div class={`process-box-dynamic reveal-on-scroll delay-${(pIdx + 1) * 100}`}>
+            <div class="process-top-line">
+              <span class="process-step">{item.step}</span>
+              <span class="process-indicator-dot"></span>
+            </div>
+            <h3 class="process-title">{item.title}</h3>
+            <p class="process-desc">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Accordions logic for capability boxes
+  function initCapabilityAccordions() {
+    const accordions = document.querySelectorAll('.cap-accordion-box');
+    accordions.forEach(box => {
+      const trigger = box.querySelector('.cap-accordion-trigger');
+      if (!trigger) return;
+
+      trigger.addEventListener('click', () => {
+        const isOpen = box.classList.contains('is-open');
+        box.classList.toggle('is-open', !isOpen);
+        trigger.setAttribute('aria-expanded', String(!isOpen));
+      });
+    });
+  }
+
+  initCapabilityAccordions();
+</script>
+
+<style>
+  .services-page {
+    padding-bottom: 0;
+  }
+
+  .header-tag-row {
+    margin-bottom: 1.5rem;
+  }
+
+  /* Deep Services List */
+  .services-deep-section {
+    border-top: 1px solid var(--line-light);
+  }
+
+  .services-deep-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+  }
+
+  .service-detail-card {
+    background: #FFFFFF;
+    border: 1px solid var(--line-light);
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    transition: box-shadow 0.3s ease, border-color 0.25s ease;
+  }
+
+  .service-detail-card:hover {
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.07);
+    border-color: rgba(225, 29, 72, 0.3);
+  }
+
+  .service-card-header {
+    max-width: 860px;
+    margin-bottom: 2.5rem;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-number {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--contra-red);
+    letter-spacing: -0.03em;
+  }
+
+  .service-pill-tag {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--bg-paper-subtle);
+    padding: 0.3rem 0.8rem;
+    border-radius: 100px;
+    border: 1px solid var(--line-light);
+    color: var(--text-dark);
+  }
+
+  .service-card-title {
+    font-size: 2.1rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+  }
+
+  .service-card-summary {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+
+  /* Interactive Capabilities Accordions */
+  .capabilities-interactive-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    border-top: 1px solid var(--line-light);
+    padding-top: 2rem;
+  }
+
+  .cap-accordion-box {
+    background: var(--bg-paper-subtle);
+    border: 1px solid var(--line-light);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .cap-accordion-box.is-open {
+    background: #FFFFFF;
+    border-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  }
+
+  .cap-accordion-trigger {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    gap: 1rem;
+  }
+
+  .cap-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    letter-spacing: -0.01em;
+  }
+
+  .cap-icon-circle {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--line-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    transition: transform 0.25s ease, background-color 0.2s ease;
+  }
+
+  .cap-accordion-box.is-open .cap-icon-circle {
+    background: var(--text-dark);
+    color: #FFFFFF;
+    border-color: var(--text-dark);
+  }
+
+  .minus-icon {
+    display: none;
+  }
+
+  .cap-accordion-box.is-open .plus-icon {
+    display: none;
+  }
+
+  .cap-accordion-box.is-open .minus-icon {
+    display: block;
+  }
+
+  .cap-accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .cap-accordion-box.is-open .cap-accordion-body {
+    max-height: 200px;
+  }
+
+  .cap-detail {
+    padding: 0 1.5rem 1.25rem 1.5rem;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* Industries Section */
+  .industries-section {
+    border-top: 1px solid var(--line-light);
+  }
+
+  .industries-header {
+    margin-bottom: 3.5rem;
+  }
+
+  .industries-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .industry-split-card {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    background: #FFFFFF;
+    border: 1px solid var(--line-light);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  }
+
+  .industry-split-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+  }
+
+  .industry-card-content {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .industry-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .industry-number {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--contra-red);
+  }
+
+  .industry-badge-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--bg-paper-subtle);
+    padding: 0.25rem 0.65rem;
+    border-radius: 100px;
+    border: 1px solid var(--line-light);
+    color: var(--text-muted);
+  }
+
+  .industry-headline {
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .industry-desc {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    flex-grow: 1;
+  }
+
+  .industry-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--line-light);
+    padding-top: 1.5rem;
+    gap: 1rem;
+  }
+
+  .industry-metric-highlight {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .metric-icon {
+    color: var(--contra-red);
+    display: flex;
+    align-items: center;
+  }
+
+  .metric-text {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-dark);
+  }
+
+  .industry-action-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--contra-red);
+    text-decoration: none;
+    transition: transform 0.2s ease;
+  }
+
+  .industry-action-link:hover {
+    transform: translateX(4px);
+  }
+
+  .industry-card-media {
+    position: relative;
+    background: var(--bg-paper-subtle);
+    overflow: hidden;
+  }
+
+  .industry-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .industry-split-card:hover .industry-image {
+    transform: scale(1.05);
+  }
+
+  .industry-media-tag {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    color: #FFFFFF;
+    padding: 0.4rem 0.85rem;
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+
+  /* Process / Methodology Section */
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .process-box-dynamic {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .process-box-dynamic:hover {
+    transform: translateY(-6px);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(225, 29, 72, 0.5);
+  }
+
+  .process-top-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .process-step {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--contra-red);
+  }
+
+  .process-indicator-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .process-box-dynamic:hover .process-indicator-dot {
+    background: var(--contra-red);
+    box-shadow: 0 0 10px rgba(225, 29, 72, 0.8);
+  }
+
+  .process-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  .process-desc {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  @media (max-width: 960px) {
+    .capabilities-interactive-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .industry-split-card {
+      grid-template-columns: 1fr;
+    }
+
+    .industry-card-media {
+      aspect-ratio: 16 / 9;
+    }
+
+    .process-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .service-detail-card {
+      padding: 1.75rem;
+    }
+
+    .industry-card-content {
+      padding: 1.75rem;
+    }
+
+    .process-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

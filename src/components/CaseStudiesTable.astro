@@ -1,0 +1,286 @@
+---
+const projects = [
+  {
+    name: "Logan Valuation",
+    url: "http://loganvaluation.com/",
+    category: "Firma Institucional de Avalúos",
+    region: "América Latina (COL, MEX, PER, PAN, CRI)",
+    stack: "WordPress · Elementor · JetEngine · WPML",
+    highlight: "Consultoría y valuación bajo estándares MAI e IFRS/NIIF para fondos de inversión y banca internacional."
+  },
+  {
+    name: "Discover La Guajira",
+    url: "https://discoverlaguajira.travel",
+    category: "Destino Gubernamental",
+    region: "La Guajira, Colombia",
+    stack: "WordPress · JetEngine · Elementor · SEO",
+    highlight: "Plataforma oficial para promover la identidad Wayuu, el desierto y la cultura con arquitectura SEO avanzada."
+  },
+  {
+    name: "Visit Valle",
+    url: "https://visitvalle.travel",
+    category: "Destino Gubernamental",
+    region: "Valle del Cauca, Colombia",
+    stack: "WordPress · JetEngine · Elementor · SEO",
+    highlight: "Portal turístico departamental enfocado en turismo cultural, la salsa y los pueblos mágicos."
+  },
+  {
+    name: "Providencia Isla",
+    url: "https://providenciaisla.travel",
+    category: "Destino Gubernamental",
+    region: "Archipiélago de San Andrés y Providencia",
+    stack: "WordPress · JetEngine · Elementor · SEO",
+    highlight: "Sitio web dinámico enfocado en la conservación, ecosistemas marinos y la experiencia del viajero isleño."
+  },
+  {
+    name: "Wiwa Tour",
+    url: "https://wiwatour.com",
+    category: "Operador Turístico & Reservas",
+    region: "Santa Marta & Sierra Nevada",
+    stack: "WordPress · JetEngine · Motor de Reservas",
+    highlight: "Plataforma con sistema de reservas directas para trekking a Ciudad Perdida operado por guías indígenas ancestrales."
+  },
+  {
+    name: "Tornus Agency",
+    url: "https://tornus.agency",
+    category: "Placebranding & Estudio Creativo",
+    region: "Colombia",
+    stack: "WordPress · JetEngine · Elementor",
+    highlight: "Agencia de placebranding y narrativas territoriales con producción de branded content para destinos."
+  },
+  {
+    name: "Chez Boaz Tours",
+    url: "https://chezboaztours.com/",
+    category: "Tours Personalizados",
+    region: "Caribe Colombiano",
+    stack: "WordPress · JetEngine · SEO",
+    highlight: "Experiencias boutique y tours a la medida para captación de clientes de Europa y Norteamérica."
+  },
+  {
+    name: "Ciudad Perdida Santa Marta",
+    url: "https://ciudadperdidasantamarta.com/",
+    category: "Portal de Destino",
+    region: "Santa Marta",
+    stack: "WordPress · SEO Técnico",
+    highlight: "Plataforma posicionada orgánicamente para búsquedas de alta intención de compra en trekking de montaña."
+  },
+  {
+    name: "Hotel Parque Tayrona (Yachay)",
+    url: "https://hotelparquetayrona.com",
+    category: "Eco-Hotel & Reservas Directas",
+    region: "Parque Nacional Natural Tayrona",
+    stack: "WordPress · Motor de Reservas · SEO Hotelero",
+    highlight: "Plataforma de alta conversión para eco-hotel boutique en el Parque Tayrona, optimizada para posicionamiento SEO internacional y captación directa."
+  }
+];
+---
+
+<section class="section-gap cases-section" id="casos-de-exito">
+  <div class="container">
+    <div class="cases-intro">
+      <div class="badge-tag">Trayectoria & Portafolio</div>
+      <h2 class="title-section">Casos de Éxito y Proyectos Reales</h2>
+      <p class="text-lead">
+        Implementaciones en sectores gubernamentales, marcas multinacionales y operadores turísticos líderes.
+      </p>
+    </div>
+
+    <!-- Editorial Table Format (Taste-Skill Proof Spec) -->
+    <div class="glass-panel table-wrapper">
+      <table class="editorial-table">
+        <thead>
+          <tr>
+            <th class="th-project">Proyecto / Cliente</th>
+            <th class="th-sector">Sector / Alcance</th>
+            <th class="th-desc hide-mobile">Detalle del Desarrollo</th>
+            <th class="th-action">Enlace</th>
+          </tr>
+        </thead>
+        <tbody>
+          {projects.map((p) => (
+            <tr class="table-row">
+              <td class="td-project">
+                <a href={p.url} target="_blank" rel="noopener noreferrer" class="project-name-link">
+                  <span class="p-name">{p.name}</span>
+                </a>
+                <span class="p-region">{p.region}</span>
+              </td>
+              <td class="td-sector">
+                <span class="sector-badge">{p.category}</span>
+                <span class="p-stack">{p.stack}</span>
+              </td>
+              <td class="td-desc hide-mobile">
+                <p class="p-highlight">{p.highlight}</p>
+              </td>
+              <td class="td-action">
+                <a 
+                  href={p.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="row-link"
+                  aria-label={`Visitar sitio de ${p.name}`}
+                >
+                  <span>Ver Web</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                    <polyline points="7 7 17 7 17 17"></polyline>
+                  </svg>
+                </a>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cases-intro {
+    max-width: 620px;
+    margin-bottom: 3rem;
+  }
+
+  .badge-tag {
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent-cobalt);
+    margin-bottom: 0.75rem;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+    padding: 0.5rem;
+  }
+
+  .editorial-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+  }
+
+  .editorial-table th {
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-dim);
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .table-row {
+    transition: background 0.2s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  }
+
+  .table-row:last-child {
+    border-bottom: none;
+  }
+
+  .table-row:hover {
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .editorial-table td {
+    padding: 1.35rem 1.5rem;
+    vertical-align: middle;
+  }
+
+  .td-project {
+    min-width: 200px;
+  }
+
+  .project-name-link {
+    text-decoration: none;
+  }
+
+  .p-name {
+    display: block;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--text-main);
+    transition: color 0.2s ease;
+  }
+
+  .project-name-link:hover .p-name {
+    color: var(--accent-cobalt);
+  }
+
+  .p-region {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    margin-top: 0.2rem;
+  }
+
+  .td-sector {
+    min-width: 180px;
+  }
+
+  .sector-badge {
+    display: inline-block;
+    font-size: 0.76rem;
+    font-weight: 500;
+    color: var(--accent-gold);
+    background: rgba(245, 158, 11, 0.1);
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    margin-bottom: 0.35rem;
+  }
+
+  .p-stack {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+
+  .td-desc {
+    max-width: 440px;
+  }
+
+  .p-highlight {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .td-action {
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .row-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.5rem 0.85rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
+  }
+
+  .row-link:hover {
+    color: #FFFFFF;
+    background: var(--accent-cobalt);
+    border-color: var(--accent-cobalt);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 800px) {
+    .hide-mobile {
+      display: none;
+    }
+    .editorial-table td, .editorial-table th {
+      padding: 1rem;
+    }
+  }
+</style>
