@@ -31,7 +31,7 @@ const currentPathClean = pathname.replace(/\/$/, "") || "/";
 
 <header class="studio-header">
   <div class="container header-container">
-    <a href={getLocalizedPath("/", currentLang)} class="studio-logo" aria-label="Juansa Digital by Dijumedia">
+    <a href={getLocalizedPath("/", currentLang)} class="studio-logo">
       <span class="logo-mark-wrap">
         <LogoMark size={32} class="nav-logo-mark" />
       </span>
@@ -66,7 +66,7 @@ const currentPathClean = pathname.replace(/\/$/, "") || "/";
           type="button" 
           class="lang-switch-trigger" 
           id="langTriggerBtn" 
-          aria-label="Seleccionar idioma" 
+          aria-label={`${currentLang.toUpperCase()} - Seleccionar idioma`} 
           aria-expanded="false"
         >
           <svg class="globe-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

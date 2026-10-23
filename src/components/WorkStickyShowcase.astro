@@ -273,26 +273,32 @@ const stickyProjects = c.projects;
       });
     });
 
-    // ScrollTrigger integration if GSAP is available
-    if (typeof (window as any).gsap !== 'undefined' && typeof (window as any).ScrollTrigger !== 'undefined') {
-      const { gsap, ScrollTrigger } = (window as any);
-      gsap.registerPlugin(ScrollTrigger);
+    // High-performance native scroll progress tracking (zero dependencies)
+    let isTicking = false;
+    const updateScrollProgress = () => {
+      const rect = track.getBoundingClientRect();
+      const totalScrollable = rect.height - window.innerHeight;
+      if (totalScrollable > 0) {
+        const scrolled = -rect.top;
+        const progress = Math.max(0, Math.min(1, scrolled / totalScrollable));
+        const targetIndex = Math.min(
+          items.length - 1,
+          Math.floor(progress * items.length)
+        );
+        setActiveSlide(targetIndex);
+      }
+      isTicking = false;
+    };
 
-      ScrollTrigger.create({
-        trigger: track,
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: true,
-        onUpdate: (self: any) => {
-          const progress = self.progress;
-          const targetIndex = Math.min(
-            items.length - 1,
-            Math.floor(progress * items.length)
-          );
-          setActiveSlide(targetIndex);
-        }
-      });
-    }
+    window.addEventListener('scroll', () => {
+      if (!isTicking) {
+        window.requestAnimationFrame(updateScrollProgress);
+        isTicking = true;
+      }
+    }, { passive: true });
+
+    // Initial check
+    updateScrollProgress();
   }
 
   // Run on DOM load

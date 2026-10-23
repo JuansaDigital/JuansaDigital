@@ -6,6 +6,9 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://juansadigital.com',
+  build: {
+    inlineStylesheets: 'always'
+  },
   i18n: {
     defaultLocale: 'es',
     locales: ['es', 'en', 'fr'],

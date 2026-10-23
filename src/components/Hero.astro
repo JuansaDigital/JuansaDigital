@@ -82,13 +82,34 @@ const t = heroTexts[lang] || heroTexts.es;
     <!-- Panoramic Showcase -->
     <div class="hero-showcase">
       <div class="showcase-media-frame">
-        <img 
-          src="/images/parque-tayrona-hero.webp" 
-          alt={t.alt} 
-          class="showcase-img"
-          loading="eager"
-          decoding="async"
-        />
+        <picture>
+          <source 
+            media="(max-width: 640px)" 
+            srcset="/images/parque-tayrona-hero-mobile.webp" 
+            type="image/webp" 
+            width="768" 
+            height="432"
+          />
+          <source 
+            media="(max-width: 1024px)" 
+            srcset="/images/parque-tayrona-hero-tablet.webp" 
+            type="image/webp" 
+            width="1200" 
+            height="675"
+          />
+          <img 
+            src="/images/parque-tayrona-hero.webp" 
+            srcset="/images/parque-tayrona-hero-mobile.webp 768w, /images/parque-tayrona-hero-tablet.webp 1200w, /images/parque-tayrona-hero.webp 1920w"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1200px"
+            alt={t.alt} 
+            class="showcase-img"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            width="1920"
+            height="1080"
+          />
+        </picture>
         <div class="showcase-caption">
           <span class="caption-title">{t.captionTitle}</span>
           <span class="caption-tag">{t.captionTag}</span>

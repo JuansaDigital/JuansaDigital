@@ -3,8 +3,6 @@
    Warm Paper Canvas (#FAF8F4) · Pitch Black (#000000) · Electric Red (#EC3A3A)
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
-
 :root {
   /* Brand Primary Palette */
   --contra-paper: #FAF8F4;
@@ -13,22 +11,22 @@
   --contra-dark-surface: #121722;
   --contra-white: #FFFFFF;
   
-  /* Brand Vibrant Accents */
-  --contra-red: #EC3A3A;
-  --contra-blue: #3C82D5;
-  --contra-orange: #E18F4A;
-  --contra-yellow: #FEC800;
-  --contra-emerald: #10B981;
+  /* Brand Vibrant Accents (WCAG AA Compliant: >= 4.5:1 contrast against light canvas) */
+  --contra-red: #C92A2A;
+  --contra-blue: #1D4ED8;
+  --contra-orange: #B45309;
+  --contra-yellow: #B45309;
+  --contra-emerald: #047857;
 
   /* Typography Colors - Light Surfaces (Default) */
   --ink-primary: #000000;
   --ink-muted: #555A64;
-  --ink-dim: #8A92A0;
+  --ink-dim: #545D6E;
 
   /* Typography Colors - Dark Surfaces */
   --ink-dark-primary: #FFFFFF;
-  --ink-dark-muted: #9BA3AF;
-  --ink-dark-dim: #64748B;
+  --ink-dark-muted: #CBD5E1;
+  --ink-dark-dim: #94A3B8;
 
   /* Studio Hairlines */
   --line-light: rgba(0, 0, 0, 0.09);
